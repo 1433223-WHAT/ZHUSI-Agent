@@ -1,0 +1,2204 @@
+[
+  {
+    "type": "case_strategy",
+    "case": "Kids_Republic",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "儿童建筑常被做成\"成人建筑缩小+鲜艳颜色\"。真正的问题是：**空间如何尊重孩子的身体与行为**——尺度、可达性、探索自由度，而不是用颜色\"假装儿童\"。",
+    "source": "项目自建教学整理，基于公开建筑资料（SAKO 建筑设计工社项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "SAKO 建筑设计工社（迫庆一郎 Seiichi Sako）",
+    "built_year": "约2008年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "Kids_Republic",
+    "category": "strategy",
+    "strategy": "儿童身体尺度",
+    "content": "儿童身体尺度：门洞、台阶、栏杆、家具按儿童身体设计——能看见、能摸到、能爬上去。",
+    "source": "项目自建教学整理，基于公开建筑资料（SAKO 建筑设计工社项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "SAKO 建筑设计工社（迫庆一郎 Seiichi Sako）",
+    "built_year": "约2008年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "Kids_Republic",
+    "category": "strategy",
+    "strategy": "探索路径",
+    "content": "探索路径：设计可攀爬、可穿越、可躲藏的空间节点，动线即游戏。",
+    "source": "项目自建教学整理，基于公开建筑资料（SAKO 建筑设计工社项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "SAKO 建筑设计工社（迫庆一郎 Seiichi Sako）",
+    "built_year": "约2008年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "Kids_Republic",
+    "category": "strategy",
+    "strategy": "空间游戏性",
+    "content": "空间游戏性：同一空间支持多种玩法（坐/爬/钻/躲），尺度变化制造行为机会。",
+    "source": "项目自建教学整理，基于公开建筑资料（SAKO 建筑设计工社项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "SAKO 建筑设计工社（迫庆一郎 Seiichi Sako）",
+    "built_year": "约2008年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "Kids_Republic",
+    "category": "strategy",
+    "strategy": "色彩作为辅助",
+    "content": "色彩作为辅助：颜色用于功能识别与方向引导，不承担\"儿童化\"的全部责任。",
+    "source": "项目自建教学整理，基于公开建筑资料（SAKO 建筑设计工社项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "SAKO 建筑设计工社（迫庆一郎 Seiichi Sako）",
+    "built_year": "约2008年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "Kids_Republic",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：幼儿园、儿童活动中心、亲子空间；任何以儿童为主要使用者的室内外设计。",
+    "source": "项目自建教学整理，基于公开建筑资料（SAKO 建筑设计工社项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "SAKO 建筑设计工社（迫庆一郎 Seiichi Sako）",
+    "built_year": "约2008年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "Kids_Republic",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：儿童发展心理学（行为与尺度）、身体与空间尺度、环境行为学。",
+    "source": "项目自建教学整理，基于公开建筑资料（SAKO 建筑设计工社项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "SAKO 建筑设计工社（迫庆一郎 Seiichi Sako）",
+    "built_year": "约2008年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "藤幼儿园",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "幼儿园最根本的矛盾：孩子需要**自由活动**（奔跑、攀爬、社交），但建筑通常用\"安全的墙\"来限制。如何在保证安全的前提下，把约束降到最低，让自由成为默认状态？",
+    "source": "项目自建教学整理，基于公开建筑资料（手冢建筑研究所官方项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "手冢建筑研究所（Takaharu Tezuka / Yui Tezuka）",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "藤幼儿园",
+    "category": "strategy",
+    "strategy": "环形体量",
+    "content": "环形体量：椭圆环 = 无限循环的屋顶活动场 + 中央庭院的庇护，交通与活动合一。",
+    "source": "项目自建教学整理，基于公开建筑资料（手冢建筑研究所官方项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "手冢建筑研究所（Takaharu Tezuka / Yui Tezuka）",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "藤幼儿园",
+    "category": "strategy",
+    "strategy": "无墙教室",
+    "content": "无墙教室：用家具、标高差、玻璃划分领域而非实墙，空间连续、儿童可自主选择活动。",
+    "source": "项目自建教学整理，基于公开建筑资料（手冢建筑研究所官方项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "手冢建筑研究所（Takaharu Tezuka / Yui Tezuka）",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "藤幼儿园",
+    "category": "strategy",
+    "strategy": "树木穿屋",
+    "content": "树木穿屋：保留场地大树、建筑为其开洞——自然物锚定布局，环境成为空间主角。",
+    "source": "项目自建教学整理，基于公开建筑资料（手冢建筑研究所官方项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "手冢建筑研究所（Takaharu Tezuka / Yui Tezuka）",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "藤幼儿园",
+    "category": "strategy",
+    "strategy": "儿童尺度",
+    "content": "儿童尺度：压低层高、按儿童视线设计，让\"尺度\"成为空间语言而非缩小比例。",
+    "source": "项目自建教学整理，基于公开建筑资料（手冢建筑研究所官方项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "手冢建筑研究所（Takaharu Tezuka / Yui Tezuka）",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "藤幼儿园",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：幼儿园、儿童活动中心、小学低年级建筑；任何需要\"把交通空间转化为活动空间\"的项目；场地内有重要树木需保留的项目。",
+    "source": "项目自建教学整理，基于公开建筑资料（手冢建筑研究所官方项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "手冢建筑研究所（Takaharu Tezuka / Yui Tezuka）",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "藤幼儿园",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：行为建筑学（建筑影响自发行为）、尺度与身体感知、建筑现象学。",
+    "source": "项目自建教学整理，基于公开建筑资料（手冢建筑研究所官方项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "手冢建筑研究所（Takaharu Tezuka / Yui Tezuka）",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "三联海边图书馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "图书馆在数字时代还需要\"实体阅读\"吗？一座图书馆如何让人愿意**停留、安静、阅读**——不靠藏书量，而靠一种难以言说的\"氛围\"？",
+    "source": "项目自建教学整理，基于公开建筑资料（直向建筑项目介绍与建筑媒体报道，ArchDaily/谷德设计网均有报道），具体出处链接待补充。",
+    "architect": "直向建筑（董功）",
+    "built_year": "2015年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "三联海边图书馆",
+    "category": "strategy",
+    "strategy": "朝海开口",
+    "content": "朝海开口：把最好的朝向/景观留给主要空间，方向即内容——空间为\"看海读书\"而存在。",
+    "source": "项目自建教学整理，基于公开建筑资料（直向建筑项目介绍与建筑媒体报道，ArchDaily/谷德设计网均有报道），具体出处链接待补充。",
+    "architect": "直向建筑（董功）",
+    "built_year": "2015年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "三联海边图书馆",
+    "category": "strategy",
+    "strategy": "天窗光带",
+    "content": "天窗光带：顶部采光让光随时间在室内移动，空间有了时间感。",
+    "source": "项目自建教学整理，基于公开建筑资料（直向建筑项目介绍与建筑媒体报道，ArchDaily/谷德设计网均有报道），具体出处链接待补充。",
+    "architect": "直向建筑（董功）",
+    "built_year": "2015年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "三联海边图书馆",
+    "category": "strategy",
+    "strategy": "先收后放的序列",
+    "content": "先收后放的序列：入口压低昏暗，阅览区开阔明亮——对比制造\"抵达\"的体验。",
+    "source": "项目自建教学整理，基于公开建筑资料（直向建筑项目介绍与建筑媒体报道，ArchDaily/谷德设计网均有报道），具体出处链接待补充。",
+    "architect": "直向建筑（董功）",
+    "built_year": "2015年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "三联海边图书馆",
+    "category": "strategy",
+    "strategy": "材料克制",
+    "content": "材料克制：清水混凝土+木，色彩退后，让光与海成为主角。",
+    "source": "项目自建教学整理，基于公开建筑资料（直向建筑项目介绍与建筑媒体报道，ArchDaily/谷德设计网均有报道），具体出处链接待补充。",
+    "architect": "直向建筑（董功）",
+    "built_year": "2015年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "三联海边图书馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：社区图书馆、文化建筑、海滨/景观地段的阅读空间；任何需要\"氛围大于功能堆叠\"的公共建筑方案。",
+    "source": "项目自建教学整理，基于公开建筑资料（直向建筑项目介绍与建筑媒体报道，ArchDaily/谷德设计网均有报道），具体出处链接待补充。",
+    "architect": "直向建筑（董功）",
+    "built_year": "2015年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "三联海边图书馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学（氛围/场所）、光的建筑学、阅读行为与环境。",
+    "source": "项目自建教学整理，基于公开建筑资料（直向建筑项目介绍与建筑媒体报道，ArchDaily/谷德设计网均有报道），具体出处链接待补充。",
+    "architect": "直向建筑（董功）",
+    "built_year": "2015年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "天津滨海新区图书馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "公共图书馆的新角色：在数字阅读时代，图书馆还承担\"公共客厅\"和\"城市地标\"功能。如何让一个图书馆既保持阅读功能，又成为一个有公共性的空间事件？",
+    "source": "项目自建教学整理，基于公开建筑资料（MVRDV 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "MVRDV 与天津城市规划设计研究院",
+    "built_year": "2017年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "天津滨海新区图书馆",
+    "category": "strategy",
+    "strategy": "书山（功能叠合）",
+    "content": "书山（功能叠合）：书架+座椅+台阶一体化，交通与阅读不分家——一个构件同时解决三件事。",
+    "source": "项目自建教学整理，基于公开建筑资料（MVRDV 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "MVRDV 与天津城市规划设计研究院",
+    "built_year": "2017年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "天津滨海新区图书馆",
+    "category": "strategy",
+    "strategy": "中央焦点",
+    "content": "中央焦点：球形礼堂作为绝对中心，统领多层空间层级，提供方向感。",
+    "source": "项目自建教学整理，基于公开建筑资料（MVRDV 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "MVRDV 与天津城市规划设计研究院",
+    "built_year": "2017年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "天津滨海新区图书馆",
+    "category": "strategy",
+    "strategy": "玻璃外皮",
+    "content": "玻璃外皮：把内部空间事件向城市展示，图书馆从\"藏书楼\"变成\"城市公共空间\"。",
+    "source": "项目自建教学整理，基于公开建筑资料（MVRDV 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "MVRDV 与天津城市规划设计研究院",
+    "built_year": "2017年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "天津滨海新区图书馆",
+    "category": "strategy",
+    "strategy": "单一空间的丰富层级",
+    "content": "单一空间的丰富层级：用一个连续地形承载阅览/交通/活动/展示多种行为。",
+    "source": "项目自建教学整理，基于公开建筑资料（MVRDV 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "MVRDV 与天津城市规划设计研究院",
+    "built_year": "2017年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "天津滨海新区图书馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：公共图书馆、文化中心、展览建筑的中庭设计；需要\"一个空间制造强烈记忆点\"的方案；城市公共建筑的地标性表达。",
+    "source": "项目自建教学整理，基于公开建筑资料（MVRDV 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "MVRDV 与天津城市规划设计研究院",
+    "built_year": "2017年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "天津滨海新区图书馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：空间层级与焦点、公共空间理论、建筑作为城市事件。",
+    "source": "项目自建教学整理，基于公开建筑资料（MVRDV 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "MVRDV 与天津城市规划设计研究院",
+    "built_year": "2017年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "北京市第四中学房山校区",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "中国中学普遍面对：用地紧张、高密度、功能庞杂（教学+运动+住宿），且传统校园把学生关在\"走廊+教室\"里。如何在**高密度校园**里给学生一个自由活动的\"地面\"（哪怕在地上不够用的时候）？",
+    "source": "项目自建教学整理，基于公开建筑资料（OPEN 建筑事务所项目介绍与建筑媒体报道，谷德设计网/ArchDaily 均有报道），具体出处链接待补充。",
+    "architect": "OPEN 建筑事务所（李虎、黄文菁）",
+    "built_year": "2014年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "北京市第四中学房山校区",
+    "category": "strategy",
+    "strategy": "屋顶第二地面",
+    "content": "屋顶第二地面：屋顶覆土成为活动场地，\"地面\"不够用时向上要——高密度校园的释放策略。",
+    "source": "项目自建教学整理，基于公开建筑资料（OPEN 建筑事务所项目介绍与建筑媒体报道，谷德设计网/ArchDaily 均有报道），具体出处链接待补充。",
+    "architect": "OPEN 建筑事务所（李虎、黄文菁）",
+    "built_year": "2014年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "北京市第四中学房山校区",
+    "category": "strategy",
+    "strategy": "院落组织",
+    "content": "院落组织：教学单元围绕下沉庭院组织，庭院提供采光、通风与归属感，替代单调走廊。",
+    "source": "项目自建教学整理，基于公开建筑资料（OPEN 建筑事务所项目介绍与建筑媒体报道，谷德设计网/ArchDaily 均有报道），具体出处链接待补充。",
+    "architect": "OPEN 建筑事务所（李虎、黄文菁）",
+    "built_year": "2014年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "北京市第四中学房山校区",
+    "category": "strategy",
+    "strategy": "底层架空",
+    "content": "底层架空：释放地面层给活动与穿行，公共性在地面展开。",
+    "source": "项目自建教学整理，基于公开建筑资料（OPEN 建筑事务所项目介绍与建筑媒体报道，谷德设计网/ArchDaily 均有报道），具体出处链接待补充。",
+    "architect": "OPEN 建筑事务所（李虎、黄文菁）",
+    "built_year": "2014年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "北京市第四中学房山校区",
+    "category": "strategy",
+    "strategy": "垂直分区",
+    "content": "垂直分区：教学/公共/运动分层布置，功能互不干扰又通过庭院连通。",
+    "source": "项目自建教学整理，基于公开建筑资料（OPEN 建筑事务所项目介绍与建筑媒体报道，谷德设计网/ArchDaily 均有报道），具体出处链接待补充。",
+    "architect": "OPEN 建筑事务所（李虎、黄文菁）",
+    "built_year": "2014年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "北京市第四中学房山校区",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：中国中学、小学课程设计；用地紧张但需要活动空间的项目；想摆脱\"行列式校园\"图式的方案。",
+    "source": "项目自建教学整理，基于公开建筑资料（OPEN 建筑事务所项目介绍与建筑媒体报道，谷德设计网/ArchDaily 均有报道），具体出处链接待补充。",
+    "architect": "OPEN 建筑事务所（李虎、黄文菁）",
+    "built_year": "2014年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "北京市第四中学房山校区",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：院落空间理论、高密度校园与行为、绿色建筑与场地一体化。",
+    "source": "项目自建教学整理，基于公开建筑资料（OPEN 建筑事务所项目介绍与建筑媒体报道，谷德设计网/ArchDaily 均有报道），具体出处链接待补充。",
+    "architect": "OPEN 建筑事务所（李虎、黄文菁）",
+    "built_year": "2014年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "奥雷斯塔高中",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "高中教育的组织方式变了：从\"老师讲、学生听\"走向\"项目协作\"。传统走廊+教室的图式把学生按班级隔离。建筑如何用空间鼓励跨班交流，同时保留安静学习场所？",
+    "source": "项目自建教学整理，基于公开建筑资料（3XN 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "3XN",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "奥雷斯塔高中",
+    "category": "strategy",
+    "strategy": "中庭学生街",
+    "content": "中庭学生街：把公共交流放进一个垂直中庭，交通即社交。",
+    "source": "项目自建教学整理，基于公开建筑资料（3XN 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "3XN",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "奥雷斯塔高中",
+    "category": "strategy",
+    "strategy": "螺旋楼梯作为舞台",
+    "content": "螺旋楼梯作为舞台：楼梯从\"通过\"变\"停留\"——梯级加宽、平台放大，成为可坐可谈的空间。",
+    "source": "项目自建教学整理，基于公开建筑资料（3XN 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "3XN",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "奥雷斯塔高中",
+    "category": "strategy",
+    "strategy": "透明教室",
+    "content": "透明教室：玻璃隔断让学习过程可见，视觉连续降低封闭感、暗示开放教学。",
+    "source": "项目自建教学整理，基于公开建筑资料（3XN 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "3XN",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "奥雷斯塔高中",
+    "category": "strategy",
+    "strategy": "顶部天窗",
+    "content": "顶部天窗：中庭深处获得自然光，垂直空间不黑暗。",
+    "source": "项目自建教学整理，基于公开建筑资料（3XN 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "3XN",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "奥雷斯塔高中",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：教学楼、中学/大学建筑、任何需要\"公共交流与私密学习共存\"的教育建筑；多功能中庭设计。",
+    "source": "项目自建教学整理，基于公开建筑资料（3XN 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "3XN",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "奥雷斯塔高中",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：透明性（建筑的可见性）、行为建筑学、教育空间与教学模式的互动。",
+    "source": "项目自建教学整理，基于公开建筑资料（3XN 项目介绍与建筑媒体报道），具体出处链接待补充。",
+    "architect": "3XN",
+    "built_year": "2007年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "卡朋特视觉艺术中心",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过建筑空间与结构设计，为艺术展览提供一种既具灵活性又具方向感的视觉体验，同时回应场地与校园文脉？",
+    "source": "[https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier](https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier)\n[https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts](https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts)",
+    "architect": "勒·柯布西耶（Le Corbusier），与智利建筑师吉列尔莫·朱利安·德·拉·富恩特合作设计；现场施工图由何塞普·路易斯·塞特的事务所负责",
+    "built_year": "1962年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "卡朋特视觉艺术中心",
+    "category": "strategy",
+    "strategy": "结构即空间组织器",
+    "content": "结构即空间组织器：利用重型混凝土桁架与预制构件，将结构体系本身作为划分空间、引导流线和定义尺度的工具，而非仅作支撑。",
+    "source": "[https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier](https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier)\n[https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts](https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts)",
+    "architect": "勒·柯布西耶（Le Corbusier），与智利建筑师吉列尔莫·朱利安·德·拉·富恩特合作设计；现场施工图由何塞普·路易斯·塞特的事务所负责",
+    "built_year": "1962年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "卡朋特视觉艺术中心",
+    "category": "strategy",
+    "strategy": "坡道与视线引导",
+    "content": "坡道与视线引导：通过连续坡道和不同标高的平台，创造渐进式的空间序列，使观者在运动中不断获得对展品和整体空间的动态视角。",
+    "source": "[https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier](https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier)\n[https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts](https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts)",
+    "architect": "勒·柯布西耶（Le Corbusier），与智利建筑师吉列尔莫·朱利安·德·拉·富恩特合作设计；现场施工图由何塞普·路易斯·塞特的事务所负责",
+    "built_year": "1962年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "卡朋特视觉艺术中心",
+    "category": "strategy",
+    "strategy": "光与材料的对比叙事",
+    "content": "光与材料的对比叙事：以粗糙混凝土与精致玻璃的材质对比，结合侧高窗与天窗引入的自然光，强化空间的物质性与时间感，形成视觉焦点。",
+    "source": "[https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier](https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier)\n[https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts](https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts)",
+    "architect": "勒·柯布西耶（Le Corbusier），与智利建筑师吉列尔莫·朱利安·德·拉·富恩特合作设计；现场施工图由何塞普·路易斯·塞特的事务所负责",
+    "built_year": "1962年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "卡朋特视觉艺术中心",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 大学校园内的艺术或文化类建筑\n- 需要灵活展览空间与固定功能（如工作室、讲堂）并存的建筑\n- 地形有高差或需要处理与周边建筑关系的场地\n- 强调结构表现与建造逻辑的公共建筑\n- 需要营造沉浸式、序列化观展体验的展览空间",
+    "source": "[https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier](https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier)\n[https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts](https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts)",
+    "architect": "勒·柯布西耶（Le Corbusier），与智利建筑师吉列尔莫·朱利安·德·拉·富恩特合作设计；现场施工图由何塞普·路易斯·塞特的事务所负责",
+    "built_year": "1962年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "卡朋特视觉艺术中心",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 空间序列理论\n- 建筑现象学\n- 材料感知理论",
+    "source": "[https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier](https://www.archdaily.com/119384/ad-classics-carpenter-center-for-the-visual-arts-le-corbusier)\n[https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts](https://en.wikipedia.org/wiki/Carpenter_Center_for_the_Visual_Arts)",
+    "architect": "勒·柯布西耶（Le Corbusier），与智利建筑师吉列尔莫·朱利安·德·拉·富恩特合作设计；现场施工图由何塞普·路易斯·塞特的事务所负责",
+    "built_year": "1962年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "拉图雷特修道院",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过建筑空间与光线的组织，营造一种“内在寂静”的宗教氛围，使居住者在日常修行中持续体验精神专注与自我内省？",
+    "source": "[https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser](https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "资料待补充（建议查阅后补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "拉图雷特修道院",
+    "category": "strategy",
+    "strategy": "光缝引导",
+    "content": "光缝引导：在厚实混凝土墙体上开设窄长或异形采光缝，将自然光转化为漫射或定向光束，强化空间神圣性与时间流逝感。",
+    "source": "[https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser](https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "资料待补充（建议查阅后补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "拉图雷特修道院",
+    "category": "strategy",
+    "strategy": "序列压缩-释放",
+    "content": "序列压缩-释放：从低矮昏暗的门廊进入，经坡道或窄梯过渡，再抵达高耸明亮的教堂主空间，利用尺度与明暗反差制造情绪转折。",
+    "source": "[https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser](https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "资料待补充（建议查阅后补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "拉图雷特修道院",
+    "category": "strategy",
+    "strategy": "材质粗野对比",
+    "content": "材质粗野对比：裸露的清水混凝土与粗糙木模板肌理，搭配局部光滑金属或玻璃，以触觉差异增强身体对空间边界的感知。",
+    "source": "[https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser](https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "资料待补充（建议查阅后补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "拉图雷特修道院",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 宗教或冥想类建筑（修道院、教堂、禅修中心）  \n- 文化展览空间（美术馆、纪念馆）中需要情绪引导的流线设计  \n- 山地或坡地建筑中处理高差与入口序列  \n- 强调静谧与内省氛围的居住或疗愈空间",
+    "source": "[https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser](https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "资料待补充（建议查阅后补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "拉图雷特修道院",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学  \n- 空间序列理论  \n- 光的建筑学",
+    "source": "[https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser](https://www.archdaily.com/96824/ad-classics-convent-of-la-tourette-le-corbuiser)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "资料待补充（建议查阅后补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "朗香教堂",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过建筑形式与光线的戏剧性处理，塑造一个超越日常、引发精神共鸣的宗教冥想空间？",
+    "source": "[https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut](https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut)\n[https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/](https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1955年（1953–1955年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "朗香教堂",
+    "category": "strategy",
+    "strategy": "异质化形体操作",
+    "content": "异质化形体操作：通过弯曲墙体、不规则平面与厚重屋顶，打破常规教堂的对称与秩序，创造神秘、有机的空间体验。",
+    "source": "[https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut](https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut)\n[https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/](https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1955年（1953–1955年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "朗香教堂",
+    "category": "strategy",
+    "strategy": "光线叙事",
+    "content": "光线叙事：利用彩色玻璃窗洞与屋顶缝隙，引入侧光、顶光与漫射光，形成随时间变化的“光之剧场”，强化神圣氛围。",
+    "source": "[https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut](https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut)\n[https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/](https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1955年（1953–1955年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "朗香教堂",
+    "category": "strategy",
+    "strategy": "身体尺度对比",
+    "content": "身体尺度对比：以低矮入口、倾斜地面与高大内部空间形成尺度反差，迫使身体姿态变化，增强进入时的仪式感与敬畏感。",
+    "source": "[https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut](https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut)\n[https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/](https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1955年（1953–1955年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "朗香教堂",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 宗教或精神性建筑（教堂、寺庙、冥想中心）  \n- 文化地标或纪念性空间（博物馆、纪念馆）  \n- 需要营造强烈氛围感的公共建筑（剧院、展览馆）  \n- 地形复杂或景观敏感地段的建筑创作  \n- 探索非几何形体与光影互动的实验性设计",
+    "source": "[https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut](https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut)\n[https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/](https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1955年（1953–1955年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "朗香教堂",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学（强调身体感知、氛围与场所体验）  \n- 光的建筑学（以光线作为塑造空间与情感的核心媒介）  \n- 场所精神（通过形式与光影回应场地与精神性需求）",
+    "source": "[https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut](https://fr.wikipedia.org/wiki/Chapelle_Notre-Dame_du_Haut)\n[https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/](https://www.fondationlecorbusier.fr/oeuvre-architecture/realisations-chapelle-notre-dame-du-haut-ronchamp-france-1950-1955/)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1955年（1953–1955年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "萨伏伊别墅",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过建筑要素的组织（而非装饰），回应现代机器美学与居住生活需求之间的矛盾，并建立一种全新的、基于自由平面的空间秩序。",
+    "source": "[https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier](https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier)\n[https://en.wikipedia.org/wiki/Villa_Savoye](https://en.wikipedia.org/wiki/Villa_Savoye)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1931"
+  },
+  {
+    "type": "case_strategy",
+    "case": "萨伏伊别墅",
+    "category": "strategy",
+    "strategy": "建筑漫步（Promenade Architecturale）",
+    "content": "建筑漫步（Promenade Architecturale）：通过坡道串联不同楼层，引导身体在连续空间中缓慢移动，形成动态的、随时间展开的视觉与空间体验。",
+    "source": "[https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier](https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier)\n[https://en.wikipedia.org/wiki/Villa_Savoye](https://en.wikipedia.org/wiki/Villa_Savoye)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1931"
+  },
+  {
+    "type": "case_strategy",
+    "case": "萨伏伊别墅",
+    "category": "strategy",
+    "strategy": "底层架空与屋顶花园",
+    "content": "底层架空与屋顶花园：将建筑主体抬离地面，释放地面层为交通与自然空间；同时将自然引入屋顶，形成上下呼应的“空中地面”，补偿被建筑占用的绿地。",
+    "source": "[https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier](https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier)\n[https://en.wikipedia.org/wiki/Villa_Savoye](https://en.wikipedia.org/wiki/Villa_Savoye)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1931"
+  },
+  {
+    "type": "case_strategy",
+    "case": "萨伏伊别墅",
+    "category": "strategy",
+    "strategy": "自由平面与自由立面",
+    "content": "自由平面与自由立面：采用独立的钢筋混凝土框架结构，使墙体不再承重，从而在平面和立面上获得完全的自由，内部空间可灵活划分，立面可连续开窗。",
+    "source": "[https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier](https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier)\n[https://en.wikipedia.org/wiki/Villa_Savoye](https://en.wikipedia.org/wiki/Villa_Savoye)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1931"
+  },
+  {
+    "type": "case_strategy",
+    "case": "萨伏伊别墅",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 独立式住宅或小型公共建筑（如美术馆、游客中心）设计\n- 坡地或景观敏感地段的建筑布局\n- 需要强调“漫步式”体验的文化或展示类建筑\n- 探索结构体系与空间自由度的教学或实验性设计",
+    "source": "[https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier](https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier)\n[https://en.wikipedia.org/wiki/Villa_Savoye](https://en.wikipedia.org/wiki/Villa_Savoye)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1931"
+  },
+  {
+    "type": "case_strategy",
+    "case": "萨伏伊别墅",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、身体与空间尺度、空间序列理论",
+    "source": "[https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier](https://www.archdaily.com/84524/ad-classics-villa-savoye-le-corbusier)\n[https://en.wikipedia.org/wiki/Villa_Savoye](https://en.wikipedia.org/wiki/Villa_Savoye)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1931"
+  },
+  {
+    "type": "case_strategy",
+    "case": "马赛公寓",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在高层高密度居住体中，通过空间与功能组织重构“街道生活”与社区感，避免现代主义住宅的孤立与匿名化。",
+    "source": "[https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier](https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier)\n[https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation](https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation)\n[https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation](https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1952年（1947–1952年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "马赛公寓",
+    "category": "strategy",
+    "strategy": "架空底层与屋顶公共层",
+    "content": "架空底层与屋顶公共层：将地面层架空用于停车与公共设施，屋顶设为幼儿园、跑道、泳池等共享功能，形成垂直社区的双重公共锚点。",
+    "source": "[https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier](https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier)\n[https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation](https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation)\n[https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation](https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1952年（1947–1952年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "马赛公寓",
+    "category": "strategy",
+    "strategy": "内嵌式“商业街”",
+    "content": "内嵌式“商业街”：在建筑中部设置贯穿的购物、服务走廊，将日常商业活动垂直抬升，模拟传统街道的偶遇与交往。",
+    "source": "[https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier](https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier)\n[https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation](https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation)\n[https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation](https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1952年（1947–1952年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "马赛公寓",
+    "category": "strategy",
+    "strategy": "模数化居住单元+可变阳台",
+    "content": "模数化居住单元+可变阳台：以标准模数控制户型，同时每户配深凹阳台（“阳光室”），模糊室内外边界，强化个体与自然的日常接触。",
+    "source": "[https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier](https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier)\n[https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation](https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation)\n[https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation](https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1952年（1947–1952年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "马赛公寓",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 高密度集合住宅设计\n- 城市更新中的社区活力重塑\n- 混合功能建筑（居住+商业+公共设施）\n- 气候温和地区的开放空间策略\n- 现代主义遗产的适应性再利用",
+    "source": "[https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier](https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier)\n[https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation](https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation)\n[https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation](https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1952年（1947–1952年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "马赛公寓",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学（强调身体在架空、阳台、公共走廊中的感官体验与日常仪式感）\n- 场所精神（通过屋顶与商业街创造具有“地点认同”的垂直聚落）\n- 身体与空间尺度（以人体尺度控制模数、走廊宽度与阳台深度，对抗巨型体量的压迫）",
+    "source": "[https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier](https://www.archdaily.com/85971/ad-classics-unite-d-habitation-le-corbusier)\n[https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation](https://en.wikipedia.org/wiki/Unit%C3%A9_d%27Habitation)\n[https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation](https://fr.wikipedia.org/wiki/Unit%C3%A9_d%27habitation)",
+    "architect": "勒·柯布西耶（Le Corbusier）",
+    "built_year": "1952年（1947–1952年建造）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "埃克塞特图书馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在图书馆这一需要集中阅读与安静沉思的公共空间中，通过建筑结构本身（而非装饰）塑造一种具有仪式感的、引导性的空间秩序，并解决自然采光与书籍保存之间的矛盾。",
+    "source": "[https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library](https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1971年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "埃克塞特图书馆",
+    "category": "strategy",
+    "strategy": "双层墙体结构（外实内虚）",
+    "content": "双层墙体结构（外实内虚）：外围厚重的砖石墙体隔绝外界干扰并承担结构，内侧独立的混凝土框架承托书架，中间留出通高采光中庭，实现结构、功能与光线的分离与整合。",
+    "source": "[https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library](https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1971年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "埃克塞特图书馆",
+    "category": "strategy",
+    "strategy": "中心采光大厅的“空间引力场”",
+    "content": "中心采光大厅的“空间引力场”：以巨大的、充满自然光的中央大厅作为空间核心，所有楼层和阅览区均围绕其布置，通过视觉穿透和尺度对比，形成强烈的向心性与方向引导。",
+    "source": "[https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library](https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1971年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "埃克塞特图书馆",
+    "category": "strategy",
+    "strategy": "结构表现主义与功能分层",
+    "content": "结构表现主义与功能分层：将结构构件（如巨型拱、梁柱）作为空间划分和视觉焦点，同时明确区分“藏书区”、“阅读区”、“交通区”的层高与光照强度，使建筑逻辑清晰可读。",
+    "source": "[https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library](https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1971年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "埃克塞特图书馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 大型公共图书馆或学术图书馆设计\n- 需要营造安静、沉思氛围的文化建筑（如档案馆、美术馆）\n- 对自然采光有严苛要求且需保护书籍的室内空间\n- 强调结构美学与空间仪式感的纪念性建筑\n- 需要处理“内向型”空间与外部环境隔离的场地",
+    "source": "[https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library](https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1971年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "埃克塞特图书馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 光的建筑学\n- 身体与空间尺度",
+    "source": "[https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library](https://en.wikipedia.org/wiki/Phillips_Exeter_Academy_Library)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1971年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "孟加拉国会大厦",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在热带气候与高密度城市环境中，通过建筑形式与空间组织实现纪念性、公共性与气候适应性的统一？",
+    "source": "[https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn](https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn)\n[https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/](https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1982年（施工始于1964年，因1971年独立战争中断后恢复）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "孟加拉国会大厦",
+    "category": "strategy",
+    "strategy": "几何化纪念空间",
+    "content": "几何化纪念空间：以圆形、方形、八角形等纯粹几何体嵌套组合，形成具有仪式感的中心性空间序列，强化国家建筑的象征意义。",
+    "source": "[https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn](https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn)\n[https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/](https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1982年（施工始于1964年，因1971年独立战争中断后恢复）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "孟加拉国会大厦",
+    "category": "strategy",
+    "strategy": "气候缓冲层设计",
+    "content": "气候缓冲层设计：通过厚重的墙体、深凹的洞口、内部庭院与水池系统，被动调节热环境，同时创造光影变化的空间体验。",
+    "source": "[https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn](https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn)\n[https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/](https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1982年（施工始于1964年，因1971年独立战争中断后恢复）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "孟加拉国会大厦",
+    "category": "strategy",
+    "strategy": "水景与建筑融合",
+    "content": "水景与建筑融合：将建筑置于人工湖中，利用水体调节微气候，并形成“漂浮的纪念物”意象，增强场所的静谧与神圣感。",
+    "source": "[https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn](https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn)\n[https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/](https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1982年（施工始于1964年，因1971年独立战争中断后恢复）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "孟加拉国会大厦",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 热带或亚热带地区的公共文化建筑（如国会、法院、博物馆）\n- 需要表达国家或集体记忆的纪念性建筑\n- 高密度城市中需要营造内向性精神空间的场地\n- 强调被动式节能与气候回应的可持续设计项目",
+    "source": "[https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn](https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn)\n[https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/](https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1982年（施工始于1964年，因1971年独立战争中断后恢复）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "孟加拉国会大厦",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 场所精神\n- 光的建筑学",
+    "source": "[https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn](https://www.archdaily.com/83071/ad-classics-national-assembly-building-of-bangladesh-louis-kahn)\n[https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/](https://www.architecturelab.net/national-assembly-building-of-bangladesh-louis-kahn/)",
+    "architect": "路易斯·康（Louis Kahn）",
+    "built_year": "1982年（施工始于1964年，因1971年独立战争中断后恢复）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "索尔克生物研究所",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过建筑与场地的关系，营造一种促进科学交流与沉思的“精神性”空间氛围，而非仅满足功能需求。",
+    "source": "[https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn](https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1965年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "索尔克生物研究所",
+    "category": "strategy",
+    "strategy": "中轴虚空法",
+    "content": "中轴虚空法：以一条面向太平洋的中央水渠为轴，两侧建筑对称布置，形成无屋顶的“精神空间”，引导视线向地平线延伸，强化场所的静谧与崇高感。",
+    "source": "[https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn](https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1965年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "索尔克生物研究所",
+    "category": "strategy",
+    "strategy": "材料对比法",
+    "content": "材料对比法：采用清水混凝土与柚木镶板，以粗犷与温润的材质对比，调和建筑的纪念性与人体触感，增强空间的时间性与温度。",
+    "source": "[https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn](https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1965年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "索尔克生物研究所",
+    "category": "strategy",
+    "strategy": "层级递进法",
+    "content": "层级递进法：通过从入口、庭院、走廊到研究室的渐进式空间序列，控制光线与视线变化，使日常路径转化为仪式性体验，激发沉思与偶遇。",
+    "source": "[https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn](https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1965年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "索尔克生物研究所",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 科研园区或学术机构的主楼设计  \n- 面向自然景观（海、山、平原）的公共文化建筑  \n- 需要营造冥想、交流或仪式感的建筑空间  \n- 以“少即是多”为原则的极简主义建筑实践  \n- 强调建筑与场地精神融合的纪念性项目",
+    "source": "[https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn](https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1965年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "索尔克生物研究所",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学  \n- 场所精神  \n- 光的建筑学",
+    "source": "[https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn](https://www.archdaily.com/61288/ad-classics-salk-institute-louis-kahn)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1965年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "耶鲁英国艺术中心",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在既有城市肌理中，通过建筑内部空间的层级组织与自然光的引入，塑造一座兼具艺术展示与公共交流功能的“城市客厅”，并解决新旧建筑之间的过渡与融合问题。",
+    "source": "[https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn](https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn)\n[https://en.wikipedia.org/wiki/Yale_Center_for_British_Art](https://en.wikipedia.org/wiki/Yale_Center_for_British_Art)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1974年完工，1977年4月15日向公众开放"
+  },
+  {
+    "type": "case_strategy",
+    "case": "耶鲁英国艺术中心",
+    "category": "strategy",
+    "strategy": "光庭串联法",
+    "content": "光庭串联法：以一系列顶部采光的中庭（如锥形天窗）作为空间主轴，将各层展厅、交通与休息区串联，形成以光为引导的连续参观路径。",
+    "source": "[https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn](https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn)\n[https://en.wikipedia.org/wiki/Yale_Center_for_British_Art](https://en.wikipedia.org/wiki/Yale_Center_for_British_Art)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1974年完工，1977年4月15日向公众开放"
+  },
+  {
+    "type": "case_strategy",
+    "case": "耶鲁英国艺术中心",
+    "category": "strategy",
+    "strategy": "层叠平台法",
+    "content": "层叠平台法：通过错层平台与短梯段楼梯，在垂直方向创造多标高平台，使观众在行进中不断获得对整体空间的俯瞰与局部展品的近观，增强空间体验的戏剧性。",
+    "source": "[https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn](https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn)\n[https://en.wikipedia.org/wiki/Yale_Center_for_British_Art](https://en.wikipedia.org/wiki/Yale_Center_for_British_Art)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1974年完工，1977年4月15日向公众开放"
+  },
+  {
+    "type": "case_strategy",
+    "case": "耶鲁英国艺术中心",
+    "category": "strategy",
+    "strategy": "材料对比与调和",
+    "content": "材料对比与调和：使用裸露混凝土、钢材与天然石材，与旧建筑砖石立面形成清晰对比，同时通过相似的模数或色调过渡，实现新旧体量的视觉融合。",
+    "source": "[https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn](https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn)\n[https://en.wikipedia.org/wiki/Yale_Center_for_British_Art](https://en.wikipedia.org/wiki/Yale_Center_for_British_Art)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1974年完工，1977年4月15日向公众开放"
+  },
+  {
+    "type": "case_strategy",
+    "case": "耶鲁英国艺术中心",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 城市中心区改扩建的博物馆或美术馆  \n- 需要兼顾大型临时展览与常设收藏的复合文化建筑  \n- 场地高差或周边建筑遮挡严重，需依靠天光解决采光的项目  \n- 强调“漫步式”观展体验，而非单一线性流线的文化空间  \n- 历史街区中的新介入体，需平衡现代性与文脉延续",
+    "source": "[https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn](https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn)\n[https://en.wikipedia.org/wiki/Yale_Center_for_British_Art](https://en.wikipedia.org/wiki/Yale_Center_for_British_Art)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1974年完工，1977年4月15日向公众开放"
+  },
+  {
+    "type": "case_strategy",
+    "case": "耶鲁英国艺术中心",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学（强调光、材料、身体运动与空间氛围的直接感知）  \n- 空间序列理论（通过光庭与平台组织起有节奏、有高潮的参观序列）  \n- 光的建筑学（以自然光作为塑造空间性格与引导路径的核心工具）",
+    "source": "[https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn](https://www.archdaily.com/159193/ad-classics-yale-center-for-british-art-louis-kahn)\n[https://en.wikipedia.org/wiki/Yale_Center_for_British_Art](https://en.wikipedia.org/wiki/Yale_Center_for_British_Art)",
+    "architect": "路易斯·康（Louis I. Kahn）",
+    "built_year": "1974年完工，1977年4月15日向公众开放"
+  },
+  {
+    "type": "case_strategy",
+    "case": "金贝尔艺术博物馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在强日光气候下，为艺术展览空间提供均匀、柔和且无直射眩光的自然采光，同时保持建筑形体的完整性与纪念性？",
+    "source": "[https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn](https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn)",
+    "architect": "路易斯·康",
+    "built_year": ""
+  },
+  {
+    "type": "case_strategy",
+    "case": "金贝尔艺术博物馆",
+    "category": "strategy",
+    "strategy": "摆线拱顶采光系统",
+    "content": "摆线拱顶采光系统：采用一系列半圆形摆线拱顶，在拱顶顶部开设连续窄缝，通过拱顶内壁的反射将直射阳光转化为均匀漫射光，避免阳光直射展品。",
+    "source": "[https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn](https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn)",
+    "architect": "路易斯·康",
+    "built_year": ""
+  },
+  {
+    "type": "case_strategy",
+    "case": "金贝尔艺术博物馆",
+    "category": "strategy",
+    "strategy": "结构-光线一体化设计",
+    "content": "结构-光线一体化设计：将结构拱顶与采光、空调管道整合为同一建筑元素，使设备与空间形态完全融合，减少视觉干扰，强化空间纯粹性。",
+    "source": "[https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn](https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn)",
+    "architect": "路易斯·康",
+    "built_year": ""
+  },
+  {
+    "type": "case_strategy",
+    "case": "金贝尔艺术博物馆",
+    "category": "strategy",
+    "strategy": "序列化空间节奏",
+    "content": "序列化空间节奏：以重复的拱顶单元沿轴线排列，形成有韵律的空间序列，引导参观动线，并在端部以高侧窗或庭院引入变化光线，打破单调。",
+    "source": "[https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn](https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn)",
+    "architect": "路易斯·康",
+    "built_year": ""
+  },
+  {
+    "type": "case_strategy",
+    "case": "金贝尔艺术博物馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 美术馆、博物馆等对光环境要求高的展览建筑\n- 强日照地区（如美国德州）的文化公共建筑\n- 需要同时解决大跨度结构与自然采光的单层建筑\n- 追求空间静谧感与几何秩序感的纪念性建筑\n- 改造或新建项目中需整合设备与结构的空间设计",
+    "source": "[https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn](https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn)",
+    "architect": "路易斯·康",
+    "built_year": ""
+  },
+  {
+    "type": "case_strategy",
+    "case": "金贝尔艺术博物馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 光的建筑学\n- 空间序列理论\n- 材料感知理论",
+    "source": "[https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn](https://www.archdaily.com/123761/ad-classics-kimbell-art-museum-louis-kahn)",
+    "architect": "路易斯·康",
+    "built_year": ""
+  },
+  {
+    "type": "case_strategy",
+    "case": "克朗楼",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过单一建筑形体与内部空间组织，在无明确功能分区的前提下，实现一个具有高度精神性与秩序感的通用性教学场所？",
+    "source": "[https://en.wikipedia.org/wiki/S._R._Crown_Hall](https://en.wikipedia.org/wiki/S._R._Crown_Hall)\n[https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/](https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1956年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "克朗楼",
+    "category": "strategy",
+    "strategy": "单一几何母题统摄空间",
+    "content": "单一几何母题统摄空间：以统一的结构网格和重复的柱列（如密斯式的匀质网格）贯穿全部空间，消解功能等级，营造均质、连续的秩序感。",
+    "source": "[https://en.wikipedia.org/wiki/S._R._Crown_Hall](https://en.wikipedia.org/wiki/S._R._Crown_Hall)\n[https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/](https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1956年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "克朗楼",
+    "category": "strategy",
+    "strategy": "架空与通透的底层策略",
+    "content": "架空与通透的底层策略：将主要使用空间抬升或架空，使地面层形成连续的开敞流动空间，模糊室内外界限，强化建筑与场地的融合。",
+    "source": "[https://en.wikipedia.org/wiki/S._R._Crown_Hall](https://en.wikipedia.org/wiki/S._R._Crown_Hall)\n[https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/](https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1956年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "克朗楼",
+    "category": "strategy",
+    "strategy": "材料与构造的极简表达",
+    "content": "材料与构造的极简表达：通过钢、玻璃、砖等材料的精确节点与裸露结构，将建造逻辑转化为视觉与空间体验的核心，强化“少即是多”的感知。",
+    "source": "[https://en.wikipedia.org/wiki/S._R._Crown_Hall](https://en.wikipedia.org/wiki/S._R._Crown_Hall)\n[https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/](https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1956年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "克朗楼",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 通用性教学建筑（如设计学院、工科楼）\n- 需要灵活可变、无固定分隔的开放式工作室或实验室\n- 强调空间秩序与精神性表达的纪念性公共建筑\n- 位于开阔场地、需与景观连续互动的低层建筑\n- 以结构表现和材料真实性为核心设计理念的项目",
+    "source": "[https://en.wikipedia.org/wiki/S._R._Crown_Hall](https://en.wikipedia.org/wiki/S._R._Crown_Hall)\n[https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/](https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1956年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "克朗楼",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 空间序列理论\n- 光的建筑学",
+    "source": "[https://en.wikipedia.org/wiki/S._R._Crown_Hall](https://en.wikipedia.org/wiki/S._R._Crown_Hall)\n[https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/](https://www.architectureadrenaline.com/crown-hall-an-iconic-triumph-of-modernist-architecture/)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1956年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "巴塞罗那德国馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在极简建筑中通过空间流动、材料质感和光影变化，营造一种“少即是多”的沉浸式体验，同时模糊室内外界限？",
+    "source": "[https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Barcelona_Pavilion](https://en.wikipedia.org/wiki/Barcelona_Pavilion)",
+    "architect": "Ludwig Mies van der Rohe, Lilly Reich",
+    "built_year": "1929"
+  },
+  {
+    "type": "case_strategy",
+    "case": "巴塞罗那德国馆",
+    "category": "strategy",
+    "strategy": "流动空间组织",
+    "content": "流动空间组织：通过自由平面和连续墙体引导视线与动线，打破传统房间分隔，实现空间的无缝渗透。",
+    "source": "[https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Barcelona_Pavilion](https://en.wikipedia.org/wiki/Barcelona_Pavilion)",
+    "architect": "Ludwig Mies van der Rohe, Lilly Reich",
+    "built_year": "1929"
+  },
+  {
+    "type": "case_strategy",
+    "case": "巴塞罗那德国馆",
+    "category": "strategy",
+    "strategy": "材料对比与反射",
+    "content": "材料对比与反射：运用大理石、玻璃、水面的反射与透明度，叠加不同材质的光泽与触感，强化空间层次与氛围。",
+    "source": "[https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Barcelona_Pavilion](https://en.wikipedia.org/wiki/Barcelona_Pavilion)",
+    "architect": "Ludwig Mies van der Rohe, Lilly Reich",
+    "built_year": "1929"
+  },
+  {
+    "type": "case_strategy",
+    "case": "巴塞罗那德国馆",
+    "category": "strategy",
+    "strategy": "轴线与视线引导",
+    "content": "轴线与视线引导：设置不对称的轴线与框景，使观者在移动中不断发现新的空间关系，延长体验时间。",
+    "source": "[https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Barcelona_Pavilion](https://en.wikipedia.org/wiki/Barcelona_Pavilion)",
+    "architect": "Ludwig Mies van der Rohe, Lilly Reich",
+    "built_year": "1929"
+  },
+  {
+    "type": "case_strategy",
+    "case": "巴塞罗那德国馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 展览馆或文化建筑中需要营造仪式感与沉浸体验的入口或主展厅  \n- 小型公共建筑（如亭、廊、接待中心）追求空间流动性与内外连续  \n- 极简主义设计项目中需通过材料与光塑造氛围  \n- 建筑改造中需打破原有封闭格局，引入自然光与景观  \n- 景观建筑中需处理建筑与场地、水景、铺地的融合",
+    "source": "[https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Barcelona_Pavilion](https://en.wikipedia.org/wiki/Barcelona_Pavilion)",
+    "architect": "Ludwig Mies van der Rohe, Lilly Reich",
+    "built_year": "1929"
+  },
+  {
+    "type": "case_strategy",
+    "case": "巴塞罗那德国馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、空间序列理论、光的建筑学",
+    "source": "[https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/109135/ad-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe](https://www.archdaily.com/1007357/architecture-classics-barcelona-pavilion-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Barcelona_Pavilion](https://en.wikipedia.org/wiki/Barcelona_Pavilion)",
+    "architect": "Ludwig Mies van der Rohe, Lilly Reich",
+    "built_year": "1929"
+  },
+  {
+    "type": "case_strategy",
+    "case": "柏林新国家美术馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在极简、均质的通用空间中，通过精确的结构与材料控制，塑造具有纪念性且适应多种功能的文化建筑？",
+    "source": "[https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects](https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects)\n[https://en.wikipedia.org/wiki/Neue_Nationalgalerie](https://en.wikipedia.org/wiki/Neue_Nationalgalerie)",
+    "architect": "Ludwig Mies van der Rohe（路德维希·密斯·凡·德·罗）",
+    "built_year": "1968年（2015-2021年由David Chipperfield Architects翻新）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "柏林新国家美术馆",
+    "category": "strategy",
+    "strategy": "结构即空间",
+    "content": "结构即空间：以巨大的钢屋顶和八根十字形柱作为唯一空间限定元素，将结构体系直接转化为建筑空间的秩序与视觉焦点，实现“少即是多”的极致表达。",
+    "source": "[https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects](https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects)\n[https://en.wikipedia.org/wiki/Neue_Nationalgalerie](https://en.wikipedia.org/wiki/Neue_Nationalgalerie)",
+    "architect": "Ludwig Mies van der Rohe（路德维希·密斯·凡·德·罗）",
+    "built_year": "1968年（2015-2021年由David Chipperfield Architects翻新）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "柏林新国家美术馆",
+    "category": "strategy",
+    "strategy": "基座与悬浮的对比",
+    "content": "基座与悬浮的对比：通过抬高的花岗岩基座与轻盈悬浮的钢屋顶形成强烈视觉反差，强化建筑的纪念性与地标感，同时基座内嵌入辅助功能，保持主展厅的纯净。",
+    "source": "[https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects](https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects)\n[https://en.wikipedia.org/wiki/Neue_Nationalgalerie](https://en.wikipedia.org/wiki/Neue_Nationalgalerie)",
+    "architect": "Ludwig Mies van der Rohe（路德维希·密斯·凡·德·罗）",
+    "built_year": "1968年（2015-2021年由David Chipperfield Architects翻新）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "柏林新国家美术馆",
+    "category": "strategy",
+    "strategy": "透明界面与模糊边界",
+    "content": "透明界面与模糊边界：大面积玻璃幕墙使室内外空间视觉连续，将城市景观引入展厅，同时模糊了建筑与广场的界限，创造开放、通透的公共空间体验。",
+    "source": "[https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects](https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects)\n[https://en.wikipedia.org/wiki/Neue_Nationalgalerie](https://en.wikipedia.org/wiki/Neue_Nationalgalerie)",
+    "architect": "Ludwig Mies van der Rohe（路德维希·密斯·凡·德·罗）",
+    "built_year": "1968年（2015-2021年由David Chipperfield Architects翻新）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "柏林新国家美术馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 需要高度灵活、无柱大空间的展览或活动建筑\n- 追求极简美学与结构表现力的公共文化建筑\n- 位于城市重要节点、需塑造标志性形象的地标性项目\n- 强调室内外空间渗透与公共性营造的现代建筑\n- 对结构精度与材料质感有极高要求的纪念性建筑",
+    "source": "[https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects](https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects)\n[https://en.wikipedia.org/wiki/Neue_Nationalgalerie](https://en.wikipedia.org/wiki/Neue_Nationalgalerie)",
+    "architect": "Ludwig Mies van der Rohe（路德维希·密斯·凡·德·罗）",
+    "built_year": "1968年（2015-2021年由David Chipperfield Architects翻新）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "柏林新国家美术馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 光的建筑学\n- 身体与空间尺度",
+    "source": "[https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects](https://www.archdaily.com/960604/neue-nationalgalerie-david-chipperfield-architects)\n[https://en.wikipedia.org/wiki/Neue_Nationalgalerie](https://en.wikipedia.org/wiki/Neue_Nationalgalerie)",
+    "architect": "Ludwig Mies van der Rohe（路德维希·密斯·凡·德·罗）",
+    "built_year": "1968年（2015-2021年由David Chipperfield Architects翻新）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "范斯沃斯住宅",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过极简的建筑形式与透明界面，消解人工构筑与自然环境的边界，实现居住空间与场地景观的融合共生？",
+    "source": "[https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe](https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Farnsworth_House](https://en.wikipedia.org/wiki/Farnsworth_House)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1951年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "范斯沃斯住宅",
+    "category": "strategy",
+    "strategy": "架空平台与地面脱离",
+    "content": "架空平台与地面脱离：将建筑整体抬升于场地之上，减少对地形的干预，同时形成悬浮感，强化建筑与自然的视觉连续性。",
+    "source": "[https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe](https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Farnsworth_House](https://en.wikipedia.org/wiki/Farnsworth_House)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1951年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "范斯沃斯住宅",
+    "category": "strategy",
+    "strategy": "全玻璃围护与结构外置",
+    "content": "全玻璃围护与结构外置：采用通透玻璃幕墙作为空间界面，并将结构柱外移至立面之外，使室内空间获得无遮挡的连续视野，模糊内外界限。",
+    "source": "[https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe](https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Farnsworth_House](https://en.wikipedia.org/wiki/Farnsworth_House)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1951年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "范斯沃斯住宅",
+    "category": "strategy",
+    "strategy": "核心服务体块集中布置",
+    "content": "核心服务体块集中布置：将厨房、卫生间等辅助功能整合为中央核心体，释放周边空间为流动的开放起居区，保证主要生活空间面向景观完全敞开。",
+    "source": "[https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe](https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Farnsworth_House](https://en.wikipedia.org/wiki/Farnsworth_House)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1951年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "范斯沃斯住宅",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 场地具有独特自然景观（如林地、水岸、草原）的独立住宅设计\n- 追求空间通透性与视觉连续性的极简建筑实践\n- 需要处理建筑与自然环境共生关系的低密度建筑项目\n- 探索结构体系与围护界面分离的现代建筑教学案例",
+    "source": "[https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe](https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Farnsworth_House](https://en.wikipedia.org/wiki/Farnsworth_House)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1951年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "范斯沃斯住宅",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 光的建筑学\n- 身体与空间尺度",
+    "source": "[https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe](https://www.archdaily.com/59719/ad-classics-the-farnsworth-house-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Farnsworth_House](https://en.wikipedia.org/wiki/Farnsworth_House)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）",
+    "built_year": "1951年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "西格拉姆大厦",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在现代高层办公建筑中，通过材料、比例与空间操作，赋予纯粹玻璃幕墙以永恒的艺术表现力与场所精神？",
+    "source": "[https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe](https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Seagram_Building](https://en.wikipedia.org/wiki/Seagram_Building)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）与菲利普·约翰逊（Philip Johnson）",
+    "built_year": "1958年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "西格拉姆大厦",
+    "category": "strategy",
+    "strategy": "骨架外露与幕墙一体化",
+    "content": "骨架外露与幕墙一体化：将钢结构防火包裹与青铜色玻璃幕墙整合为同一平整界面，通过竖向工字钢肋条强化立面韵律，实现结构逻辑与视觉秩序的精确统一。",
+    "source": "[https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe](https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Seagram_Building](https://en.wikipedia.org/wiki/Seagram_Building)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）与菲利普·约翰逊（Philip Johnson）",
+    "built_year": "1958年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "西格拉姆大厦",
+    "category": "strategy",
+    "strategy": "广场退让与基座抬升",
+    "content": "广场退让与基座抬升：建筑主体从街道红线大幅后退，形成前广场，并将首层架空抬升，以“减法”创造城市公共空间，强化建筑作为城市地标的仪式感。",
+    "source": "[https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe](https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Seagram_Building](https://en.wikipedia.org/wiki/Seagram_Building)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）与菲利普·约翰逊（Philip Johnson）",
+    "built_year": "1958年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "西格拉姆大厦",
+    "category": "strategy",
+    "strategy": "精确的材料与比例控制",
+    "content": "精确的材料与比例控制：选用青铜色玻璃与暖灰色石材，通过模数化网格和黄金比例推敲立面开窗与分隔，使高层体量获得古典式的端庄与轻盈感。",
+    "source": "[https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe](https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Seagram_Building](https://en.wikipedia.org/wiki/Seagram_Building)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）与菲利普·约翰逊（Philip Johnson）",
+    "built_year": "1958年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "西格拉姆大厦",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 城市核心区的高层办公或企业总部设计\n- 需要塑造标志性形象且对城市界面有严格退让要求的项目\n- 强调材料质感与构造精度的现代主义建筑\n- 以“少即是多”为原则的极简高层设计\n- 需要协调建筑与街道广场关系的城市设计",
+    "source": "[https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe](https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Seagram_Building](https://en.wikipedia.org/wiki/Seagram_Building)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）与菲利普·约翰逊（Philip Johnson）",
+    "built_year": "1958年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "西格拉姆大厦",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、场所精神、材料感知理论",
+    "source": "[https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe](https://www.archdaily.com/59412/ad-classics-seagram-building-mies-van-der-rohe)\n[https://en.wikipedia.org/wiki/Seagram_Building](https://en.wikipedia.org/wiki/Seagram_Building)",
+    "architect": "路德维希·密斯·凡·德·罗（Ludwig Mies van der Rohe）与菲利普·约翰逊（Philip Johnson）",
+    "built_year": "1958年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布雷根茨美术馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过克制的材料与光环境设计，使美术馆在满足功能需求的同时，成为与湖光山色对话的“感知容器”，而非自我表现的雕塑。",
+    "source": "[https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor](https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor)\n[https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/](https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "1997年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布雷根茨美术馆",
+    "category": "strategy",
+    "strategy": "表皮滤光系统",
+    "content": "表皮滤光系统：采用半透明玻璃鳞片（铸玻璃+钢架）作为双层立面，将自然光均匀散射为漫射光，消除直射眩光，同时模糊室内外界限。",
+    "source": "[https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor](https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor)\n[https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/](https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "1997年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布雷根茨美术馆",
+    "category": "strategy",
+    "strategy": "混凝土“素模”空间",
+    "content": "混凝土“素模”空间：以现浇混凝土为唯一内部饰面，保留模板痕迹与施工缝，使空间成为光与展品的沉默背景，强化材料的时间性与触感。",
+    "source": "[https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor](https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor)\n[https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/](https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "1997年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布雷根茨美术馆",
+    "category": "strategy",
+    "strategy": "无窗垂直动线",
+    "content": "无窗垂直动线：通过封闭的楼梯与电梯井，强制参观者在进入展厅前经历“压缩-释放”的明暗与尺度对比，增强顶层展厅的豁然开朗感。",
+    "source": "[https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor](https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor)\n[https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/](https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "1997年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布雷根茨美术馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 高侧窗或天窗采光的当代艺术展厅\n- 位于自然景观（湖、山、海）旁的公共文化建筑\n- 需要灵活布展的“白盒子”空间但拒绝传统白墙\n- 对光环境有严格漫射要求的展陈空间\n- 强调材料真实性与建造逻辑的清水混凝土建筑",
+    "source": "[https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor](https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor)\n[https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/](https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "1997年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布雷根茨美术馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、光的建筑学、材料感知理论",
+    "source": "[https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor](https://www.archdaily.com/107500/ad-classics-kunsthaus-bregenz-peter-zumthor)\n[https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/](https://www.architecturelab.net/kunsthaus-bregenz-peter-zumthor/)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "1997年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布鲁德克劳斯教堂",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何以极简的几何形体与材料操作，在单一空间中营造从黑暗到光明的强烈精神性体验，并回应场地与建造的原始性？",
+    "source": "[https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor](https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "资料不足（建议查阅官方资料补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布鲁德克劳斯教堂",
+    "category": "strategy",
+    "strategy": "模板燃烧法",
+    "content": "模板燃烧法：用112根当地树干搭建内部锥形模板，混凝土逐层浇筑后不拆除，通过内部点火燃烧木材，在墙体表面留下焦黑肌理与竖向空腔，使材料痕迹成为空间叙事的一部分。",
+    "source": "[https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor](https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "资料不足（建议查阅官方资料补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布鲁德克劳斯教堂",
+    "category": "strategy",
+    "strategy": "顶部开口采光",
+    "content": "顶部开口采光：在方形体量顶部开设圆形天窗，让光线以光束形式垂直射入室内，与底部黑暗空间形成戏剧性明暗对比，引导视线向上，强化神圣感。",
+    "source": "[https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor](https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "资料不足（建议查阅官方资料补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布鲁德克劳斯教堂",
+    "category": "strategy",
+    "strategy": "地面水滴凹槽",
+    "content": "地面水滴凹槽：在混凝土内地面刻出放射状浅槽，将雨水从顶部开口引入并导向室外，使自然降水成为空间流动的参与者，模糊内外边界。",
+    "source": "[https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor](https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "资料不足（建议查阅官方资料补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布鲁德克劳斯教堂",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 宗教或冥想类小型建筑（教堂、礼拜堂、静修所）\n- 以材料实验和建造过程为核心表达的建筑设计\n- 需要营造强烈光影对比与空间氛围的纪念性空间\n- 乡村或自然环境中，强调与场地原始材料呼应的项目\n- 低技术、低成本但追求高精神性表达的建造实践",
+    "source": "[https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor](https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "资料不足（建议查阅官方资料补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "布鲁德克劳斯教堂",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学（通过材料触感、焦黑气味、光影变化等身体感知体验空间本质）\n- 光的建筑学（以天窗引入自然光作为空间神圣性的核心塑造手段）\n- 场所精神（通过当地木材与燃烧仪式，将建造行为与土地记忆结合）",
+    "source": "[https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor](https://www.archdaily.com/106352/bruder-klaus-field-chapel-peter-zumthor)",
+    "architect": "彼得·卒姆托（Peter Zumthor）",
+    "built_year": "资料不足（建议查阅官方资料补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "斯泰尔内塞特纪念碑",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过极简的几何形态与地形嵌入，在自然景观中构建一个引发沉思与方向感的纪念性空间节点。",
+    "source": "[https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith](https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith)\n[https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset](https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset)",
+    "architect": "Peter Zumthor（彼得·卒姆托），与当代艺术家 Louise Bourgeois（路易丝·布尔乔亚）合作",
+    "built_year": "资料不足（注：该建筑实际建成于2011年，位于挪威北部）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "斯泰尔内塞特纪念碑",
+    "category": "strategy",
+    "strategy": "地形缝合",
+    "content": "地形缝合：将建筑体量部分埋入坡地，以低矮、水平的混凝土墙体顺应等高线，使人工物与自然地貌形成连续的地平线关系。",
+    "source": "[https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith](https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith)\n[https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset](https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset)",
+    "architect": "Peter Zumthor（彼得·卒姆托），与当代艺术家 Louise Bourgeois（路易丝·布尔乔亚）合作",
+    "built_year": "资料不足（注：该建筑实际建成于2011年，位于挪威北部）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "斯泰尔内塞特纪念碑",
+    "category": "strategy",
+    "strategy": "视线聚焦",
+    "content": "视线聚焦：通过单一狭长开口或框景洞口，将观者视线强制导向特定远景（如海平面或天际线），强化场所的指向性与精神性。",
+    "source": "[https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith](https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith)\n[https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset](https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset)",
+    "architect": "Peter Zumthor（彼得·卒姆托），与当代艺术家 Louise Bourgeois（路易丝·布尔乔亚）合作",
+    "built_year": "资料不足（注：该建筑实际建成于2011年，位于挪威北部）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "斯泰尔内塞特纪念碑",
+    "category": "strategy",
+    "strategy": "路径压缩",
+    "content": "路径压缩：设置一条逐渐下沉或收窄的进入路径，利用身体尺度变化（从开阔到逼仄）积累情绪张力，最终在核心空间释放。",
+    "source": "[https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith](https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith)\n[https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset](https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset)",
+    "architect": "Peter Zumthor（彼得·卒姆托），与当代艺术家 Louise Bourgeois（路易丝·布尔乔亚）合作",
+    "built_year": "资料不足（注：该建筑实际建成于2011年，位于挪威北部）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "斯泰尔内塞特纪念碑",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 滨海或山地景观中的小型纪念建筑  \n- 需要营造静谧、内省氛围的公共艺术装置  \n- 地形高差明显的场地中的观景平台或冥想空间  \n- 以“消失”或“隐匿”为设计策略的景观构筑物  \n- 历史事件或人物纪念地的空间叙事设计",
+    "source": "[https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith](https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith)\n[https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset](https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset)",
+    "architect": "Peter Zumthor（彼得·卒姆托），与当代艺术家 Louise Bourgeois（路易丝·布尔乔亚）合作",
+    "built_year": "资料不足（注：该建筑实际建成于2011年，位于挪威北部）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "斯泰尔内塞特纪念碑",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、场所精神、身体与空间尺度",
+    "source": "[https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith](https://www.archdaily.com/213222/steilneset-memorial-peter-zumthor-and-louise-bourgeois-photographed-by-andrew-meredith)\n[https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset](https://divisare.com/projects/348468-peter-zumthor-andrew-meredith-steilneset)",
+    "architect": "Peter Zumthor（彼得·卒姆托），与当代艺术家 Louise Bourgeois（路易丝·布尔乔亚）合作",
+    "built_year": "资料不足（注：该建筑实际建成于2011年，位于挪威北部）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "瓦尔斯温泉浴场",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在山地地形中，通过建筑与材料的操作，营造一种静谧、内省、近乎仪式性的温泉洗浴体验，而非功能性的游泳设施。",
+    "source": "[https://www.archdaily.com/13358/the-therme-vals](https://www.archdaily.com/13358/the-therme-vals)\n[https://www.architecturelab.net/the-therme-vals-peter-zumthor/](https://www.architecturelab.net/the-therme-vals-peter-zumthor/)",
+    "architect": "Peter Zumthor",
+    "built_year": "1996"
+  },
+  {
+    "type": "case_strategy",
+    "case": "瓦尔斯温泉浴场",
+    "category": "strategy",
+    "strategy": "嵌入地景的体量策略",
+    "content": "嵌入地景的体量策略：建筑半埋于山坡，屋顶覆土植草，以消解体量，使建筑成为地形的一部分，而非独立物体。",
+    "source": "[https://www.archdaily.com/13358/the-therme-vals](https://www.archdaily.com/13358/the-therme-vals)\n[https://www.architecturelab.net/the-therme-vals-peter-zumthor/](https://www.architecturelab.net/the-therme-vals-peter-zumthor/)",
+    "architect": "Peter Zumthor",
+    "built_year": "1996"
+  },
+  {
+    "type": "case_strategy",
+    "case": "瓦尔斯温泉浴场",
+    "category": "strategy",
+    "strategy": "石材砌筑的“洞穴”空间",
+    "content": "石材砌筑的“洞穴”空间：采用当地片麻岩，以不同尺寸和错缝方式砌筑墙体，形成厚重、粗粝、有触感的“石室”氛围，强化空间的原始感与庇护性。",
+    "source": "[https://www.archdaily.com/13358/the-therme-vals](https://www.archdaily.com/13358/the-therme-vals)\n[https://www.architecturelab.net/the-therme-vals-peter-zumthor/](https://www.architecturelab.net/the-therme-vals-peter-zumthor/)",
+    "architect": "Peter Zumthor",
+    "built_year": "1996"
+  },
+  {
+    "type": "case_strategy",
+    "case": "瓦尔斯温泉浴场",
+    "category": "strategy",
+    "strategy": "光与水的仪式化组织",
+    "content": "光与水的仪式化组织：通过窄缝天窗、墙角开口和顶板缝隙，将自然光以点状或带状方式引入室内，配合水面反射，营造随时间变化的静谧光影，引导身体移动与停留的节奏。",
+    "source": "[https://www.archdaily.com/13358/the-therme-vals](https://www.archdaily.com/13358/the-therme-vals)\n[https://www.architecturelab.net/the-therme-vals-peter-zumthor/](https://www.architecturelab.net/the-therme-vals-peter-zumthor/)",
+    "architect": "Peter Zumthor",
+    "built_year": "1996"
+  },
+  {
+    "type": "case_strategy",
+    "case": "瓦尔斯温泉浴场",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 山地或坡地中的疗愈、康养类建筑\n- 需要营造沉浸式、冥想或仪式感的空间（如浴场、教堂、纪念馆）\n- 强调材料触感与自然光互动的室内空间设计\n- 以“身体体验”为核心的空间序列设计\n- 对既有地形高差进行低干预利用的景观建筑",
+    "source": "[https://www.archdaily.com/13358/the-therme-vals](https://www.archdaily.com/13358/the-therme-vals)\n[https://www.architecturelab.net/the-therme-vals-peter-zumthor/](https://www.architecturelab.net/the-therme-vals-peter-zumthor/)",
+    "architect": "Peter Zumthor",
+    "built_year": "1996"
+  },
+  {
+    "type": "case_strategy",
+    "case": "瓦尔斯温泉浴场",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 光的建筑学\n- 身体与空间尺度",
+    "source": "[https://www.archdaily.com/13358/the-therme-vals](https://www.archdaily.com/13358/the-therme-vals)\n[https://www.architecturelab.net/the-therme-vals-peter-zumthor/](https://www.architecturelab.net/the-therme-vals-peter-zumthor/)",
+    "architect": "Peter Zumthor",
+    "built_year": "1996"
+  },
+  {
+    "type": "case_strategy",
+    "case": "科伦巴博物馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在不破坏历史遗迹（二战废墟与哥特教堂残址）的前提下，通过新建筑介入实现历史记忆的保存、转译与当代空间体验的重塑？",
+    "source": "[https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor](https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor)",
+    "architect": "Peter Zumthor（彼得·卒姆托）",
+    "built_year": "资料不足（注：实际为2007年，建议补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "科伦巴博物馆",
+    "category": "strategy",
+    "strategy": "废墟缝合与空间分层",
+    "content": "废墟缝合与空间分层：将新建筑体量架空或嵌入废墟之上，通过水平楼板与垂直动线组织，使历史残垣成为底层“展品”，新空间悬浮其上，形成清晰的历史—当代分层叙事。",
+    "source": "[https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor](https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor)",
+    "architect": "Peter Zumthor（彼得·卒姆托）",
+    "built_year": "资料不足（注：实际为2007年，建议补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "科伦巴博物馆",
+    "category": "strategy",
+    "strategy": "光线引导的路径叙事",
+    "content": "光线引导的路径叙事：利用高侧窗、天窗与墙体缝隙，将自然光作为空间序列的引导线索，沿参观动线制造明暗对比与光影变化，强化从废墟到展陈空间的过渡体验。",
+    "source": "[https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor](https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor)",
+    "architect": "Peter Zumthor（彼得·卒姆托）",
+    "built_year": "资料不足（注：实际为2007年，建议补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "科伦巴博物馆",
+    "category": "strategy",
+    "strategy": "材料对话与弱化介入",
+    "content": "材料对话与弱化介入：采用灰砖、混凝土等与废墟质感协调的现代材料，通过砌筑方式（如镂空砖墙）与旧墙体形成视觉与触觉上的对话，而非模仿或覆盖，保持新旧元素的独立可读性。",
+    "source": "[https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor](https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor)",
+    "architect": "Peter Zumthor（彼得·卒姆托）",
+    "built_year": "资料不足（注：实际为2007年，建议补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "科伦巴博物馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 历史遗迹或考古遗址上的新建或加建项目\n- 战争废墟、教堂残址等具有强烈纪念性场地的改造\n- 需要同时满足文物保护与当代功能（如博物馆、展厅）的复合空间\n- 强调时间维度与记忆体验的文化建筑\n- 城市更新中历史街区内的低干预介入设计",
+    "source": "[https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor](https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor)",
+    "architect": "Peter Zumthor（彼得·卒姆托）",
+    "built_year": "资料不足（注：实际为2007年，建议补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "科伦巴博物馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 场所精神\n- 光的建筑学",
+    "source": "[https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor](https://www.archdaily.com/72192/kolumba-musuem-peter-zumthor)",
+    "architect": "Peter Zumthor（彼得·卒姆托）",
+    "built_year": "资料不足（注：实际为2007年，建议补充）"
+  },
+  {
+    "type": "case_strategy",
+    "case": "住吉的长屋",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在极端狭小的城市用地上，通过空间操作而非面积扩张，实现丰富的生活体验与内外关系的重构？",
+    "source": "[https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html](https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html)\n[https://japananddesign.com/row-house-sumiyoshi-tadao-ando/](https://japananddesign.com/row-house-sumiyoshi-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1976年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "住吉的长屋",
+    "category": "strategy",
+    "strategy": "中庭强制穿越",
+    "content": "中庭强制穿越：将建筑切分为两半，以露天中庭连接所有功能动线，使日常活动必须经历自然风雨，重塑身体对气候与时间的感知。",
+    "source": "[https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html](https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html)\n[https://japananddesign.com/row-house-sumiyoshi-tadao-ando/](https://japananddesign.com/row-house-sumiyoshi-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1976年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "住吉的长屋",
+    "category": "strategy",
+    "strategy": "封闭界面+内省空间",
+    "content": "封闭界面+内省空间：对外几乎完全封闭（无窗），仅以中庭为唯一采光与通风源，形成内向型空间秩序，隔绝城市噪音与视线，强化内部世界的纯粹性。",
+    "source": "[https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html](https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html)\n[https://japananddesign.com/row-house-sumiyoshi-tadao-ando/](https://japananddesign.com/row-house-sumiyoshi-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1976年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "住吉的长屋",
+    "category": "strategy",
+    "strategy": "空间序列的戏剧化压缩",
+    "content": "空间序列的戏剧化压缩：在极小尺度内，通过“入口—暗廊—中庭—亮室”的明暗、开合、高低对比，制造超出物理尺寸的空间张力与仪式感。",
+    "source": "[https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html](https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html)\n[https://japananddesign.com/row-house-sumiyoshi-tadao-ando/](https://japananddesign.com/row-house-sumiyoshi-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1976年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "住吉的长屋",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 高密度城市中的极小住宅或加建项目\n- 需要隔绝外部干扰的创作工作室或冥想空间\n- 强调身体体验与自然要素互动的建筑改造\n- 预算有限但追求空间品质的私人住宅\n- 对传统“町家”空间类型进行现代转译的设计",
+    "source": "[https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html](https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html)\n[https://japananddesign.com/row-house-sumiyoshi-tadao-ando/](https://japananddesign.com/row-house-sumiyoshi-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1976年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "住吉的长屋",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、空间序列理论、光的建筑学",
+    "source": "[https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html](https://web3darchitrip.com/works/11-row-house-in-sumiyoshi-azuma-house.html)\n[https://japananddesign.com/row-house-sumiyoshi-tadao-ando/](https://japananddesign.com/row-house-sumiyoshi-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1976年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "光之教堂",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何用极简的几何与光影对比，在封闭混凝土空间中创造强烈的精神性场所，使建筑超越功能成为情感与信仰的载体。",
+    "source": "[https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando](https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_of_the_Light](https://en.wikipedia.org/wiki/Church_of_the_Light)",
+    "architect": "安藤忠雄",
+    "built_year": "1989"
+  },
+  {
+    "type": "case_strategy",
+    "case": "光之教堂",
+    "category": "strategy",
+    "strategy": "十字光缝",
+    "content": "十字光缝：在清水混凝土墙体上开设单一十字形切口，引入自然光形成“光之十字”，以暗室衬托光的绝对存在，强化神圣感。",
+    "source": "[https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando](https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_of_the_Light](https://en.wikipedia.org/wiki/Church_of_the_Light)",
+    "architect": "安藤忠雄",
+    "built_year": "1989"
+  },
+  {
+    "type": "case_strategy",
+    "case": "光之教堂",
+    "category": "strategy",
+    "strategy": "空间序列压缩",
+    "content": "空间序列压缩：通过低矮入口、昏暗通道、逐渐收窄的路径，引导身体从外部喧嚣进入内部静谧，最后在光十字前释放情绪。",
+    "source": "[https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando](https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_of_the_Light](https://en.wikipedia.org/wiki/Church_of_the_Light)",
+    "architect": "安藤忠雄",
+    "built_year": "1989"
+  },
+  {
+    "type": "case_strategy",
+    "case": "光之教堂",
+    "category": "strategy",
+    "strategy": "材料素化",
+    "content": "材料素化：仅用裸露混凝土与木模板纹理，去除装饰，使光影成为唯一“饰面”，凸显时间与自然变化。",
+    "source": "[https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando](https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_of_the_Light](https://en.wikipedia.org/wiki/Church_of_the_Light)",
+    "architect": "安藤忠雄",
+    "built_year": "1989"
+  },
+  {
+    "type": "case_strategy",
+    "case": "光之教堂",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 宗教建筑（教堂、礼拜堂、冥想空间）  \n- 纪念性空间（纪念馆、追思堂）  \n- 文化展陈空间（美术馆、艺术装置）  \n- 需要精神性体验的公共建筑（图书馆中庭、疗愈空间）  \n- 极简主义住宅中的“光庭”设计",
+    "source": "[https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando](https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_of_the_Light](https://en.wikipedia.org/wiki/Church_of_the_Light)",
+    "architect": "安藤忠雄",
+    "built_year": "1989"
+  },
+  {
+    "type": "case_strategy",
+    "case": "光之教堂",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学（通过光、影、材质与身体感知构建“场所体验”）  \n- 光的建筑学（以光为设计主体，塑造空间氛围与情感）  \n- 身体与空间尺度（通过路径压缩与尺度对比，强化身体对神圣性的感知）",
+    "source": "[https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando](https://www.archdaily.com/101260/ad-classics-church-of-the-light-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_of_the_Light](https://en.wikipedia.org/wiki/Church_of_the_Light)",
+    "architect": "安藤忠雄",
+    "built_year": "1989"
+  },
+  {
+    "type": "case_strategy",
+    "case": "六甲集合住宅",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在陡峭山坡上高密度建造住宅，同时保留自然地形、引入光线与风，并建立社区感？",
+    "source": "[https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en](https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en)\n[https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/](https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/)\n[https://samism.org/case-study-rokko-housing-i-ii-iii-by-tadao-ando-introduction-of-modula",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "一期：1983年；二期：1993年；三期：1999年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "六甲集合住宅",
+    "category": "strategy",
+    "strategy": "台阶式嵌入地形",
+    "content": "台阶式嵌入地形：将建筑体量分解为一系列沿坡向错落的平台，每户拥有独立屋顶花园，使建筑与山体等高线融合，减少土方开挖。",
+    "source": "[https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en](https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en)\n[https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/](https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/)\n[https://samism.org/case-study-rokko-housing-i-ii-iii-by-tadao-ando-introduction-of-modula",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "一期：1983年；二期：1993年；三期：1999年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "六甲集合住宅",
+    "category": "strategy",
+    "strategy": "缝隙引入光与风",
+    "content": "缝隙引入光与风：在体块之间留出垂直或斜向的“光缝”，让阳光和自然风穿透建筑进深，改善高密度下的居住环境。",
+    "source": "[https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en](https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en)\n[https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/](https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/)\n[https://samism.org/case-study-rokko-housing-i-ii-iii-by-tadao-ando-introduction-of-modula",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "一期：1983年；二期：1993年；三期：1999年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "六甲集合住宅",
+    "category": "strategy",
+    "strategy": "公共路径串联住户",
+    "content": "公共路径串联住户：设计一条沿坡而上的公共步道，串联各户入口，形成垂直社区街道，促进邻里交往。",
+    "source": "[https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en](https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en)\n[https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/](https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/)\n[https://samism.org/case-study-rokko-housing-i-ii-iii-by-tadao-ando-introduction-of-modula",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "一期：1983年；二期：1993年；三期：1999年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "六甲集合住宅",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 陡坡或山地住宅区设计\n- 高密度低层集合住宅\n- 需要保留自然地形与景观的坡地开发\n- 强调社区互动与户外生活的住宅项目\n- 气候温和、需自然通风采光的地区",
+    "source": "[https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en](https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en)\n[https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/](https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/)\n[https://samism.org/case-study-rokko-housing-i-ii-iii-by-tadao-ando-introduction-of-modula",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "一期：1983年；二期：1993年；三期：1999年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "六甲集合住宅",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、场所精神、身体与空间尺度",
+    "source": "[https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en](https://artsandculture.google.com/story/rokko-housing-a-modern-day-hill-village-tadao-ando-architect-associates/UQWB16Scu7JNUQ?hl=en)\n[https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/](https://en.wikiarquitectura.com/building/rokko-housing-i-ii-and-iii/)\n[https://samism.org/case-study-rokko-housing-i-ii-iii-by-tadao-ando-introduction-of-modula",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "一期：1983年；二期：1993年；三期：1999年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "地中美术馆",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何在不破坏濑户内海岛屿自然地貌的前提下，将美术馆主体完全埋入地下，并利用“光”作为空间体验的核心媒介，重塑观者对建筑与自然的感知关系？",
+    "source": "[https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en](https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en)\n[https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/](https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/)",
+    "architect": "安藤忠雄",
+    "built_year": "2004年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "地中美术馆",
+    "category": "strategy",
+    "strategy": "负空间嵌入法",
+    "content": "负空间嵌入法：将建筑体量整体下沉至地下，仅以几何形天窗或缝隙作为地面开口，使建筑消隐于地形，同时保留场地原有植被与等高线。",
+    "source": "[https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en](https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en)\n[https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/](https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/)",
+    "architect": "安藤忠雄",
+    "built_year": "2004年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "地中美术馆",
+    "category": "strategy",
+    "strategy": "光之路径引导",
+    "content": "光之路径引导：通过精确计算的天窗、狭缝或反射装置，将自然光引入地下空间，形成随时间变化的“光雕塑”，并以此作为空间序列的导航线索，引导观者从暗到明的渐进体验。",
+    "source": "[https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en](https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en)\n[https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/](https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/)",
+    "architect": "安藤忠雄",
+    "built_year": "2004年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "地中美术馆",
+    "category": "strategy",
+    "strategy": "材料与光的协同",
+    "content": "材料与光的协同：选用清水混凝土、钢、玻璃等低反射材料，强化光的漫射与阴影层次，使材料表面成为光的“画布”，而非装饰性表皮。",
+    "source": "[https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en](https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en)\n[https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/](https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/)",
+    "architect": "安藤忠雄",
+    "built_year": "2004年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "地中美术馆",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 自然保护区内或景观敏感地带的建筑项目\n- 需要营造冥想、沉思氛围的文化建筑（美术馆、纪念馆、礼拜堂）\n- 地下空间或半地下空间的采光与空间体验设计\n- 以“光”为设计主题的展览或公共建筑\n- 对场地文脉与生态高度敏感的更新改造项目",
+    "source": "[https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en](https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en)\n[https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/](https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/)",
+    "architect": "安藤忠雄",
+    "built_year": "2004年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "地中美术馆",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：建筑现象学、光的建筑学、身体与空间尺度",
+    "source": "[https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en](https://artsandculture.google.com/story/chichu-art-museum-invisible-architecture-tadao-ando-architect-associates/kgUBINjNbw6Nfg?hl=en)\n[https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/](https://www.wonderfulmuseums.com/museum/chichu-museum-tadao-ando/)",
+    "architect": "安藤忠雄",
+    "built_year": "2004年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "水之教堂",
+    "category": "problem",
+    "strategy": "设计问题",
+    "content": "如何通过建筑与自然元素的仪式性融合，营造一个静谧、神圣且具有强烈精神感染力的冥想与婚礼空间？",
+    "source": "[https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando](https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_on_the_Water](https://en.wikipedia.org/wiki/Church_on_the_Water)\n[https://www.architecturelab.net/church-on-the-water-tadao-ando/](https://www.architecturelab.net/church-on-the-water-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1988年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "水之教堂",
+    "category": "strategy",
+    "strategy": "框景与借景",
+    "content": "框景与借景：利用巨大的落地十字架作为视觉焦点，将外部水面、森林与天空“框”入室内，使自然成为空间的精神主体。",
+    "source": "[https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando](https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_on_the_Water](https://en.wikipedia.org/wiki/Church_on_the_Water)\n[https://www.architecturelab.net/church-on-the-water-tadao-ando/](https://www.architecturelab.net/church-on-the-water-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1988年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "水之教堂",
+    "category": "strategy",
+    "strategy": "水镜反射",
+    "content": "水镜反射：设计浅水池面，利用水的静态反射特性，将天空、树影与建筑结构叠加，强化空间的虚无感与永恒性。",
+    "source": "[https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando](https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_on_the_Water](https://en.wikipedia.org/wiki/Church_on_the_Water)\n[https://www.architecturelab.net/church-on-the-water-tadao-ando/](https://www.architecturelab.net/church-on-the-water-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1988年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "水之教堂",
+    "category": "strategy",
+    "strategy": "路径悬念",
+    "content": "路径悬念：通过曲折的动线（下行、转角、豁然开朗）控制视线节奏，先压抑后释放，制造“发现”的仪式性体验。",
+    "source": "[https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando](https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_on_the_Water](https://en.wikipedia.org/wiki/Church_on_the_Water)\n[https://www.architecturelab.net/church-on-the-water-tadao-ando/](https://www.architecturelab.net/church-on-the-water-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1988年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "水之教堂",
+    "category": "scene",
+    "strategy": "适用场景",
+    "content": "适用场景：- 宗教或冥想类建筑（教堂、禅修中心）\n- 婚礼礼堂或纪念性空间\n- 度假酒店中的精神性节点空间\n- 需要与自然景观深度对话的观景建筑\n- 小型文化展陈空间（强调静谧氛围）",
+    "source": "[https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando](https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_on_the_Water](https://en.wikipedia.org/wiki/Church_on_the_Water)\n[https://www.architecturelab.net/church-on-the-water-tadao-ando/](https://www.architecturelab.net/church-on-the-water-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1988年"
+  },
+  {
+    "type": "case_strategy",
+    "case": "水之教堂",
+    "category": "theory",
+    "strategy": "关联理论",
+    "content": "关联理论：- 建筑现象学\n- 场所精神\n- 光的建筑学",
+    "source": "[https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando](https://www.archdaily.com/97455/ad-classics-church-on-the-water-tadao-ando)\n[https://en.wikipedia.org/wiki/Church_on_the_Water](https://en.wikipedia.org/wiki/Church_on_the_Water)\n[https://www.architecturelab.net/church-on-the-water-tadao-ando/](https://www.architecturelab.net/church-on-the-water-tadao-ando/)",
+    "architect": "安藤忠雄（Tadao Ando）",
+    "built_year": "1988年"
+  },
+  {
+    "type": "theory",
+    "name": "光的建筑学",
+    "content": "## 核心概念\n光不仅是照明的工具，更是塑造空间体验的核心材料。建筑中的光具有双重属性：物理性（亮度、方向、色温）与精神性（神圣、静谧、时间感）。光通过界定边界、揭示材质、制造阴影，使空间从“容器”转变为“事件”。光的进入方式（缝隙、天窗、反射）决定了空间的氛围与意义。建筑师的职责不是“设计光”，而是设计“光的缺席与在场”——通过控制暗，来定义亮。\n\n## 设计启示\n| 启示 | 设计应用 |\n|------|----------|\n| 光缝制造神圣感 | 在实墙中开一道窄缝，让光线以“刺入”方式进入，形成强烈的方向性与仪式感 |\n| 彩色光孔营造精神氛围 | 在厚墙中嵌入彩色玻璃或滤光片，将日光转化为有色光，赋予空间冥想气质 |\n| 间接光柔化空间边界 | 利用反射面（如浅色天花、地面）将直射光转为漫射光，使空间边界模糊、时间感减缓 |\n| 阴影是光的另一半 | 设计时先画“暗区”，再决定光从何处切入——暗的深度决定了光的强度 |\n| 光随时间变化 | 引入可移动遮阳或季节性光孔，让空间在一天/一年中呈现不同表情 |\n\n## 可用于\n- 宗教建筑（教堂、寺庙、冥想空间）\n- 纪念馆与殡葬建筑（营造静谧与追思）\n- 美术馆与展览空间（控制光对展品的干扰与强调）\n- 住宅的走廊、楼梯间（用光引导路径与情绪）\n\n## 案例关联\n- **光之教堂（安藤忠雄）** ：在清水混凝土实墙中开出",
+    "source": "**光之教堂（安藤忠雄）** ：在清水混凝土实墙中开出一道十字形光缝，光线以唯一来源进入，使整个黑暗空间被一道“光之十字”激活。此案例完美体现“光作为精神性材料”——光不再是照亮，而是成为空间的神圣符号，暗部成为信徒凝视的虚空。\n**朗香教堂（勒·柯布西耶）** ：厚墙上的彩色光孔（红、蓝、黄）将日光分解为色块，投射在弯曲的墙面上，形成如星云般的光斑。此案例展示“光作为氛围制造器”——彩色光改变了空间尺度感，使混凝土墙体变得轻盈、神秘，光成为进入空间的“神谕”。"
+  },
+  {
+    "type": "theory",
+    "name": "场所精神",
+    "content": "## 核心概念\n场所精神源于古罗马信仰，指每个地方独有的\"守护神\"或内在气质。诺伯格-舒尔茨将其引入建筑学，认为场所不仅是物理空间，更是由物质、形态、色彩与历史记忆共同构成的\"生活世界\"。建筑的任务并非创造抽象空间，而是\"揭示\"并\"凝结\"场地中已有的意义，使人与环境产生认同感与归属感。场所精神强调方向感（知道自己身处何处）与认同感（与环境建立情感联结）的双重获得，是抵抗全球同质化设计的核心武器。\n\n## 设计启示\n| 启示 | 设计应用 |\n|------|----------|\n| 先读场地，再画草图 | 设计前系统记录场地的地形、气候、植被、光影与人文痕迹，让形式从场地\"长\"出来 |\n| 用材质转译记忆 | 采用当地材料与建造工艺，如夯土、青瓦、毛石，使建筑成为地方记忆的载体 |\n| 制造\"到达\"的仪式感 | 通过路径转折、视线遮挡与开启，强化从外部世界进入场所的心理过渡 |\n| 保留时间痕迹 | 保留场地原有树木、墙体或遗迹，让新旧并置产生时间厚度，而非铲平重来 |\n| 让自然元素成为主角 | 将风、光、水、雾引入空间，使不可见的自然力量被感知，强化场所的独特性 |\n\n## 可用于\n- 文化建筑（博物馆、美术馆、纪念馆）\n- 宗教与精神性空间（教堂、冥想亭、墓地）\n- 风景区的游客中心与观景建筑\n- 历史街区更新与旧建筑改造\n- 地域性住宅与乡村公共建筑\n\n## 案例关联\n*",
+    "source": "*地中美术馆**（安藤忠雄）：建筑整体埋入濑户内海的山丘地下，地面上仅留几何天窗与庭院。这一策略不是征服自然，而是将场地原有的海风、阳光、泥土气息作为空间体验的主体——参观者沿坡道下行，在黑暗中等待光线从天花缝隙倾泻而下，强烈感知到\"身处地下\"与\"面朝大海\"的双重场所特质。建筑消隐了自身，却放大了场地原有的地形与光影精神。\n\n*水之教堂**（安藤忠雄）：建筑以一面可开启的混凝土墙体面向人工水池，池中矗立十字架，周围是原始森林。当墙体缓缓滑开，水面、森林与天空瞬间涌入室内，自然元素被\"框定\"为神圣的视觉焦点。设计通过极简的几何体量与水的反射，将北海道原野的静谧与神圣感凝缩为可体验的场所——人造建筑在此成为揭示自然精神的\"装置\"。"
+  },
+  {
+    "type": "theory",
+    "name": "建筑现象学",
+    "content": "## 核心概念\n建筑现象学关注的是人对建筑的**直接体验**，而非抽象的形式或符号。它强调建筑的意义产生于身体与空间、材料、光线之间的**感官互动**——触觉、听觉、嗅觉与视觉共同构成完整的场所经验。其核心是“场所精神”：建筑不只是物理容器，而是能唤起归属感与存在感的“生活世界”。现象学反对将建筑简化为图像或概念，主张回归“物本身”，让材料、光影、尺度直接作用于人的知觉。最终，建筑的价值在于**让人“感到”自己身处此地**，而非“看到”一个物体。\n\n## 设计启示\n| 启示 | 设计应用 |\n|------|----------|\n| 身体是度量空间的尺 | 用台阶、坡道、低矮门洞迫使身体改变姿态，制造“弯腰-直起”的知觉对比 |\n| 材料应可被触摸记忆 | 选择有纹理、温度、湿度差异的材料（如粗糙石材、暖木），避免光滑涂层隔绝触感 |\n| 光是时间的雕刻师 | 设计单一侧向采光或窄缝天光，让光斑随时辰移动，使空间“活”起来 |\n| 路径应制造期待与停顿 | 用转折、收放、暗-明交替控制视线节奏，延迟揭示核心空间，强化“到达感” |\n| 声音与气味是隐形墙体 | 利用材料吸音/反射特性、引入水声或木香，界定空间边界而不依赖实体隔断 |\n\n## 可用于\n- 宗教/冥想空间（教堂、禅院、纪念馆）\n- 温泉、疗养院、康养中心（强调触觉与放松）\n- 美术馆、博物馆（控制光线与路径以聚焦感知",
+    "source": "**光之教堂（安藤忠雄）**：清水混凝土的冰冷粗粝与十字形开口射入的强光形成极端对比，光被“实体化”为神圣符号。身体在暗空间中自然安静，光线成为唯一焦点，直接触发精神性情绪，而非依赖任何宗教图像。\n**瓦尔斯温泉（卒姆托）**：建筑嵌入山体，内部采用当地片麻岩砌筑，石材的湿冷、粗糙与水的温热、柔滑形成触觉对位。空间幽暗、无窗，仅靠缝隙光与蒸汽弥漫，使用者通过皮肤而非眼睛“阅读”建筑，完美诠释材料如何制造身体记忆。"
+  },
+  {
+    "type": "theory",
+    "name": "材料感知理论",
+    "content": "## 核心概念\n材料感知理论认为，建筑体验不仅由空间形态决定，更由材料的物理属性（质感、温度、硬度、反光度）直接触发。人对材料的感知是触觉优先的——眼睛看到的光泽与手摸到的温度共同构成“真实感”。材料具有时间性：木材会老化、石材会风化，这种变化让建筑成为“记录时间的容器”。材料的“距离感”也很关键：粗糙表面拉近身体，光滑表面制造疏离。最终，材料不是表面的装饰，而是空间意义的直接生产者。\n\n## 设计启示\n| 启示 | 应用方式 |\n|------|----------|\n| 触觉优先于视觉 | 在扶手、墙面、地面等身体常接触的部位，选用真实材料（石材、木材），避免廉价贴面 |\n| 温度感制造情绪 | 用混凝土/石材营造清凉沉静，用木材/砖营造温暖亲近，形成空间的情绪对比 |\n| 时间性作为设计参数 | 选择会自然老化的材料（铜绿、木纹加深），让建筑随时间“生长”出层次 |\n| 质感对比强化感知 | 在同一空间中并置粗糙与光滑（如粗石墙+抛光地面），通过反差唤醒触觉敏感度 |\n| 材料边界定义空间 | 用材料变化替代墙体分隔，地面材质切换即可暗示功能区的转换 |\n\n## 可用于\n- 温泉、浴室等触觉主导的疗愈空间\n- 美术馆、纪念馆等需要时间沉思的文化建筑\n- 住宅中的核心起居空间（强调温暖与归属感）\n- 景观建筑中的路径与停留节点（材质引导脚步节奏）\n\n## 案例关联\n**瓦尔斯温",
+    "source": "*瓦尔斯温泉（卒姆托）**：石材被切割成薄片层层叠砌，墙面保留粗糙的凿痕，与水的湿润、皮肤的触感形成三重感知叠加。石材的冰凉与温泉的热度对比，让“温度”成为空间体验的核心叙事。**巴塞罗那德国馆（密斯）**：大理石、缟玛瑙、玻璃、钢的边界处理极为精确，材料之间不融合、不遮挡，而是通过抛光的镜面感与石材的天然纹理，让“材料边界”本身成为空间划分的逻辑——视线穿透，触觉却止步于光滑表面，制造出若即若离的感知距离。"
+  },
+  {
+    "type": "theory",
+    "name": "空间序列理论",
+    "content": "## 核心概念\n空间序列理论认为，建筑体验不是静态的“观看”，而是人在运动中随时间展开的“叙事”。它强调空间的组织方式——入口、过渡、核心、释放——构成一种节奏，如同音乐中的乐章，通过开合、明暗、宽窄、高低的对比，制造期待、紧张、豁然开朗等心理变化。序列的编排决定了人对建筑的感知深度与情感强度，而不仅仅是功能流线的效率。其核心在于：空间的时间化，即路径即体验。\n\n## 设计启示\n| 启示 | 应用方法 |\n|------|----------|\n| **入口需“蓄势”** | 用低矮、昏暗或狭窄的入口压低预期，为后续核心空间做情绪铺垫 |\n| **过渡制造“间隙”** | 在主要空间之间插入庭院、坡道或窄廊，拉长心理时间，强化期待感 |\n| **核心空间需“释放”** | 在序列高潮处突然放大尺度或引入天光，形成强烈的对比性豁然开朗 |\n| **路径可以制造时间感** | 用迂回、坡道或折返拉长动线，让短距离产生漫游般的心理时长 |\n| **序列应有“收尾”** | 以静谧或围合的空间（如小庭院）作为尾声，让体验沉淀而非戛然而止 |\n\n## 可用于\n- 博物馆与纪念馆（控制情绪节奏）\n- 文化建筑（如美术馆、剧院门厅）\n- 宗教建筑（朝圣路径的渐进神圣感）\n- 高端商业或酒店（营造仪式感与期待）\n- 城市公共空间（入口广场至核心节点的序列设计）\n\n## 案例关联\n- **萨伏伊别墅",
+    "source": "**萨伏伊别墅（柯布西耶）**：其核心是那条贯穿建筑的坡道。入口门厅低矮，坡道缓慢上升，视线透过条窗瞥见天空与庭院，最终到达屋顶花园——豁然开朗。坡道将垂直交通转化为水平漫游，拉长了体验时间，完美诠释了“路径即序列”。\n**柏林犹太人博物馆（李布斯金）**：以“非线性叙事”颠覆传统序列。入口需经过旧馆地下，进入高耸、倾斜、布满裂缝的“轴线”空间，光线昏暗、地面倾斜，制造不安与迷失感。序列没有常规的“释放”，而是以“ Holocaust Tower ”的冰冷高耸和“落叶庭院”的压抑作为情感顶点，用空间节奏直接作用于心理，是序列理论中“情绪叙事”的极端案例。"
+  },
+  {
+    "type": "theory",
+    "name": "身体与空间尺度",
+    "content": "## 核心概念\n建筑空间的意义不仅在于其几何形态，更在于它如何被人的身体所感知、度量与使用。该理论强调，人体是空间最原始的度量工具——尺度、高度、距离都应以身体的移动、停留与观看为基准来建立。空间不是被“看”的，而是被“经历”的：当身体穿过门洞、驻足窗前或仰望天井时，空间才真正成立。因此，设计的关键在于如何通过尺度差异调动身体参与，使空间体验成为连续的身体事件，而非静态的画面。\n\n## 设计启示\n| 启示 | 设计应用 |\n|------|----------|\n| 尺度对比制造身体意识 | 用低矮入口与高敞主空间对比，迫使身体弯腰后舒展，强化进入感 |\n| 路径长度影响时间感知 | 拉长或压缩移动距离，可制造期待、紧迫或放松的身体节奏 |\n| 视线高度决定空间关系 | 降低窗台或抬高地面，改变观看姿态，使身体与外部环境建立新的对话 |\n| 停留点需要身体尺度锚固 | 在走廊或转角设置可倚靠、可坐下的尺度节点，让身体获得停顿的理由 |\n| 极小尺度激发身体自觉 | 压缩空间至仅容一人通过，迫使使用者意识到自身动作与空间的精确关系 |\n\n## 可用于\n- 住宅中的过渡空间（玄关、走廊、天井）\n- 美术馆、博物馆的观展流线设计\n- 纪念性建筑中的仪式性路径\n- 极小住宅或紧凑型城市住宅\n- 庭院与建筑之间的灰空间设计\n\n## 案例关联\n**住吉的长屋**：安藤忠雄以极窄的面宽和中央露天",
+    "source": "*住吉的长屋**：安藤忠雄以极窄的面宽和中央露天庭院，迫使居住者的每一次移动都必须经过室外。身体在封闭与开放、黑暗与光亮之间反复切换，尺度被压缩到仅容一人通行，使日常起居成为对身体姿态的持续提醒——空间不再是被动容器，而是主动塑造行为的装置。\n\n*金贝尔艺术博物馆**：路易·康以摆线拱顶统一空间尺度，拱顶中央的缝隙引入自然光，使人在行走中持续感知顶部的节奏。人的身高与拱顶高度形成舒适的对比，柱廊与庭院尺度呼应人体步行节奏，观看艺术品时身体保持从容的站立与移动状态，体现了“人的尺度”作为空间秩序的核心。"
+  },
+  {
+    "type": "method",
+    "name": "仪式性动线",
+    "content": "## 核心逻辑\n用单一明确路径强化仪式感，通过控制人的行为节奏，使空间体验从日常状态过渡到精神状态，解决建筑中“如何让人在到达终点前完成心理预备”的问题。\n\n## 操作方式\n\n**第一步：设置单一入口，切断多向选择**\n在动线起点只保留一个明确的入口开口，其余界面用墙体或高差封闭。入口宽度控制在1.2–1.8米（单人通行尺度），让人在进入瞬间即感知“只能向前”的确定性。避免设置门廊或缓冲平台，入口即路径起点。\n\n**第二步：路径全程无分叉，消除一切选择可能**\n从入口到终点之间，所有侧向开口、岔路、可停留的凹空间一律取消。两侧界面连续、完整，可用实墙、高侧窗或连续柱列限定。若因功能必须开侧门，将其隐藏在视线之外的转角后，确保站在路径上的人看不到任何出口。\n\n**第三步：宽度渐变，控制行走节奏**\n将路径宽度从入口处的1.5米逐渐收窄至终点前的0.9–1.0米（仅容一人通过），再在终点前突然放宽至3米以上。收窄段迫使行走速度放慢、视线聚焦前方；放宽段产生“豁然开朗”的对比，强化终点到达感。宽度变化率控制在每10米收窄10–15厘米，避免突兀。\n\n**第四步：地面材质与顶棚高度配合渐变**\n地面从粗糙材质（如混凝土、碎石）过渡到光滑材质（如磨光石材、木地板），脚步声的变化暗示空间性质转变。顶棚高度从入口的3米逐渐压低至2.4米，再在终点前骤然抬高至5米以上，形成“压迫—释放”的身体感知",
+    "source": "*光之教堂（安藤忠雄）** ：参观者从侧向小入口进入，沿单一中轴路径（两侧为素混凝土墙）缓步前行，地面微倾、宽度收窄，路径尽端是墙体上的十字形开口——光线从十字缝中涌入，成为唯一精神焦点。整个动线无任何分叉，行走时间约30秒，恰好完成从外部喧嚣到内部静默的心理过渡。"
+  },
+  {
+    "type": "method",
+    "name": "光缝引导",
+    "content": "## 核心逻辑\n在整体低照度的暗空间中，通过墙面上的窄缝引入定向光线，以高对比度的光带勾勒空间轮廓、暗示行进路径，从而引导人的视线与身体运动方向。\n\n## 操作方式\n1. **设定暗环境基调**：将空间整体照度控制在极低水平（建议50 lux以下），确保除光缝外无其他显著光源，使光缝成为空间唯一视觉锚点。\n2. **确定缝的位置逻辑**：将窄缝设置在墙体与天花或墙体与地面的交接处（而非墙面中央），利用墙角转折强化光带的线性延伸感，使光缝自然指向下一空间入口或核心节点。\n3. **控制缝宽与光量**：缝宽控制在3~8cm之间——过窄则光线衰减过快、仅形成微弱光晕；过宽则失去“窄缝”的锐利感。通过内嵌LED线形灯或自然光反射板供光，确保光带均匀连续。\n4. **利用缝隙暗示路径**：在需要转向的位置断开光缝，并在下一段墙体的对应高度重新出现，利用视觉断点引导人自然转向；在需要停留的位置，将光缝在端部扩大为面状光斑，形成视觉终点。\n5. **调整材质反射**：光缝周围的墙面采用粗糙深色材质（如深色混凝土、深色木材），避免漫反射冲淡光带对比度；地面可采用微光反射材质，使光带在地面形成延伸的虚影，强化路径暗示。\n\n## 适用场景\n- **适用**：宗教冥想空间（礼拜堂、小教堂）、纪念性空间（墓园、纪念馆）、线性走廊与交通节点、需要营造静谧氛围的展览空间。\n- **不适用**：需要均匀照明的办",
+    "source": "**布鲁德克劳斯教堂（Bruder Klaus Field Chapel）**：彼得·卒姆托在混凝土墙体上预留圆形与条形窄缝，将外部光线引入内部暗空间，光缝沿墙体垂直分布，勾勒出穹顶轮廓并引导视线向上，形成强烈的仪式感与方向暗示。\n**住吉的长屋（Row House in Sumiyoshi）**：安藤忠雄在狭长住宅中部设置露天中庭，光线通过顶部窄缝射入室内暗空间，光带沿地面延伸，暗示从入口到后院的行进路径，同时以光影变化划分功能区域。"
+  },
+  {
+    "type": "method",
+    "name": "单一光源",
+    "content": "## 核心逻辑\n一个空间只保留一个主要光源，使光成为空间的绝对焦点与意义载体。该方法通过极致的“光-暗”对比，将建筑从“被照亮的实体”转化为“光的容器”，解决空间叙事性弱、氛围平淡的问题。\n\n## 操作方式\n1. **封堵次要采光**：在设计或改造中，彻底封闭或遮挡除主光源外的所有窗洞、天窗及玻璃幕墙。若为改造项目，使用砌块、石膏板或遮光膜对次要开口进行物理封堵，确保无漏光缝隙。\n2. **开设单一开口**：在墙体或屋面的特定位置（如十字形、圆形、竖向长缝）开设唯一洞口。开口尺寸宜小（宽度控制在 0.3–1.5m 之间），形状需与空间主题强关联，并确保开口边缘做深色收边（如黑色钢板或深色石材），以强化洞口作为“光之画框”的轮廓感。\n3. **营造暗环境基底**：空间内壁面（墙面、地面、天花）采用低反射率材料，如清水混凝土、深色木材或哑光深色涂料，反射率控制在 20% 以下。避免任何抛光或亮面材质，防止二次反射光削弱暗部深度。\n4. **设置光斑落点**：将开口正对的地面或墙面区域留空，不设家具或障碍物，使光斑完整投射。光斑落点可结合材质变化（如嵌入浅色石材或金属板）强化光的“实体感”。\n5. **利用动态光影**：不设人工补光，允许光斑随太阳方位、季节和天气变化而移动、伸缩或消失。设计时需用日照软件模拟春分、夏至、秋分、冬至四日的光斑轨迹，确保每日至少出现 1–2 小时的有效光斑时",
+    "source": "*安藤忠雄——光之教堂（大阪，1989）**：清水混凝土盒体完全封闭，唯一光源为讲坛后墙体上的十字形开口。阳光透过十字缝投射入暗室，在地面形成随时间移动的十字光斑。该案例完整呈现了“封堵—开口—暗底—落点—动态”五步操作，十字开口既是结构洞口，也是空间唯一的视觉与精神焦点。"
+  },
+  {
+    "type": "method",
+    "name": "单一材料纯粹",
+    "content": "## 核心逻辑\n全空间仅采用一种主材覆盖所有表面，消除材料层级带来的视觉噪音，使空间回归体量与光的本体表达。此法解决的是材料堆砌导致的感知疲劳与空间焦点涣散问题。\n\n## 操作方式\n1. **选定主材并定义其“表情范围”** ：从清水混凝土、木材、石材、白涂料中选一种，明确该材料在模板纹理、色差、触感上的可接受波动区间（如清水混凝土的模板拼缝间距控制在900mm内，色差ΔE≤1.5），并确认其在不同光照下的显色特性。\n2. **统一所有表面为同一材质逻辑** ：地面、墙体、天花、楼梯踏面、窗套、门套全部采用该材料或该材料的同系变体（如清水混凝土与预制混凝土板），禁止出现第二种饰面材料；构造节点（如阴阳角、收口）通过材料自身的倒角、凹槽处理，而非附加收边条。\n3. **用光塑造材料感知** ：设计单一侧向高窗或顶部天窗，让光以低角度掠过材料表面，通过模板纹理或木纹肌理产生渐变阴影；控制窗洞深度（≥300mm）使光在洞口边缘形成清晰投影，强化材料厚度感。\n4. **以比例和尺度替代材料区分** ：通过墙体厚度变化（如200mm→600mm渐变的壁龛）、空间高度骤变（2.4m→5m）、开窗尺寸对比（900mm×900mm与3000mm×300mm）来划分功能区域，而非更换材料。\n5. **删除一切非必要附加物** ：踢脚线、窗台板、装饰线条、暴露的设备末端（灯具、插座）全部嵌入材料体内或",
+    "source": "**光之教堂（安藤忠雄）** ：清水混凝土覆盖全部墙体、地面与天花，唯一的变化来自十字形开口透入的光在混凝土表面形成的锐利投影。材料完全退后，光成为空间的真正“饰面”，而混凝土的模板孔洞（间距600mm）成为唯一的肌理节奏。\n**丰岛美术馆（西泽立卫）** ：壳体结构内外均为白色混凝土，地面打磨抛光，天窗开口让风、光、雨直接接触材料表面，材料在自然元素作用下呈现时间性变化。"
+  },
+  {
+    "type": "method",
+    "name": "压缩-释放空间序列",
+    "content": "## 核心逻辑\n通过人为制造入口阶段的尺度压缩与路径压抑，蓄积使用者的心理张力，再于核心空间骤然释放，形成强烈的空间对比与情感冲击。该方法解决的是\"平铺直叙式空间缺乏感染力\"的问题，以先抑后扬的节奏塑造空间叙事的高潮。\n\n## 操作方式\n\n**第一步：压缩入口尺度**\n将入口门洞宽度控制在2.4m以内（常规走道宽度），高度降至2.2m左右（低于人体舒适尺度上限），或采用低矮雨棚、下沉式门廊进一步强化压迫感。墙面宜用深色粗糙材质（如清水混凝土、深色石材），减少自然采光，使空间亮度低于外部环境。\n\n**第二步：延长进入路径**\n将入口至核心空间的水平距离控制在15m以上（若场地有限，可通过Z字形或折返路径实现），沿路径连续设置2~3道低矮门洞或墙体收束，每道门洞宽度逐级递减（如2.4m→2.1m→1.8m），强化\"越来越窄\"的体验。地面可做轻微上坡（坡度3%~5%），增加行进费力感。\n\n**第三步：设置转折遮挡**\n在路径末端设置一道实墙或90°直角转折，使核心空间在到达前完全不可见。转折处可设置一道半透明格栅或窄缝（宽度≤300mm），仅透出核心空间的局部光线或轮廓，制造\"窥视感\"与期待心理，但不提供完整视觉信息。\n\n**第四步：释放核心空间**\n在转折完成后，将核心空间的净高提升至入口空间的2倍以上（如入口2.2m→核心5m+），水平开间扩大至入口的3倍以上，并引入高侧窗、天窗或端",
+    "source": "**光之教堂（安藤忠雄）** ：参观者从狭窄的混凝土门洞进入，经过低矮昏暗的通道（高度约2.3m），转折后进入高约5.9m的主空间，尽端十字形缝隙透入强光，压缩与释放的对比使十字光产生神圣感。此案例完整呈现了\"入口压缩→路径延长→转折遮挡→核心释放\"的全序列。\n\n**萨伏伊别墅（勒·柯布西耶）** ：底层门厅低矮（约2.4m），经坡道缓慢上升（长度约8m，坡度约5%），两侧墙体收束视线，最终抵达屋顶花园时视野完全打开，以水平延展的天空与景观形成释放。此案例展示了\"压缩-释放\"在水平维度上的变体应用。"
+  },
+  {
+    "type": "method",
+    "name": "天光漫射",
+    "content": "## 核心逻辑\n用顶部采光获得均匀柔和的光线，避免直射眩光，使自然光成为空间的\"氛围基底\"而非\"视觉焦点\"。\n\n## 操作方式\n\n1. **确定天窗形式与朝向**：根据空间平面尺寸，选择条形天窗、点状天窗或连续拱顶天窗。优先朝北向或采用无定向采光（如穹顶），避免阳光直射路径进入室内；若必须朝南/东西向，需设置遮阳构件（如外遮阳百叶或内遮光格栅）。\n\n2. **设置光线反射/散射层**：在天窗下方设置反射面（如弧形吊顶、白色格栅、磨砂亚克力板或金属反光板），使直射阳光先撞击反射面再二次漫射进入使用空间。反射面材质应选用高反射率（>80%）的漫反射材料，避免镜面反射产生新的眩光点。\n\n3. **计算并控制天窗面积比例**：天窗面积与地面面积之比控制在 1:10 至 1:20 之间（视气候与纬度而定）。采光系数目标值设为 2%-5%（美术馆、展厅），确保光线均匀度（最小/平均照度比 > 0.5）。可通过计算机模拟（Radiance 或 VELUX Daylight Visualizer）验证不同季节、时段的照度分布。\n\n4. **设计光线扩散结构**：在反射层下方增设匀光结构——如格栅、膜材或扩散板，将光线进一步打散。格栅间距与吊顶高度比宜为 1:1.5~1:2，确保光线在 3-5 米高度内完成充分混合，形成无方向性的环境光。\n\n5. **设置辅助人工光补偿系统**：沿天窗侧壁或反射层边",
+    "source": "**金贝尔艺术博物馆（路易·康）** ：连续拱顶天窗，光线经拱顶内侧的铝制反射板漫射后沿曲面均匀洒落，形成\"银光\"般的柔和效果。其天窗顶部设有弧形散光器，阳光先经反射板再进入室内，完美实现无眩光漫射。\n**柏林国会大厦穹顶（福斯特）** ：倒锥形镜面反射装置将光线反射至下方议会厅，同时锥体表面可调节角度，控制光线进入量，实现均匀漫射的同时兼顾遮阳。"
+  },
+  {
+    "type": "method",
+    "name": "嵌入地形",
+    "content": "## 核心逻辑\n建筑随地形起伏嵌入，与环境融合而非对抗。通过顺应等高线、部分埋入地下、用剖面消化高差，使建筑成为地形的自然延伸，而非强加于场地的人工物。\n\n## 操作方式\n\n**第一步：读取地形数据，建立高差认知**\n- 获取场地等高线图（1:500或1:200），标出主要高差变化点。\n- 计算场地最大高差、平均坡度，确定建筑可嵌入的“地形厚度”。\n- 用剖面草图沿关键方向切出场地轮廓，标出可埋入深度与暴露面。\n\n**第二步：顺应等高线布局，确定嵌入方向**\n- 将建筑主轴线平行于等高线布置，减少土方开挖量。\n- 若功能需要垂直于等高线，则分段跌落，每段高差控制在1.2m以内（约半层）。\n- 在平面图上画出建筑轮廓，确保其与等高线重叠度≥60%，形成“贴地”关系。\n\n**第三步：用剖面消化高差，确定埋入策略**\n- 将建筑剖面与场地剖面叠加，找出“可埋入区”（高差≥3m处）与“可暴露区”（坡度平缓处）。\n- 选择埋入策略：**半埋式**（埋入1/2层高，屋顶露出地面）或**全埋式**（埋入全部体量，仅留采光井/庭院）。\n- 用剖面图推敲：埋入侧布置辅助空间（设备、仓储），暴露侧布置主要使用空间（起居、展厅），确保采光与通风。\n\n**第四步：屋顶成为地面延续，完成嵌入闭环**\n- 将屋顶设计为可上人屋面，覆土厚度≥300mm，种植当地低矮植被。\n- 屋顶坡度与场地自然坡度一致（误差≤",
+    "source": "地中美术馆（西泽立卫/安藤忠雄，埋入地下，屋顶为几何采光井）\n瓦尔斯温泉浴场（卒姆托，嵌入山体，屋顶覆土成为草地）\n参考扩展：阿尔托·阿尔托博物馆（芬兰，半埋式处理）"
+  },
+  {
+    "type": "method",
+    "name": "底层架空",
+    "content": "## 核心逻辑\n用独立柱网支撑上部建筑体量，将底层完全或部分释放为通透空间，使建筑以轻触地面的姿态回应场地的开放性与连续性需求。\n\n## 操作方式\n\n**第一步：确立独立柱网结构体系**\n将承重结构从墙体转换为独立的框架柱网，柱距建议控制在6-9米之间，形成规整的受力网格。上部楼板采用梁板或无梁楼盖体系，确保荷载通过柱体直接传递至基础，使底层不再承担任何结构功能，从而获得完全自由的空间。\n\n**第二步：底层功能置入与空间界定**\n底层以“少墙、多虚”为原则，仅保留必要的交通核（楼梯/电梯）和少量设备管井。其余空间可作三种处理：完全开敞（作为绿地或广场的延伸）、半围合（局部设置玻璃隔断或矮墙界定模糊边界）、或置入辅助功能（停车、门厅、展览等），但须保证至少60%的底面积保持视觉通透。\n\n**第三步：建立视线与流线的穿越路径**\n在底层空间中预设至少一条公共步行通道，将场地两侧的人流活动串联起来。通道宽度建议不小于3米，路径应保持直线或缓弧，确保视线可以从一端穿透至另一端。同时，在架空边缘设置座椅、绿化或小型水景，吸引人群停留，使架空层成为城市公共空间的有机部分。\n\n**第四步：上部体量自由悬挑与收分**\n在柱网支撑的基础上，上部建筑体量可突破柱网边界向外悬挑1.5-3米，形成上大下小的“倒梯形”轮廓，增强底层架空区域的阴影感和庇护感。同时，上部体量可根据功能需求自由划分平面，不受底层",
+    "source": "勒·柯布西耶：萨伏伊别墅（底层架空作为“新建筑五点”之首，柱网支撑上部生活盒子）\n勒·柯布西耶：马赛公寓（底层架空柱墩高约4米，释放地面作为公共活动场地）\n关联延伸：密斯·凡·德·罗：范斯沃斯住宅（架空平台的变体演绎）"
+  },
+  {
+    "type": "method",
+    "name": "材料对比",
+    "content": "## 核心逻辑\n用两种材料的对比强化空间属性（冷暖/新旧/粗细），使空间在感官层面形成张力与叙事层次。\n\n## 操作方式\n\n1. **选定对比材料组合**：根据空间属性选择一对具有明确差异性的材料。例如：冷与暖（玻璃+木材）、新与旧（耐候钢+老砖）、粗与细（清水混凝土+抛光石材）。要求两种材料在色相、质感、反光度或温度感知上至少有两个维度形成反差。\n\n2. **明确功能分区与主次关系**：在平面布局中确定两种材料各自覆盖的空间区域，明确主次——主材料覆盖大面积界面（墙面、地面），次材料用于局部强调（节点、家具、洞口）。确保分区逻辑与功能使用逻辑一致，而非单纯装饰。\n\n3. **设计交界处的过渡方式**：在两种材料相遇的边界处，选择一种处理手法——直接对撞（平接留缝）、错层搭接（材料厚度差形成阴影线）、或中间插入第三种过渡材料（金属收边条）。交界处是视觉焦点，需精确控制缝隙宽度（通常3-10mm）与收口细节。\n\n4. **用对比强化空间叙事**：将材料对比与空间体验的序列结合——例如入口用粗粝材料（混凝土）制造压抑感，进入核心空间后切换为温润材料（木饰面/石材）形成释放感；或白天呈现冷峻、灯光下呈现温暖的对比效果。\n\n5. **检验对比的\"必要性\"**：在方案完成后，用\"减法测试\"验证——若将其中一种材料替换为另一种的延续，空间是否失去关键意义？若失去，则对比成立；若空间依然成立，则",
+    "source": "巴塞罗那德国馆（密斯·凡·德·罗）：大理石+玻璃+钢——光滑与通透的对比，强化\"流动空间\"属性\n瓦尔斯温泉浴场（卒姆托）：石材+水——粗粝与柔软的对比，强化\"触觉体验\"叙事"
+  },
+  {
+    "type": "method",
+    "name": "材料时间性",
+    "content": "## 核心逻辑\n选择具有自然老化特性的材料（如木材、铜、砖），让建筑在使用过程中随时间推移呈现色彩、质感与肌理的变化，使\"时间\"本身成为设计表达的核心要素。\n\n## 操作方式\n\n**第一步：筛选可老化材料**\n- 从材料库中筛选具备自然氧化或风化特性的材料，优先选择：铜板（氧化变绿）、耐候钢（锈蚀变红棕）、木材（灰变）、手工砖（表面自然磨损）。\n- 排除经密封处理或表面涂装的材料，确保材料表面裸露，能与空气、水分直接接触。\n\n**第二步：设计材料交接节点**\n- 在材料交接处预留伸缩缝与排水坡度，防止老化过程中的膨胀或积水导致结构破坏。\n- 对木材端头做切角处理，铜板边缘做卷边，砖墙顶部加压顶——确保老化过程不损害建筑物理性能。\n\n**第三步：设定\"预期老化效果\"样板**\n- 制作1:1材料样板，通过人工加速老化（如紫外线照射、盐水喷淋）或参考既有建筑案例照片，确定3年、10年、30年后的预期色彩与质感变化。\n- 将样板与预期效果图写入设计说明，作为后期维护与效果评估的依据。\n\n**第四步：组织空间中的\"新旧对话\"**\n- 在新建筑中主动引入旧材料（如回收老砖、旧木梁），与新材料并置，形成时间层次的对比。\n- 或将新材料的\"初始状态\"与\"老化后状态\"在同一立面并置展示，强化时间感知。\n\n**第五步：建立维护与记录机制**\n- 在建筑入口或隐蔽处设置材料样本墙，标注安装日期与预期变化",
+    "source": "彼得·卒姆托——科伦巴博物馆（旧砖废墟与新砖的共生，砖墙肌理的时间叠加）\n王澍——中国美术学院象山校区（回收旧瓦、竹模板混凝土，材料的时间厚度）\n赫尔佐格&德梅隆——泰特现代美术馆（铜板表皮氧化变色）"
+  },
+  {
+    "type": "method",
+    "name": "框景借景",
+    "content": "## 核心逻辑\n用建筑开口将外部景观“裁剪”入室内视野，使建筑本体退为观景媒介，让空间体验以景观为核心组织。\n\n## 操作方式\n1. **确定最佳景观方向**：在场地中选取3-5个候选观景点，通过现场拍照或视线模拟，比较不同方向的山体轮廓、水面反射、天际线层次，选定景观价值最高的1-2个方向作为框景目标。\n2. **设定框景开口位置与尺寸**：根据人眼舒适视域（水平约60°、垂直约30°），在墙体上确定开口的几何中心与边界。开口宽度宜为视距的1/2至2/3，高度控制在1.2m-2.4m之间，确保坐姿与站姿均能获得完整景观。\n3. **控制开口比例与深度**：将开口长宽比设定为与目标景观轮廓相契合（如横向水面用1:2-1:3扁长形，竖向山体用2:3竖矩形）。开口周边墙体厚度外扩至300-600mm，形成“窗洞”深度，强化景框的立体感和裁剪感。\n4. **内部空间朝向景观展开**：以框景开口为空间轴线，将室内地面标高向开口方向缓降或抬升（高差300-900mm），并沿视线方向布置家具与动线，确保主要活动区域（如坐席、床榻、工作台）正对框景。\n5. **设置前景与过渡层次**：在开口外侧1.5-3m范围内，保留或种植低矮灌木、设置水景或置石，形成“近景-中景-远景”的三层景观递进，增强画面纵深感。\n\n## 适用场景\n- **适用**：景观资源明确的坡地住宅、度假小屋、观景塔、美术馆、茶室",
+    "source": "水之教堂（安藤忠雄）：以混凝土十字形开口框取水面与森林\n富士山景观建筑（如虹夕诺雅富士）：以大面积横向开口框取富士山轮廓\n苏州博物馆新馆（贝聿铭）：以片墙开洞框取庭院山石"
+  },
+  {
+    "type": "method",
+    "name": "漫游式路径",
+    "content": "## 核心逻辑\n用连续路径引导人缓慢移动，空间在运动中展开——通过延长到达时间，将\"到达\"转化为\"经历\"，使建筑体验从静态观看变为动态叙事。\n\n## 操作方式\n1. **设置连续坡道或缓梯**：以坡度≤8%的连续坡道或低台阶楼梯（每级≤12cm）作为主路径，确保行走节奏从容，不设电梯为唯一垂直交通。\n2. **路径穿越不同高度**：将路径设计为跨越2-3个标高的连续体，使人在行进中经历空间压缩与开敞的交替——如从低矮门厅进入，经过坡道逐渐升高至通高大厅。\n3. **沿途布置视觉焦点**：在路径的转折点、坡道尽端或侧向开洞处设置视觉锚点——如一幅画、一扇框景窗、一棵天井树，每15-20米出现一次，形成\"行走-发现\"的节奏。\n4. **避免直达终点**：刻意将终点（如主展厅、起居区）置于路径末端，不设直接视线通廊；在路径中插入1-2个停留平台或半开放节点，让人可回望来路、俯瞰下层空间。\n5. **控制路径长度与时间**：将路径总长控制在40-80米（步行约1-2分钟），保证漫游感但不至疲惫；在关键节点设置可停留的座椅或窗台，强化\"慢\"的体验。\n\n## 适用场景\n- **适用**：展览建筑（美术馆、博物馆）、别墅住宅、文化中心、纪念性建筑——需要叙事性体验或仪式感的空间。\n- **不适用**：医院、办公楼、机场等效率优先的建筑；小面积（<200㎡）空间，路径过长会造成浪费。\n\n## 案例",
+    "source": "**萨伏伊别墅**：中央坡道贯穿三层，从入口缓慢升至屋顶花园，行进中视线穿过横向长窗不断框取不同景观，将日常居住转化为空间漫游。\n**古根海姆美术馆**：连续螺旋坡道绕中庭盘旋而上，观展路径即交通路径，艺术在行走中连续展开，终点回望可见全馆空间。"
+  },
+  {
+    "type": "method",
+    "name": "空间嵌套",
+    "content": "## 核心逻辑\n通过多个空间的层层包裹，形成从公共到私密的递进序列，使人在行进中逐步脱离外部环境、进入内向世界，解决建筑中\"过渡\"与\"领域感\"缺失的问题。\n\n## 操作方式\n1. **设定外层公共空间**：在建筑最外侧设置与城市或自然直接相连的过渡空间（如檐廊、半室外平台），保持视觉与流线上的开放性，作为内外之间的\"缓冲带\"。\n2. **逐层收窄尺度**：每进入一层，压缩平面尺寸与层高（如从4.5m宽降至2.7m宽，层高从3.6m降至2.8m），同时收窄门洞宽度（≥0.9m即可），通过身体尺度感知私密性增强。\n3. **每层改变光线**：外层采用漫反射高窗或侧窗（照度约300lux），中层改用天窗或格栅滤光（照度降至150lux），核心层仅留一道窄缝或顶部小孔（照度≤50lux），形成\"亮→半明→暗\"的梯度。\n4. **核心空间最私密最暗**：将最内层空间（如卧室、冥想室）置于平面几何中心，四周被其他功能包裹，仅通过一条窄廊或转折入口进入，避免直接视线穿透，并确保该空间无直接对外开窗。\n\n## 适用场景\n- **适用**：住宅（尤其小地块联排）、冥想空间、小型文化建筑（如茶室、画廊）、需要强烈领域感的私人工作室。\n- **不适用**：大型公共建筑（如机场、博物馆）、需要通透视野的景观建筑、无障碍要求高的医疗建筑（嵌套易造成动线迂回）。\n\n## 案例来源\n**住吉的长屋**（安藤忠雄",
+    "source": "*住吉的长屋**（安藤忠雄）：街道→门廊（半开放）→中庭（露天、光线充足）→室内（低矮、昏暗），三层嵌套清晰呈现。中庭作为\"光的容器\"打破封闭感，而最内层和室仅借中庭间接采光，形成从公共街道到私密居所的完整递进。"
+  },
+  {
+    "type": "method",
+    "name": "视线引导",
+    "content": "## 核心逻辑\n通过控制开口位置、高差变化与光影方向，主动塑造人在空间中的视线路径，将注意力引向预设焦点，从而建立空间叙事顺序。\n\n## 操作方式\n1. **设框景开口**：在墙体或界面上开设明确洞口（宽度600–1500mm），将洞口对准远处标志物（树、水面、雕塑）。洞口边缘做深色收边或金属框，强化\"画框\"感。确保洞口与人的站立点之间留出至少3m的视距，使画面完整入眼。\n2. **用高差改变视线高度**：在路径中设置台阶（2–3级，每级150mm）或缓坡（坡度≤5%），使人在行进中视线基准线逐渐抬升或下降。抬升时焦点物应位于高处（如天窗、树冠）；下降时焦点物置于低处（如水面、地面铺装图案）。\n3. **用光引导视线方向**：在焦点物所在方向设置侧高窗或顶部天窗，使自然光以30°–60°角投射至焦点表面，形成明暗对比（焦点照度≥周围2倍）。避免在非引导方向开设等亮度窗口，防止视线分散。\n4. **末端设焦点**：在视线尽端放置唯一视觉锚点（体量、材质、色彩与背景形成明显反差），确保从入口到终点之间，焦点始终处于视野中心区域（偏离角度≤15°）。焦点前方保持视野通透，不设遮挡物。\n\n## 适用场景\n- **适用**：展览空间（控制观展顺序）、景观建筑（框景自然）、住宅庭院（引导至水景/树木）、纪念性建筑（强化轴线尽端）\n- **不适用**：开敞办公空间（需自由视线）、商业综合体（需多",
+    "source": "**水之教堂**：安藤忠雄在混凝土墙体上开设十字形开口，将视线直接引向水面上的十字架。操作要点在于——开口高度与坐姿视线齐平（约1.2m），水面反光将十字架轮廓强化为唯一焦点，两侧墙体完全封闭排除干扰。\n**苏州博物馆**：贝聿铭以片石假山为视线终点，通过框景窗洞与廊道转折，使观者在行进中逐步看到\"画\"的完整构图。高差上采用逐级下沉庭院，使视线从平视转为俯视，强化山水画卷的展开感。"
+  },
+  {
+    "type": "method",
+    "name": "轴线递进",
+    "content": "## 核心逻辑\n用一条明确的主轴线串联多个空间节点，通过节点的逐级推进与氛围变化，形成具有仪式感和叙事性的空间体验序列，解决建筑中“如何组织有秩序的空间体验”的问题。\n\n## 操作方式\n1. **设定主轴线**：在场地中确定一条明确的几何轴线（直线或转折线），作为空间组织的骨架。轴线应贯穿建筑主要入口与核心空间，长度与建筑规模匹配（如 50–150m 的纪念性尺度）。用铺地、柱列、天窗或墙体限定轴线边界，确保人在行进中能感知其存在。\n2. **沿线布置节点**：沿轴线每隔 15–30m 设置一个空间节点（如庭院、门厅、展厅、过渡厅），节点间距根据人的步行节奏（约 20 步）确定。每个节点在平面尺寸、层高、光线条件上形成对比，避免均质化。\n3. **赋予节点独特氛围**：为每个节点设定差异化的空间品质——如第一个节点低矮压抑（层高 2.4m、暗光），第二个节点开阔明亮（层高 6m、顶部采光），第三个节点狭窄幽长（宽 3m、侧向光）。通过材质（粗糙混凝土→光滑石材）、声音（回声→吸声）和视线（封闭→通透）强化氛围转换。\n4. **设置高潮节点**：在轴线末端（或转折处）设置整个序列的最高潮空间——体量最大（如 20m 层高）、光线最强（如顶部天光直射）、或具有象征性元素（如雕塑、水景、纪念墙）。确保高潮节点在序列中不可提前窥见，需通过前序节点的“收”来反衬其“放”。\n5. **校准节奏",
+    "source": "**柏林犹太人博物馆（李布斯金）**：轴线被多次打断、偏移，形成“断裂的轴线”——通过轴线的不连续与节点的压抑/空旷对比，表达犹太历史的断裂感。该案例说明轴线递进不一定是直线连续，也可通过“断裂”制造叙事张力。\n**孟加拉国会大厦（路易·康）**：以几何轴线串联圆形议会厅、入口广场、祈祷厅等节点，每个节点有独立的几何形与光线特征，轴线末端以议会厅（高潮）收束，体现民主仪式的庄严性。"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-FLOW-001",
+    "project_type": "RES",
+    "domain": "住宅流线与空间关系",
+    "trigger": "庭院 / 穿行 / 室外 / 动线 / 绕路 / 直达 / 连廊 / 开门",
+    "facts": "两个功能空间之间是否存在室外路径或绕行（可观察信息，来自图纸：门的位置、庭院范围、房间连接关系）",
+    "observation": "两个空间之间的路径若需经过室外（庭院），会引入天气便利性、私密性和空间体验的变化",
+    "impact": "\n- 雨天/夜间使用便利性下降（若频繁往返则影响明显）\n- 穿过室外可能暴露在邻里视线下（私密性影响）\n- 但室外路径可能是被设计的\"庭院体验\"的一部分（内外过渡、景观接触）——此时不是问题而是特征",
+    "conditions": "往返频率 / 使用时段 / 天气气候 / 庭院是否被设计为核心体验（缺任一项不得断言\"穿庭院是问题\"）",
+    "forbidden": "\n- \"穿庭院一定不好\"、\"必须室内直达\"\n- \"应该加连廊\"、\"应该挪卧室\"（方案是学生选择，不是 AI 结论）\n- 把\"客厅→卧室需要室外路径\"直接当作\"需要改造\"的定论",
+    "question": "你说的\"穿庭院\"是距离、路径、私密性还是空间连续性问题？庭院在设计中的角色（必须保留的核心/可调整的过渡）是设计决策——先确认问题类型，再谈方案。",
+    "content": "问题类型:住宅流线与空间关系 触发维度:庭院 / 穿行 / 室外 / 动线 / 绕路 / 直达 / 连廊 / 开门 观察:两个空间之间的路径若需经过室外（庭院），会引入天气便利性、私密性和空间体验的变化 可能影响:\n- 雨天/夜间使用便利性下降（若频繁往返则影响明显）\n- 穿过室外可能暴露在邻里视线下（私密性影响）\n- 但室外路径可能是被设计的\"庭院体验\"的一部分（内外过渡、景观接触）——此时不是问题而是特征 依赖条件:往返频率 / 使用时段 / 天气气候 / 庭院是否被设计为核心体验（缺任一项不得断言\"穿庭院是问题\"）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-FLOW-002",
+    "project_type": "RES",
+    "domain": "住宅流线与空间关系",
+    "trigger": "交叉 / 重合 / 流线 / 动线 / 穿堂 / 绕路 / 开门方向",
+    "facts": "学生描述或图纸显示的多条动线存在交叉/重合（来自用户观察或图纸：门的位置、走廊宽度、房间开口）",
+    "observation": "动线交叉本身不必然构成问题——居住建筑中公共区动线交汇是常态；构成问题需要叠加频率/功能冲突",
+    "impact": "\n- 高频动线与低频动线交叉：影响有限\n- 服务动线（买菜进厨房）与休闲动线（进客厅）交叉：可能需要评估\n- 私密区（卧室）被公共动线穿过：与 RES-PRIV 关联",
+    "conditions": "动线频率 / 使用人群 / 空间功能冲突 / 面积与门宽是否足够（缺任一项不得断言\"流线不合理\"）",
+    "forbidden": "\n- \"有交叉就是不合理\"、\"流线必须完全分离\"\n- 未经频率/功能判断就建议\"改变门的位置\"",
+    "question": "你指的交叉具体是哪两条动线、在什么位置？交叉是否构成问题取决于功能冲突与空间条件——先定位交叉点，再判断是否需要调整。",
+    "content": "问题类型:住宅流线与空间关系 触发维度:交叉 / 重合 / 流线 / 动线 / 穿堂 / 绕路 / 开门方向 观察:动线交叉本身不必然构成问题——居住建筑中公共区动线交汇是常态；构成问题需要叠加频率/功能冲突 可能影响:\n- 高频动线与低频动线交叉：影响有限\n- 服务动线（买菜进厨房）与休闲动线（进客厅）交叉：可能需要评估\n- 私密区（卧室）被公共动线穿过：与 RES-PRIV 关联 依赖条件:动线频率 / 使用人群 / 空间功能冲突 / 面积与门宽是否足够（缺任一项不得断言\"流线不合理\"）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-FLOW-003",
+    "project_type": "RES",
+    "domain": "住宅流线与空间关系",
+    "trigger": "走廊 / 连接 / 断点 / 能否 / 通不通 / 到达",
+    "facts": "图中走廊/通道的起止点与相邻空间的连接关系（可观察信息，来自图纸；AI 必须基于图面回答，不得把读图推回给学生）",
+    "observation": "一条走廊/通道要形成连续室内流线，其两端必须分别连接可进入的空间；任一端口断开则不能形成完整连接",
+    "impact": "\n- 断开的走廊段可能是交通盲端（仅服务局部）或需要补充连接\n- 是否为\"问题\"取决于该段是否有使用需求",
+    "conditions": "断开处的具体图面关系（门/墙/开口位置）（必须先读图确认，再谈是否需要补充连接）",
+    "forbidden": "\n- 不读图就假设\"走廊能连上\"或\"走廊断着\"\n- \"你画一条线看看\"把读图责任推给学生（读图是 AI 的任务）\n- 未经图面确认就建议\"加一段连接\"",
+    "question": "这条走廊在图面中的起止连接关系是什么？你希望它承担什么功能（到达卧室/去庭院）？——先确认图面连接，再谈是否补充。",
+    "content": "问题类型:住宅流线与空间关系 触发维度:走廊 / 连接 / 断点 / 能否 / 通不通 / 到达 观察:一条走廊/通道要形成连续室内流线，其两端必须分别连接可进入的空间；任一端口断开则不能形成完整连接 可能影响:\n- 断开的走廊段可能是交通盲端（仅服务局部）或需要补充连接\n- 是否为\"问题\"取决于该段是否有使用需求 依赖条件:断开处的具体图面关系（门/墙/开口位置）（必须先读图确认，再谈是否需要补充连接）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-LIGHT-001",
+    "project_type": "RES",
+    "domain": "住宅采光与朝向",
+    "trigger": "朝向 / 北向 / 开窗方向 / 采光 / 直射光 / 漫射光",
+    "facts": "某空间的主要开窗方向为北（可观察信息，来自图纸或用户确认）",
+    "observation": "北向通常提供较稳定的漫射光，直接太阳辐射较少",
+    "impact": "\n- 对需要较多直射日照的使用目标（如白天久待的公共空间），可能需要进一步评估\n- 对光稳定性敏感、怕强光的使用目标（如卧室晨昏光环境、画室），北向可能是优势",
+    "conditions": "地区纬度 / 周边遮挡 / 开窗面积与形式 / 使用时段 / 空间功能需求（缺任一项不得断言采光好坏）",
+    "forbidden": "\n- \"客厅朝北一定不好\"、\"朝北不适合做任何空间\"\n- \"朝南就一定好\"、\"南向采光无条件优于北向\"\n- 未经地区/遮挡信息就判断\"采光不足\"",
+    "question": "这个空间的功能定位是什么（卧室/客厅/工作间）？所在地区与周边遮挡情况如何？——若需调整开窗或南向分配，这是后续设计决策，先确认功能与地区条件。",
+    "content": "问题类型:住宅采光与朝向 触发维度:朝向 / 北向 / 开窗方向 / 采光 / 直射光 / 漫射光 观察:北向通常提供较稳定的漫射光，直接太阳辐射较少 可能影响:\n- 对需要较多直射日照的使用目标（如白天久待的公共空间），可能需要进一步评估\n- 对光稳定性敏感、怕强光的使用目标（如卧室晨昏光环境、画室），北向可能是优势 依赖条件:地区纬度 / 周边遮挡 / 开窗面积与形式 / 使用时段 / 空间功能需求（缺任一项不得断言采光好坏）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-LIGHT-002",
+    "project_type": "RES",
+    "domain": "住宅采光与朝向",
+    "trigger": "西向 / 西晒 / 午后 / 厨房 / 闷热 / 朝向",
+    "facts": "某空间主要开窗方向为西（可观察信息，来自图纸或用户确认）",
+    "observation": "西向开窗在午后可能接收较多太阳辐射（西晒），对温度的影响取决于地区气候与季节",
+    "impact": "\n- 在夏季午后辐射强、遮阳措施不足的地区，可能加剧空间闷热（尤其厨房等有热源的房间）\n- 在冬季或需要被动得热的地区/时段，西向得热可能是可利用的资源",
+    "conditions": "地区气候 / 遮阳措施（檐口/百叶/绿化）/ 房间热源 / 使用时段（缺任一项不得断言\"西晒是问题\"）",
+    "forbidden": "\n- \"西晒一定闷热\"、\"西向房间一定不好\"\n- 未经地区气候信息就断言\"西晒会加剧闷热\"\n- 把西晒直接作为\"需要改窗方向\"的结论依据",
+    "question": "所在地区气候（夏季午后辐射强度）？该房间的功能（是否热源集中，如厨房）？——遮阳是建筑手段（檐口/百叶/绿化），是否采用是设计决策。",
+    "content": "问题类型:住宅采光与朝向 触发维度:西向 / 西晒 / 午后 / 厨房 / 闷热 / 朝向 观察:西向开窗在午后可能接收较多太阳辐射（西晒），对温度的影响取决于地区气候与季节 可能影响:\n- 在夏季午后辐射强、遮阳措施不足的地区，可能加剧空间闷热（尤其厨房等有热源的房间）\n- 在冬季或需要被动得热的地区/时段，西向得热可能是可利用的资源 依赖条件:地区气候 / 遮阳措施（檐口/百叶/绿化）/ 房间热源 / 使用时段（缺任一项不得断言\"西晒是问题\"）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-LIGHT-003",
+    "project_type": "RES",
+    "domain": "住宅采光与朝向",
+    "trigger": "南向 / 分配 / 朝向 / 采光 / 卧室 / 客厅 / 优先",
+    "facts": "图中各房间的开窗朝向（南向/北向/西向分布，可观察信息，来自图纸）",
+    "observation": "南向通常能获得较多直射日照；在同一住宅中南向立面资源有限，分配给哪个空间存在取舍",
+    "impact": "\n- 南向给卧室：睡眠空间晨昏光环境好，但白天主要活动区（客厅）拿不到直射日照\n- 南向给客厅：公共活动区日照充分，但卧室可能只能接受北向稳定漫射光\n- 是否构成问题取决于：哪个空间在你生活中承担\"白天久待\"的角色",
+    "conditions": "家庭生活方式（白天主要活动空间）/ 地区气候 / 卧室使用时段（缺任一项不得推荐南向给谁）",
+    "forbidden": "\n- \"南向应该给客厅\"、\"南向必须给卧室\"\n- \"客厅朝北一定不合理\"\n- 替学生决定南向分配优先级",
+    "question": "南向资源有限，优先保证哪个空间的日照是设计决策——先确认功能优先级（哪个空间承担白天主要活动）与居住结构，再讨论分配方案。",
+    "content": "问题类型:住宅采光与朝向 触发维度:南向 / 分配 / 朝向 / 采光 / 卧室 / 客厅 / 优先 观察:南向通常能获得较多直射日照；在同一住宅中南向立面资源有限，分配给哪个空间存在取舍 可能影响:\n- 南向给卧室：睡眠空间晨昏光环境好，但白天主要活动区（客厅）拿不到直射日照\n- 南向给客厅：公共活动区日照充分，但卧室可能只能接受北向稳定漫射光\n- 是否构成问题取决于：哪个空间在你生活中承担\"白天久待\"的角色 依赖条件:家庭生活方式（白天主要活动空间）/ 地区气候 / 卧室使用时段（缺任一项不得推荐南向给谁）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-PRIV-001",
+    "project_type": "RES",
+    "domain": "住宅公共-私密关系",
+    "trigger": "私密 / 卧室 / 穿行 / 直达 / 视线 / 公共区 / 打扰",
+    "facts": "卧室区与公共区（客厅/入口）的连接关系——是否有其他房间或动线穿过卧室区（可观察信息，来自图纸）",
+    "observation": "私密区（卧室）若被公共动线直接穿过或紧邻高频活动区，使用时的安静与私密性可能受影响",
+    "impact": "\n- 客厅到卧室的直达动线若穿过卧室区内部，会降低卧室区私密性（夜间/换衣等场景）\n- 若直达动线只到达卧室区入口（走廊/过渡），私密性影响有限\n- 私密性需求因人而异（独居/多代同堂/访客频率不同）",
+    "conditions": "家庭结构（多代同堂/独居）/ 卧室使用时段 / 动线是否穿过卧室区内部还是只到入口（缺任一项不得断言\"破坏私密\"）",
+    "forbidden": "\n- \"客厅直达卧室一定破坏私密性\"、\"卧室必须远离客厅\"\n- 未经家庭结构/动线细节就建议\"必须加缓冲空间\"",
+    "question": "动线是穿过卧室区内部还是只到卧室区入口？居住结构（几代同堂/独居）影响私密需求——先确认图面动线，再谈私密层级。",
+    "content": "问题类型:住宅公共-私密关系 触发维度:私密 / 卧室 / 穿行 / 直达 / 视线 / 公共区 / 打扰 观察:私密区（卧室）若被公共动线直接穿过或紧邻高频活动区，使用时的安静与私密性可能受影响 可能影响:\n- 客厅到卧室的直达动线若穿过卧室区内部，会降低卧室区私密性（夜间/换衣等场景）\n- 若直达动线只到达卧室区入口（走廊/过渡），私密性影响有限\n- 私密性需求因人而异（独居/多代同堂/访客频率不同） 依赖条件:家庭结构（多代同堂/独居）/ 卧室使用时段 / 动线是否穿过卧室区内部还是只到入口（缺任一项不得断言\"破坏私密\"）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "judgment_rule",
+    "id": "RES-PRIV-002",
+    "project_type": "RES",
+    "domain": "住宅公共-私密关系",
+    "trigger": "卫生间 / 卧室 / 配套 / 老人房 / 便利 / 夜间",
+    "facts": "图中卧室与卫生间的位置关系（相邻/共用/距离）（可观察信息，来自图纸）",
+    "observation": "卧室紧邻独立卫生间（尤其老人房）可减少夜间穿行公共区，便利性与私密性较好；非配套卫生间则夜间使用需穿行",
+    "impact": "\n- 老人房配独立卫生间：夜间如厕不用穿行公共区，安全性/便利性好\n- 无配套卫生间时，夜间穿行距离长（是否构成问题取决于使用者行动能力与夜间需求）",
+    "conditions": "使用者（老人/儿童行动能力）/ 夜间使用频率 / 穿行路径是否经过公共区（缺任一项不得断言\"必须加卫生间\"）",
+    "forbidden": "\n- \"每个卧室都必须配卫生间\"、\"无配套卫生间不合理\"\n- 未经使用者情况就建议\"加建卫生间\"",
+    "question": "卧室与卫生间的图面距离和路径？使用者是否需要夜间高频如厕（老人/儿童）？——配套是否必要取决于这两点，先确认。",
+    "content": "问题类型:住宅公共-私密关系 触发维度:卫生间 / 卧室 / 配套 / 老人房 / 便利 / 夜间 观察:卧室紧邻独立卫生间（尤其老人房）可减少夜间穿行公共区，便利性与私密性较好；非配套卫生间则夜间使用需穿行 可能影响:\n- 老人房配独立卫生间：夜间如厕不用穿行公共区，安全性/便利性好\n- 无配套卫生间时，夜间穿行距离长（是否构成问题取决于使用者行动能力与夜间需求） 依赖条件:使用者（老人/儿童行动能力）/ 夜间使用频率 / 穿行路径是否经过公共区（缺任一项不得断言\"必须加卫生间\"）",
+    "source": "筑思建筑设计判断层 V0.1（自建判断规则，非外部资料；仅作分析框架，不作结论依据）"
+  },
+  {
+    "type": "thinking_skill",
+    "id": "SKILL-CRITIQUE-001",
+    "name": "建筑评图能力（Critique）",
+    "domain": "CRITIQUE",
+    "trigger": "学生要求评图/评价方案（\"评评这个方案\"\"哪里有问题\"\"这个怎么样\"），或对方案整体进行讨论时激活。",
+    "goal": "",
+    "dimensions": "",
+    "forbidden": "",
+    "content": "Skill:建筑评图能力（Critique） 触发:学生要求评图/评价方案（\"评评这个方案\"\"哪里有问题\"\"这个怎么样\"），或对方案整体进行讨论时激活。 观察维度: 目标:",
+    "source": "筑思建筑师思维 Skill 层 V0.1（来源：建筑评图能力（Critique）；观察维度，非执行顺序）"
+  },
+  {
+    "type": "thinking_skill",
+    "id": "SKILL-PROBLEM-001",
+    "name": "问题澄清能力（Problem Clarification）",
+    "domain": "PROBLEM",
+    "trigger": "学生说\"这个方案不好/有问题/别扭/哪里需要改/你看看哪里不对\"等模糊评价时激活。",
+    "goal": "",
+    "dimensions": "",
+    "forbidden": "",
+    "content": "Skill:问题澄清能力（Problem Clarification） 触发:学生说\"这个方案不好/有问题/别扭/哪里需要改/你看看哪里不对\"等模糊评价时激活。 观察维度: 目标:",
+    "source": "筑思建筑师思维 Skill 层 V0.1（来源：问题澄清能力（Problem Clarification）；观察维度，非执行顺序）"
+  },
+  {
+    "type": "thinking_skill",
+    "id": "SKILL-SPATIAL-001",
+    "name": "空间阅读能力（Spatial Reading）",
+    "domain": "SPATIAL",
+    "trigger": "用户上传平面图/剖面图，或讨论空间组织、布局、房间关系时激活。",
+    "goal": "",
+    "dimensions": "",
+    "forbidden": "",
+    "content": "Skill:空间阅读能力（Spatial Reading） 触发:用户上传平面图/剖面图，或讨论空间组织、布局、房间关系时激活。 观察维度: 目标:",
+    "source": "筑思建筑师思维 Skill 层 V0.1（来源：空间阅读能力（Spatial Reading）；观察维度，非执行顺序）"
+  }
+]

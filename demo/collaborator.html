@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>筑思Agent 建筑协作台</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23b3542e'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='sans-serif'%3E%E7%AD%91%3C/text%3E%3C/svg%3E">
+<script src="vendor/marked.min.js"></script>
+<style>
+:root{
+  --ink:#1f2937;--muted:#6b7280;--muted-2:#9ca3af;--text-soft:#4b5563;--line:#e5e7eb;--paper:#ffffff;
+  --work:#f5f6f8;--nav1:#0f172a;--nav2:#1e3a5f;
+  --teal:#0d9488;--teal-dark:#0f766e;--teal-soft:#ccfbf1;
+  --red:#dc2626;--gold:#d97706;--blue:#2563eb;
+  --shadow-sm:0 1px 3px rgba(15,23,42,.08);--shadow-md:0 4px 16px rgba(15,23,42,.10);
+  --shadow-lg:0 8px 30px rgba(15,23,42,.14);
+  --radius:12px;--radius-sm:8px;
+  font-family:"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;height:100vh;overflow:hidden;background:var(--work);color:var(--ink);
+  font-size:14px;-webkit-font-smoothing:antialiased}
+button,textarea{font:inherit}
+:focus-visible{outline:2px solid rgba(13,148,136,.7);outline-offset:2px}
+.app{height:100%;display:grid;grid-template-rows:64px 1fr}
+/* ── 顶栏 ── */
+.topbar{background:linear-gradient(135deg,var(--nav1),#16294a 55%,var(--nav2));color:#fff;
+  display:flex;align-items:center;padding:0 22px;gap:14px;
+  box-shadow:var(--shadow-md),inset 0 1px 0 rgba(255,255,255,.10);position:relative;z-index:10}
+.mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--teal),#14b8a6);
+  display:grid;place-items:center;font-weight:800;font-size:18px;color:#fff;
+  border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 2px 8px rgba(13,148,136,.45),inset 0 1px 0 rgba(255,255,255,.35)}
+.brand strong{font-size:17px;letter-spacing:.5px;font-weight:700}
+.brand span{display:block;color:#9fb3c8;font-size:11px;letter-spacing:.3px}
+.mode{margin-left:14px;color:#d8e3ee;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:4px 13px;font-size:12px;letter-spacing:.3px}
+.actions{margin-left:auto;display:flex;gap:8px}
+.icon-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);
+  color:#dbe6f0;cursor:pointer;border-radius:9px;display:grid;place-items:center;transition:all .2s}
+.icon-btn:hover{background:rgba(255,255,255,.18);transform:translateY(-1px)}
+.icon-btn:active{transform:scale(.92)}
+/* ── 左侧项目栏 ── */
+.projbar{width:230px;min-width:230px;background:#fbfcfd;border-right:1px solid var(--line);
+  display:flex;flex-direction:column;min-height:0}
+.proj-head{padding:16px 14px 10px;display:flex;align-items:center;justify-content:space-between}
+.proj-head strong{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.proj-add{width:28px;height:28px;border:1px solid var(--line);background:#fff;color:var(--teal);
+  cursor:pointer;border-radius:8px;display:grid;place-items:center;transition:all .2s;box-shadow:var(--shadow-sm)}
+.proj-add:hover{background:var(--teal);color:#fff;border-color:var(--teal)}
+.proj-add:active{transform:scale(.92)}
+.proj-list{flex:1;overflow-y:auto;padding:0 10px 12px}
+.proj-item{padding:11px 12px;border-radius:10px;cursor:pointer;margin-bottom:4px;
+  border:1px solid transparent;transition:all .18s}
+.proj-item:hover{background:#f0f4f3}
+.proj-item.active{background:linear-gradient(135deg,#e8f7f4,#dff1ec);border-color:#b7e0d8;box-shadow:var(--shadow-sm)}
+.proj-item.active strong{color:var(--teal-dark)}
+.proj-item strong{display:block;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.proj-item span{font-size:10px;color:var(--muted)}
+.proj-item .proj-del{float:right;width:20px;height:20px;margin:-2px -4px 0 0;border:0;border-radius:6px;
+  background:transparent;color:var(--muted);cursor:pointer;display:grid;place-items:center;visibility:hidden}
+.proj-item:hover .proj-del{visibility:visible}
+.proj-item .proj-del:hover{color:var(--red);background:#fef2f2}
+.version-foot{padding:8px 12px;font-size:10px;color:var(--muted-2);border-top:1px solid var(--line)}
+/* ── 工作区 ── */
+.workspace{min-height:0;overflow:hidden;display:grid;grid-template-columns:230px minmax(520px,1.55fr) minmax(340px,.8fr)}
+.chat{min-width:0;min-height:0;overflow:hidden;display:grid;grid-template-rows:minmax(0,1fr) auto;
+  background:var(--work)}
+.messages{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;padding:30px max(28px,6vw) 44px;
+  background:radial-gradient(1100px 380px at 50% -120px,rgba(13,148,136,.07),transparent 62%),var(--work)}
+.message{margin:0 auto 26px;max-width:860px;min-width:0;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+::selection{background:rgba(13,148,136,.16)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+.speaker{font-size:11px;color:var(--muted);margin-bottom:7px;letter-spacing:.3px;
+  display:flex;align-items:center;gap:6px}
+.speaker::before{content:"";width:8px;height:8px;border-radius:50%;background:#cbd5e1;flex:none}
+.assistant .speaker::before{background:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,.14)}
+.user .speaker::before{background:#94a3b8}
+.bubble{min-width:0;overflow-wrap:anywhere;word-break:break-word;line-height:1.75}
+.assistant .bubble{background:linear-gradient(180deg,#ffffff,#fbfdfc);padding:16px 20px;
+  border-radius:6px 16px 16px 16px;border:1px solid #e2e9e6;border-left:3px solid var(--teal);
+  box-shadow:0 1px 3px rgba(15,23,42,.06),0 8px 24px rgba(15,23,42,.05)}
+.user .bubble{background:linear-gradient(135deg,#e8f1ff,#f0f6ff);padding:12px 16px;
+  border-radius:16px 6px 16px 16px;border:1px solid #dbe7f7;color:#1e3a5f;
+  box-shadow:0 1px 3px rgba(30,58,95,.06)}
+.bubble h1{font-size:18px;font-weight:800;margin:18px 0 8px;color:#111827}
+.bubble h2{font-size:17px;font-weight:700;margin:16px 0 7px;color:var(--ink)}
+.bubble h3{font-size:15px;font-weight:700;margin:14px 0 6px;color:var(--ink)}
+.bubble p{margin:0 0 9px}.bubble ul{padding-left:20px}
+.bubble pre,.bubble table{display:block;max-width:100%;overflow-x:auto}
+.bubble img{max-width:100%;height:auto;border-radius:8px}
+.status-line{font-size:11px;color:var(--muted);margin-top:8px;display:inline-block;
+  background:#f1f4f5;border:1px solid #e5eaeb;border-radius:6px;padding:2px 9px;letter-spacing:.2px}
+.typing .bubble{font-style:normal;display:flex;align-items:center;gap:10px}
+.typing .bubble::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--teal);
+  box-shadow:-9px 0 0 var(--teal),9px 0 0 var(--teal);flex:none;
+  animation:typing-pulse 1.2s ease-in-out infinite}
+@keyframes typing-pulse{0%,60%,100%{opacity:.3}30%{opacity:1}}
+/* ── 输入区 ── */
+.composer{border-top:1px solid var(--line);background:var(--paper);padding:14px max(20px,5vw) 16px;box-shadow:0 -2px 10px rgba(15,23,42,.04)}
+.compose-box{max-width:900px;margin:auto;display:grid;grid-template-columns:38px 1fr 46px;align-items:end;
+  border:1.5px solid #d8dee4;background:#fff;border-radius:18px;
+  box-shadow:0 2px 6px rgba(15,23,42,.06),0 10px 30px rgba(15,23,42,.05);transition:border-color .2s,box-shadow .2s}
+.compose-box:focus-within{border-color:var(--teal);box-shadow:0 0 0 4px rgba(13,148,136,.14),0 8px 24px rgba(13,148,136,.10)}
+.attach,.send{height:44px;border:0;background:transparent;cursor:pointer;transition:all .2s}
+.attach{color:var(--blue);border-radius:0 0 0 16px;display:grid;place-items:center}.attach:hover{color:var(--teal)}
+.send{background:linear-gradient(135deg,var(--teal),#14b8a6);color:#fff;margin:6px;height:36px;width:36px;
+  border-radius:12px;display:grid;place-items:center;font-size:16px;box-shadow:0 2px 8px rgba(13,148,136,.35)}
+.send:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(13,148,136,.45)}
+.send:active{transform:scale(.94)}
+.send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.composer textarea{border:0;outline:0;resize:none;min-height:52px;max-height:140px;padding:14px 6px;line-height:1.5;color:var(--ink)}
+.hint{max-width:900px;margin:6px auto 0;color:var(--muted);font-size:11px;letter-spacing:.2px}
+.panel .hint{max-width:none;margin:0 0 14px;text-align:left;line-height:1.6}
+/* ── 右侧面板 ── */
+.side{min-height:0;overflow:auto;background:var(--paper);border-left:1px solid var(--line)}
+.tabs{position:sticky;top:0;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
+  padding:10px 12px 12px;background:rgba(255,255,255,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+.tab{height:34px;border:0;border-radius:9px;background:transparent;color:var(--muted);
+  cursor:pointer;font-size:12px;transition:all .18s;letter-spacing:.3px}
+.tab:hover{color:var(--ink);background:#f3f5f7}
+.tab:active{background:#eefaf7}
+.tab.active{color:var(--teal-dark);background:linear-gradient(180deg,#eefbf8,#e0f5f0);
+  border:1px solid #bde3da;font-weight:700;box-shadow:var(--shadow-sm)}
+.panel{display:none;padding:22px}.panel.active{display:block;animation:fadeIn .2s ease}
+.panel h2{font-size:15px;margin:0 0 16px;color:var(--ink);letter-spacing:.3px;font-weight:800;
+  padding-left:10px;border-left:3px solid var(--teal);line-height:1.4}
+.section{padding:14px 0;border-bottom:1px solid #f0f2f4}.section:first-of-type{padding-top:0}
+.section-title{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+.fact{display:grid;grid-template-columns:76px 1fr;gap:8px;margin:7px 0}
+.fact label{color:var(--muted);font-size:12px}
+.empty{color:var(--muted-2);font-size:12px;line-height:1.65}
+.pill{display:inline-block;padding:3px 9px;margin:2px 5px 2px 0;border-radius:20px;font-size:10px;
+  background:var(--teal-soft);color:var(--teal-dark);font-weight:600;letter-spacing:.3px}
+.source{border:1px solid var(--line);padding:13px;margin-bottom:12px;border-radius:10px;
+  border-left:3px solid var(--gold);background:#fffdf8;
+  box-shadow:0 1px 3px rgba(15,23,42,.05),0 4px 14px rgba(15,23,42,.04);
+  transition:box-shadow .2s,border-color .2s}
+.source:hover{box-shadow:0 4px 18px rgba(217,119,6,.10);border-color:#eed9b0}
+.source strong{font-size:12px}.source p{font-size:11px;color:var(--muted);line-height:1.55;margin:6px 0}
+.version{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:10px 0}
+.version button{border:1px solid var(--line);background:#fff;padding:4px 10px;cursor:pointer;border-radius:6px;transition:all .2s}
+.version button:hover{border-color:var(--teal);color:var(--teal)}
+.warning{color:var(--red);background:#fef2f2;padding:8px 10px;border-radius:8px;font-size:12px}
+/* ── 文件卡片 ── */
+.file-card{border:1px solid var(--line);padding:14px;margin-bottom:12px;border-radius:12px;
+  background:#fff;box-shadow:0 1px 3px rgba(15,23,42,.05),0 4px 14px rgba(15,23,42,.04);
+  transition:box-shadow .2s,border-color .2s}
+.file-card:hover{box-shadow:0 4px 18px rgba(15,23,42,.09);border-color:#d5dedb}
+.file-card strong{display:block;font-size:12px;overflow-wrap:anywhere}
+.file-meta{font-size:10px;color:var(--muted);margin:5px 0}
+.file-preview{font-size:11px;line-height:1.55;color:var(--text-soft);white-space:pre-wrap;max-height:150px;
+  overflow:auto;background:#f8fafc;padding:9px;border-radius:8px}
+.file-error{color:var(--red);font-size:11px;margin-top:6px}
+.file-action{margin-top:10px;border:1px solid var(--line);background:#fff;color:var(--teal);padding:6px 10px;
+  cursor:pointer;border-radius:8px;transition:all .2s}
+.file-action:hover{border-color:var(--teal);background:var(--teal-soft)}
+.file-action.active{background:linear-gradient(135deg,var(--teal),#14b8a6);color:#fff;border-color:var(--teal)}
+/* ── 知识卡片 ── */
+.evidence-btn{margin-top:10px;border:1px solid var(--line);background:#fff;color:var(--teal);
+  padding:6px 12px;border-radius:8px;cursor:pointer;font-size:11px;transition:all .2s;font-weight:600}
+.evidence-btn:hover{border-color:var(--teal);background:var(--teal-soft)}
+.source-label{font-size:10px;color:var(--gold);font-weight:700;margin-top:10px;letter-spacing:.5px}
+.source blockquote{margin:5px 0;padding:8px 10px;background:#f8fafc;border-left:3px solid #cbd5e1;
+  font-size:11px;line-height:1.6;border-radius:0 6px 6px 0}
+.inline-evidence{margin-top:12px;border:1px solid #dbeae7;border-radius:12px;background:#fbfdfd;
+  padding:12px 14px;box-shadow:var(--shadow-sm);transition:box-shadow .2s}
+.inline-evidence:hover{box-shadow:var(--shadow-md)}
+.inline-evidence summary{cursor:pointer;outline:0;display:flex;align-items:center;gap:8px}
+.inline-evidence blockquote{margin:7px 0;padding:8px 10px;background:#f4f7f6;border-left:3px solid #b8cdc8;
+  font-size:11px;line-height:1.6;color:var(--text-soft);border-radius:0 6px 6px 0}
+.inline-evidence p{font-size:11px;color:var(--muted);margin:5px 0;line-height:1.6}
+.inline-evidence img{box-shadow:0 2px 6px rgba(0,0,0,.14);border-radius:6px}
+/* ── 滚动条 ── */
+*{scrollbar-width:thin;scrollbar-color:#c3cdd6 transparent}
+::-webkit-scrollbar{width:9px;height:9px}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#c3cdd6,#aeb9c4);border-radius:6px;
+  border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#9aa7b4,#8b99a7);border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-track{background:transparent}
+@media(max-width:850px){body{overflow:auto;height:auto}.app{height:auto;min-height:100vh}
+  .workspace{display:block}.projbar{display:none}.chat{height:72vh}.side{overflow:visible}
+  .mode{display:none}.messages{padding:20px 14px}.workspace{grid-template-columns:1fr}.panel{padding:16px}}
+/* ═══ V3 暖色建筑编辑工作台（覆盖层，仅视觉，不动功能）═══ */
+:root{
+  --ink:#211d17;--muted:#756c5e;--muted-2:#9a9082;--text-soft:#4a443c;
+  --line:rgba(60,52,40,.13);--paper:#faf7f1;--work:#faf7f1;
+  --card:#fdfaf4;--work-l:#f3efe7;--work-r:#ede8de;
+  --clay:#b3542e;--clay-deep:#9c3d1f;--brown:#8a6d4f;--brick:#a94033;--gold:#b07a3c;
+  /* 兼容旧变量名：teal=主操作陶土，blue=暖棕，nav=米白 */
+  --teal:#b3542e;--teal-dark:#8c4526;--teal-soft:#f1ede4;
+  --red:#a94033;--blue:#8a6d4f;
+  --nav1:#f3efe7;--nav2:#f3efe7;
+  --shadow-sm:0 1px 2px rgba(60,52,40,.07);--shadow-md:0 4px 14px rgba(60,52,40,.08);--shadow-lg:0 10px 30px rgba(60,52,40,.12);
+}
+body{background:var(--work)}
+/* 顶栏：米白页眉，无吉祥物（不临时造 Logo） */
+.mark{display:none}
+.topbar{background:linear-gradient(180deg,#f6f2ea,#f0ebe2);color:var(--ink);
+  box-shadow:0 1px 0 rgba(60,52,40,.10),0 2px 10px rgba(60,52,40,.05);
+  border-bottom:1px solid var(--line)}
+.brand strong{font-family:"Georgia","STZhongsong","SimSun","Songti SC",serif;font-size:18px;font-weight:600;letter-spacing:.5px;color:var(--ink)}
+.brand span{color:var(--muted);font-size:11px}
+.mode{color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:20px;padding:4px 13px;font-size:12px}
+.icon-btn{border:1px solid rgba(60,52,40,.18);background:transparent;color:var(--muted);border-radius:9px}
+.icon-btn:hover{background:var(--card);color:var(--clay);border-color:var(--clay)}
+/* 左栏：浅灰米，选中=陶土竖线 */
+.projbar{background:var(--work-l);border-right:1px solid var(--line)}
+.proj-head strong{font-family:"Georgia","STZhongsong","SimSun","Songti SC",serif;letter-spacing:1.5px;color:var(--muted)}
+.proj-add{border:1px solid var(--line);background:var(--card);color:var(--brown)}
+.proj-add:hover{background:var(--clay);color:#fff;border-color:var(--clay)}
+.proj-item:hover{background:rgba(60,52,40,.05)}
+.proj-item.active{background:#f7ede4;border-color:rgba(179,84,46,.25);
+  border-left:3px solid var(--clay);box-shadow:none}
+.proj-item.active strong{color:var(--clay-deep)}
+.proj-item span{color:var(--muted-2)}
+.proj-item .proj-del:hover{background:rgba(169,64,51,.12)}
+/* 中区：纯纸面，连续开放；项目头部固定于消息区上方 */
+.chat{background:var(--paper);grid-template-rows:auto minmax(0,1fr) auto}
+.messages{background:var(--paper);padding-top:10px}
+.proj-header{padding:26px max(28px,6vw) 0;max-width:860px;margin:0 auto;min-width:0;width:100%}
+.proj-header h1{font-family:"Georgia","STZhongsong","SimSun","Songti SC",serif;font-size:27px;font-weight:600;
+  margin:0 0 8px;color:var(--ink);letter-spacing:.5px;overflow-wrap:anywhere}
+.proj-header .ph-meta{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+.ph-stage{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:2px 11px;
+  font-size:11px;color:var(--brown);background:var(--card);letter-spacing:.3px}
+.ph-sep{color:var(--muted-2)}
+.proj-header::after{content:"";display:block;max-width:860px;margin:16px auto 0;border-bottom:1px solid var(--line)}
+/* 对话气泡：AI=暖白卡+暖棕左线，学生=浅暖灰 */
+.assistant .bubble{background:var(--card);border:1px solid var(--line);border-left:2px solid var(--brown);
+  box-shadow:0 1px 3px rgba(60,52,40,.06)}
+.user .bubble{background:#f1ede6;border:1px solid rgba(60,52,40,.10);color:var(--ink);
+  box-shadow:0 1px 2px rgba(60,52,40,.05)}
+.bubble h1{color:#1a1612}
+.bubble h2,.bubble h3{color:var(--ink)}
+.speaker{color:var(--muted)}
+.speaker::before{background:#cfc7b8}
+.user .speaker::before{background:var(--brown)}
+.status-line{background:#f2ede5;border:1px solid var(--line);color:var(--muted)}
+/* 输入区 */
+.composer{background:var(--paper);border-top:1px solid var(--line);box-shadow:0 -2px 10px rgba(60,52,40,.04)}
+.compose-box{border:1.5px solid rgba(60,52,40,.18);background:var(--card);border-radius:18px;
+  box-shadow:0 2px 6px rgba(60,52,40,.06)}
+.compose-box:focus-within{border-color:var(--clay);box-shadow:0 0 0 4px rgba(179,84,46,.12)}
+.attach{color:var(--brown)}
+.composer textarea{color:var(--ink)}
+.composer textarea::placeholder{color:var(--muted-2)}
+.send{background:linear-gradient(135deg,var(--clay),var(--clay-deep))}
+/* 右栏：米灰 + 陶土下划线标签 */
+.side{background:var(--work-r);border-left:1px solid var(--line)}
+.tabs{background:rgba(237,232,222,.94);border-bottom:1px solid var(--line);padding:0 10px}
+.tab{color:var(--muted);height:42px;border-radius:0}
+.tab:hover{color:var(--ink);background:rgba(60,52,40,.05)}
+.tab.active{color:var(--clay-deep);border:0;border-bottom:2.5px solid var(--clay);font-weight:700;background:transparent;box-shadow:none}
+.panel h2{font-family:"Georgia","STZhongsong","SimSun","Songti SC",serif;font-weight:600;color:var(--ink);
+  border-left:3px solid var(--clay)}
+.section{border-bottom:1px solid rgba(60,52,40,.08)}
+.empty{color:var(--muted-2)}
+/* 标签：统一低饱和暖色（证据分层靠文字标签+结构位置，颜色仅辅助） */
+.pill{background:var(--teal-soft);color:var(--brown);font-weight:600}
+.pill.warning{background:#f8e9e4;color:var(--brick)}
+/* V1.2 语义事件历史：可展开、低调、不挤占主面板 */
+details.sem-history{margin:10px 0 4px;font-size:13px;color:var(--text-soft)}
+details.sem-history summary{cursor:pointer;user-select:none;padding:2px 0}
+details.sem-history .timeline{margin-top:6px;max-height:220px;overflow:auto}
+.warning{background:#f8e9e4;color:var(--brick);border:1px solid rgba(169,64,51,.2)}
+/* 卡片：暖白+细边，hover 只加深边框（不发光） */
+.file-card{background:var(--card);border:1px solid var(--line);
+  box-shadow:0 1px 3px rgba(60,52,40,.05)}
+.file-card:hover{border-color:rgba(179,84,46,.35);box-shadow:0 3px 12px rgba(60,52,40,.07)}
+.file-preview{background:#f3efe8;color:var(--text-soft)}
+.file-action,.evidence-btn{border:1px solid var(--line);background:var(--card);color:var(--clay-deep)}
+.file-action:hover,.evidence-btn:hover{border-color:var(--clay);background:#f7ede4}
+.file-action.active{background:linear-gradient(135deg,var(--clay),var(--clay-deep));color:#fff;border-color:var(--clay)}
+.source{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold)}
+.source:hover{border-color:rgba(176,122,60,.45)}
+.source blockquote,.inline-evidence blockquote{background:#f3efe8;border-left:3px solid #d8cfc0;color:var(--text-soft)}
+.inline-evidence{background:var(--card);border:1px solid var(--line)}
+.inline-evidence:hover{box-shadow:0 4px 14px rgba(60,52,40,.08)}
+.version button{border:1px solid var(--line);background:var(--card);color:var(--muted)}
+.version button:hover{border-color:var(--clay);color:var(--clay)}
+/* 案例图卡（杂志式） */
+.case-card{border:1px solid var(--line);border-radius:10px;background:var(--card);margin-top:12px;
+  box-shadow:0 1px 3px rgba(60,52,40,.05);overflow:hidden}
+.case-imgs img{width:0;flex:1 1 0;height:120px;object-fit:cover;display:block;cursor:pointer;transition:filter .15s}
+.case-imgs img:hover{filter:brightness(1.07)}
+.case-imgs{display:flex;gap:2px;background:repeating-linear-gradient(45deg,#efe9df 0 10px,#eae3d7 10px 20px)}
+.case-imgs img.img-fallback{visibility:hidden}
+.source-flash{box-shadow:0 0 0 2px var(--clay)!important;transition:box-shadow .5s}
+/* 暖色收尾：清理基础 CSS 残留的青色（焦点/选区/阴影/光晕） */
+:focus-visible{outline:2px solid rgba(179,84,46,.6);outline-offset:2px}
+::selection{background:rgba(179,84,46,.14)}
+.assistant .speaker::before{box-shadow:0 0 0 3px rgba(179,84,46,.12)}
+.send{box-shadow:0 2px 8px rgba(156,61,31,.30)}
+.send:hover{box-shadow:0 4px 12px rgba(156,61,31,.40)}
+.retrieved-fold{margin-top:12px;border:1px dashed var(--line);border-radius:10px;background:var(--work-l)}
+.retrieved-fold summary{cursor:pointer;padding:9px 12px;font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.3px}
+.retrieved-fold summary:hover{color:var(--clay-deep)}
+.retrieved-body{padding:0 10px 10px}
+.unsupported-note{margin-top:10px;font-size:11px;color:var(--muted);background:#f6f1e7;
+  border:1px solid rgba(176,122,60,.3);border-radius:8px;padding:8px 11px;line-height:1.6}
+/* 大图预览（lightbox）：点击案例图/上传图纸 → 放大查看 */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(33,29,23,.66);
+  display:grid;place-items:center;padding:44px;animation:fadeIn .18s ease}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:min(92vw,1400px);max-height:88vh;object-fit:contain;
+  background:var(--card);border:1px solid rgba(60,52,40,.25);border-radius:8px;
+  box-shadow:0 24px 70px rgba(0,0,0,.45)}
+.lightbox img.lb-fallback{visibility:hidden}
+.lightbox-close{position:absolute;top:18px;right:22px;width:40px;height:40px;
+  border:1px solid rgba(255,255,255,.35);background:rgba(33,29,23,.45);color:#fff;
+  border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.lightbox-close:hover{background:rgba(33,29,23,.75)}
+/* V2：案例视觉资产卡（图片也进证据体系：标注原始图纸/筑思分析图/空间照片） */
+.asset-block{margin-top:12px}
+.asset-card{border:1px solid var(--line);border-radius:10px;background:var(--card);overflow:hidden;
+  margin-bottom:12px;box-shadow:0 1px 3px rgba(60,52,40,.05)}
+.asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;padding:10px}
+.asset-item{position:relative;border-radius:8px;overflow:hidden;background:#efe9df}
+.asset-item img{width:100%;height:110px;object-fit:cover;display:block;cursor:pointer;transition:filter .15s}
+.asset-item img:hover{filter:brightness(1.07)}
+.asset-tag{position:absolute;left:6px;bottom:6px;background:rgba(33,29,23,.72);color:#f5f1ea;
+  font-size:10px;padding:2px 7px;border-radius:6px;letter-spacing:.2px}
+.asset-caption{padding:0 12px 11px;font-size:12px;color:var(--text-soft);
+  display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.asset-meta{color:var(--muted);font-size:11px}
+.case-body{padding:12px 14px 13px}
+.case-title{font-family:"Georgia","STZhongsong","SimSun","Songti SC",serif;font-size:15px;font-weight:600;color:var(--ink)}
+.case-meta{font-size:11px;color:var(--muted);margin:3px 0 7px}
+.case-takeaway{font-size:12px;color:var(--text-soft);line-height:1.6;margin:0 0 9px}
+.case-link{border:0;background:transparent;color:var(--clay-deep);cursor:pointer;font-size:12px;font-weight:600;
+  padding:0;letter-spacing:.3px}
+.case-link:hover{color:var(--clay);text-decoration:underline}
+/* 右栏面板：分区组织（V3 第二轮） */
+.section-head{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;
+  margin:18px 0 8px;padding-top:14px;border-top:1px solid var(--line);font-weight:600;
+  display:flex;align-items:center;gap:8px}
+.section-head::after{content:"";flex:1;border-top:1px solid var(--line)}
+.section-head:first-child{margin-top:0;padding-top:0;border-top:0}
+.fact label{font-size:11px}
+.file-group-title{font-size:11px;color:var(--muted);letter-spacing:1px;margin:14px 0 8px;
+  display:flex;align-items:center;gap:8px;font-weight:600}
+.file-group-title::after{content:"";flex:1;border-top:1px solid var(--line)}
+.timeline{position:relative;padding-left:16px}
+.timeline::before{content:"";position:absolute;left:4px;top:4px;bottom:4px;border-left:1px solid var(--line)}
+.tl-item{position:relative;padding:0 0 13px}
+.tl-item::before{content:"";position:absolute;left:-16px;top:4px;width:8px;height:8px;border-radius:50%;
+  background:var(--card);border:1.5px solid var(--clay)}
+.tl-item .tl-head{font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;letter-spacing:.3px}
+.tl-item p{font-size:12px;color:var(--text-soft);margin:3px 0;line-height:1.55}
+.source-head{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.source-head strong{font-size:13px;color:var(--ink)}
+/* 滚动条 */
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#d6cdbf,#c4b9a8);border:2px solid transparent;background-clip:padding-box}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#b8ac99,#a89b87);border:2px solid transparent;background-clip:padding-box}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="mark">筑</div><div class="brand"><strong>筑思Agent</strong><span>建筑学习与设计协作助手</span></div>
+    <div class="mode">学生主导的连续设计对话</div>
+    <div class="actions"><button class="icon-btn" id="exportBtn" title="导出设计过程"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></button><button class="icon-btn" id="resetBtn" title="新建对话"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8"/><path d="M21 3v5h-5"/></svg></button></div>
+  </header>
+  <main class="workspace">
+    <aside class="projbar">
+      <div class="proj-head"><strong>项目</strong><button class="proj-add" id="projAdd" title="新建项目"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"/><path d="M5 12h14"/></svg></button></div>
+      <div class="proj-list" id="projList"></div>
+      <div class="version-foot">v3.3 · 2026-08-18</div>
+    </aside>
+    <section class="chat">
+      <div class="proj-header">
+        <h1 id="projHeaderName">未命名项目</h1>
+        <div class="ph-meta"><span class="ph-stage" id="projHeaderStage">Concept Development</span><span class="ph-sep">·</span><span id="projHeaderDate">—</span><span class="ph-sep">·</span><span id="projHeaderCounts">0 项设计决定　0 张图纸</span></div>
+      </div>
+      <div class="messages" id="messages">
+        <article class="message assistant"><div class="speaker">筑思Agent</div><div class="bubble">我们可以从一个建筑任务、一个案例，或者你正在犹豫的设计问题开始。我会帮助你分析和查找依据，但设计决定由你来做。</div></article>
+      </div>
+      <div class="composer">
+        <div class="compose-box"><button class="attach" id="attachBtn" title="上传图片或文档"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button><input id="fileInput" type="file" accept=".png,.jpg,.jpeg,.webp,.pdf,.doc,.docx,.txt,.md" hidden><textarea id="input" placeholder="说说你的建筑任务、想法或问题…"></textarea><button class="send" id="sendBtn" title="发送"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button></div>
+        <div class="hint">Enter 发送，Shift + Enter 换行。阶段总结、评图和保存版本需要由你主动提出。</div>
+      </div>
+    </section>
+    <aside class="side">
+      <nav class="tabs"><button class="tab active" data-tab="memory">设计记忆</button><button class="tab" data-tab="files">项目文件</button><button class="tab" data-tab="knowledge">知识依据</button><button class="tab" data-tab="process">过程记录</button></nav>
+      <section class="panel active" id="memory"><h2>当前共同理解</h2><div id="memoryContent" class="empty">还没有已确认的项目信息。对话中由你明确提出的内容会记录在这里。</div></section>
+      <section class="panel" id="files"><h2>项目文件与图像</h2><div class="hint">图片仅在你确认后发送到 Qwen-VL 分析；文件不会自动成为学生决定。</div><div id="filesContent" class="empty">支持 PNG、JPG、WEBP、PDF、DOC、DOCX、TXT 和 MD。</div></section>
+      <section class="panel" id="knowledge"><h2>本轮知识依据</h2><div id="knowledgeContent" class="empty">只有实际检索到并经过后端校验的案例、理论和方法会显示在这里。</div></section>
+      <section class="panel" id="process"><h2>人机协作记录</h2><div id="processContent" class="empty">学生决定、历史修改和阶段版本会分别记录。</div></section>
+    </aside>
+  </main>
+</div>
+<div class="lightbox" id="lightbox" hidden>
+  <img id="lightboxImg" alt="查看大图">
+  <button class="lightbox-close" id="lightboxClose" title="关闭" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
+</div>
+<script>
+const HOST=location.hostname||"127.0.0.1", API="http://"+HOST+":8787/api/architect_chat", IMG_BASE="http://"+HOST+":8000", STORE="archai-collaborator-v1", PSTORE="archai-projects-v1";
+let history=[], state={}, busy=false, activeAnnotations=[], parsedFiles=[];
+let projects={}, activeId=null;
+const $=id=>document.getElementById(id);
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c])}
+function safe(html){const t=document.createElement("template");t.innerHTML=String(html||"");t.content.querySelectorAll("script,style,iframe,object,embed,link,meta").forEach(n=>n.remove());t.content.querySelectorAll("*").forEach(n=>{[...n.attributes].forEach(a=>{if(/^on/i.test(a.name)||/javascript:/i.test(a.value))n.removeAttribute(a.name)})});return t.innerHTML}
+function markdown(text){return safe(window.marked?marked.parse(String(text||"")):esc(text).replace(/\n/g,"<br>"))}
+function openLightbox(src,alt){const lb=$("lightbox"),im=$("lightboxImg");if(!lb)return;im.classList.remove("lb-fallback");im.src=src;im.alt=alt||"查看大图";im.onerror=()=>im.classList.add("lb-fallback");lb.hidden=false;document.body.style.overflow="hidden"}
+function closeLightbox(){const lb=$("lightbox");if(!lb)return;lb.hidden=true;document.body.style.overflow=""}
+$("lightbox").addEventListener("click",e=>{if(e.target===$("lightbox")||e.target.closest(".lightbox-close"))closeLightbox()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLightbox()});
+function openAnnotations(items,eid){activeAnnotations=items||[];renderKnowledge();document.querySelectorAll(".tab,.panel").forEach(x=>x.classList.remove("active"));document.querySelector('[data-tab="knowledge"]').classList.add("active");$("knowledge").classList.add("active");if(eid){const cards=[...document.querySelectorAll("#knowledgeContent .source")];const target=cards.find(c=>c.dataset.eid===eid)||cards[0];if(target){target.scrollIntoView({behavior:"smooth",block:"center"});target.classList.add("source-flash");setTimeout(()=>target.classList.remove("source-flash"),800)}}}
+function caseImages(ann){const imgMap={"光之教堂":"Church_of_the_Light","Church of the Light":"Church_of_the_Light","巴塞罗那馆":"Barcelona_Pavilion","巴塞罗那德国馆":"Barcelona_Pavilion","Barcelona Pavilion":"Barcelona_Pavilion","金贝尔":"Kimbell_Art_Museum","Kimbell":"Kimbell_Art_Museum","瓦尔斯":"Therme_Vals","Therme Vals":"Therme_Vals","萨伏伊":"Villa_Savoye","Villa Savoye":"Villa_Savoye"};const hit=Object.keys(imgMap).find(k=>String(ann.name||"").includes(k)||String(ann.original_strategy||"").includes(k));return hit?imgMap[hit]:""}
+function sourceHtml(x){const meta=[x.architect?`建筑师：${esc(x.architect)}`:""].filter(Boolean).join(" · ")+(x.built_year?` · ${esc(x.built_year)}`:"");const src=x.source?`<div class="source-label">来源出处</div><blockquote style="font-size:10px">${esc(String(x.source).slice(0,300))}</blockquote>`:"";return `<div style="margin-top:6px;border-top:1px solid var(--line);padding-top:6px">${meta?`<p style="font-size:10px;color:var(--muted);margin:2px 0">${meta}</p>`:""}${src}</div>`}
+const STATUS_LABEL={"has_source":"来源可追溯","in_kb":"知识库条目"};function statusLabel(x){return STATUS_LABEL[x&&x.verification_status]||"知识库条目"}
+function inlineKnowledge(annotations){if(!annotations||!annotations.length)return"";const cards=annotations.map(x=>{const dir=caseImages(x);const files=(x.images&&x.images.length)?x.images:["plan.jpg","space_01.jpg","section.jpg","interior.jpg"];const imgs=(dir&&files.length)?files.map(f=>`<img src="${IMG_BASE}/images/${esc(dir)}/${esc(f)}" alt="${esc(x.name)}" loading="lazy">`).join(""):"";const meta=[x.architect?`${esc(x.architect)}`:""].filter(Boolean).join(" · ")+(x.built_year?` · ${esc(x.built_year)}`:"");return `<figure class="case-card">${imgs?`<div class="case-imgs">${imgs}</div>`:""}<figcaption class="case-body"><div class="case-title">${esc(x.name)}</div><div class="case-meta">${esc(meta)} <span class="pill">${esc(statusLabel(x))}</span></div>${x.transferable?`<p class="case-takeaway">可迁移策略：${esc(x.transferable)}</p>`:""}<button class="case-link" data-eid="${esc(x.evidence_id||"")}" type="button">查看知识依据 →</button></figcaption></figure>`}).join("");return `<div style="margin-top:4px">${cards}</div>`}
+function caseAssetCard(g){const imgs=(g.assets||[]).map(a=>`<div class="asset-item"><img src="${esc(a.url.replace(/127\.0\.0\.1:8000/,HOST+":8000"))}" alt="${esc(g.name)}·${esc(a.label)}" loading="lazy"><span class="asset-tag">${esc(a.label)} · ${esc(a.kind_label)}</span></div>`).join("");const meta=[g.architect?`${esc(g.architect)}`:""].filter(Boolean).join(" · ")+(g.built_year?` · ${esc(g.built_year)}`:"");return `<figure class="asset-card"><div class="asset-grid">${imgs}</div><figcaption class="asset-caption">知识库视觉资产 · ${esc(g.name)}${meta?`<span class="asset-meta">${esc(meta)}</span>`:""}<span class="pill">${g.source?"来源可追溯":"知识库条目"}</span></figcaption></figure>`}
+function add(role,content,status="",annotations=[],retrieved=[],unsupported=[],assets=[]){const a=document.createElement("article");a.className="message "+role;const inline=role==="assistant"&&annotations&&annotations.length?inlineKnowledge(annotations):"";const retr=role==="assistant"&&retrieved&&retrieved.length?`<details class="retrieved-fold"><summary>相关检索结果 · ${retrieved.length}</summary><div class="retrieved-body">${inlineKnowledge(retrieved)}</div></details>`:"";const uns=role==="assistant"&&unsupported&&unsupported.length?`<div class="unsupported-note">注：回答中提及${unsupported.map(u=>`「${esc(u.name)}」`).join("、")}，本轮知识库未提供对应依据，未挂接证据。</div>`:"";const assetHtml=role==="assistant"&&assets&&assets.length?`<div class="asset-block">${assets.map(caseAssetCard).join("")}</div>`:"";a.innerHTML=safe(`<div class="speaker">${role==="user"?"你":"筑思Agent"}</div><div class="bubble">${role==="user"?esc(content):markdown(content)}</div>${annotations.length?`<button class="evidence-btn" data-eid="${esc(annotations[0].evidence_id||"")}" type="button">查看知识注释 · ${annotations.length}</button>`:""}${inline}${retr}${uns}${assetHtml}${status?`<div class="status-line">${esc(status)}</div>`:""}`);a.querySelectorAll(".evidence-btn").forEach(btn=>btn.onclick=()=>openAnnotations(annotations,btn.dataset.eid||""));a.querySelectorAll(".case-link").forEach(btn=>{const isRetr=!!btn.closest(".retrieved-fold");btn.onclick=()=>openAnnotations(isRetr?retrieved:annotations,btn.dataset.eid||"")});a.querySelectorAll(".case-imgs img,.asset-grid img").forEach(img=>{img.onerror=()=>img.classList.add("img-fallback");img.onclick=()=>openLightbox(img.getAttribute("src"),img.alt)});$("messages").appendChild(a);$("messages").scrollTop=$("messages").scrollHeight;return a}
+function sourceCard(x){return `<article class="source" data-eid="${esc(x.evidence_id||"")}"><div class="source-head"><strong>${esc(x.name)}</strong><span class="pill">${esc(x.type||"案例")}</span><span class="pill">${esc(statusLabel(x))}</span></div>${sourceHtml(x)}<div class="source-label">知识库原文</div><blockquote>${esc(x.source_text||"知识条目没有可显示的原文。")}</blockquote><div class="source-label">原建筑采用的方法</div><p>${esc(x.original_strategy||"未单独标注。")}</p><div class="source-label">与本轮问题的关系</div><p>${esc(x.relevance||"待判断。")}</p><div class="source-label">可迁移部分</div><p>${esc(x.transferable||"待结合项目判断。")}</p><div class="source-label">不能直接照搬</div><p>${esc(x.boundary||"待结合项目判断。")}</p><div class="source-label">迁移风险</div><p>${esc(x.risk||"待结合项目判断。")}</p></article>`}
+function renderKnowledge(){const items=activeAnnotations.length?activeAnnotations:(state.knowledge_annotations||[]);const retr=(state.retrieved_annotations||[]);const uns=(state.unsupported_claims||[]);let html=items.map(sourceCard).join("");if(retr.length)html+=`<details class="retrieved-fold"><summary>相关检索结果 · ${retr.length}</summary><div class="retrieved-body">${retr.map(sourceCard).join("")}</div></details>`;if(uns.length)html+=`<div class="unsupported-note">注：回答中提及${uns.map(u=>`「${esc(u.name)}」`).join("、")}，本轮知识库未提供对应依据，未挂接证据。</div>`;$("knowledgeContent").innerHTML=safe(html||'<div class="empty">请选择聊天消息中的“查看知识注释”；只有实际检索到的依据会显示在这里。</div>')}
+function save(){if(!activeId)return;projects[activeId]={name:projects[activeId]?.name||"未命名项目",history,state,parsedFiles,updated:Date.now()};localStorage.setItem(PSTORE,JSON.stringify({projects,activeId}))}
+function projectName(){const p=state.project||{};return (p.project_type?.value)||(p.scale?.value)||"未命名项目"}
+function renderProjects(){const list=$("projList");list.innerHTML=safe(Object.entries(projects).map(([id,p])=>`<div class="proj-item ${id===activeId?"active":""}" data-id="${esc(id)}"><span class="proj-del" data-del="${esc(id)}"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><strong>${esc(p.name||"未命名项目")}</strong><span>${(p.state?.interaction_log||[]).length} 轮 · ${new Date(p.updated||Date.now()).toLocaleDateString()}</span></div>`).join("")||'<div class="empty" style="padding:12px;font-size:12px">还没有项目，点右上 ＋ 新建</div>');list.querySelectorAll(".proj-item").forEach(el=>{el.onclick=e=>{if(e.target.dataset.del)return;switchProject(el.dataset.id)};const del=el.querySelector(".proj-del");if(del)del.onclick=e=>{e.stopPropagation();if(confirm("删除该项目？对话记录将丢失。")){delete projects[el.dataset.id];if(activeId===el.dataset.id){activeId=Object.keys(projects)[0]||null;loadProject(activeId)}else renderProjects();localStorage.setItem(PSTORE,JSON.stringify({projects,activeId}))}}})}
+function newProject(){const id="p-"+Date.now();projects[id]={name:"新项目",history:[],state:{},parsedFiles:[],updated:Date.now()};activeId=id;history=[];state={};parsedFiles=[];activeAnnotations=[];save();switchProject(id)}
+function switchProject(id){if(!projects[id])return;save();activeId=id;loadProject(id)}
+function loadProject(id){const p=projects[id];history=p?.history||[];state=p?.state||{};parsedFiles=p?.parsedFiles||[];activeAnnotations=[];$("messages").innerHTML='';try{if(history.length){history.forEach(x=>{if(x.image){addImage(x.role,x.image,x.content||"",x.annotations||[])}else{add(x.role,x.content,"",x.annotations||[],x.retrieved||[],x.unsupported||[],x.assets||[])}})}else{add("assistant","我们可以从一个建筑任务、一个案例，或者你正在犹豫的设计问题开始。我会帮助你分析和查找依据，但设计决定由你来做。")}}catch(e){console.error("loadProject 渲染异常",e);$("messages").innerHTML='';add("assistant","部分历史消息加载异常，已跳过损坏内容。")}try{render()}catch(e){console.error("render 异常",e)}renderProjects();// 刷新/加载后强制回到"设计记忆"tab 并聚焦输入框，避免残留的 files 面板状态干扰输入
+try{openTab("memory")}catch(e){}
+try{$("input").focus()}catch(e){}}
+function ensureInputReady(){try{$("input").focus();if(document.activeElement!==$("input"))$("input").focus()}catch(e){}}
+// 输入框区域 mousedown 不干预原生聚焦；仅当点击的是 composer 其他空白处时聚焦
+document.querySelector(".composer").addEventListener("mousedown",e=>{const inp=$("input");if(e.target===inp||inp.contains(e.target)){return}inp.focus()});
+$("input").addEventListener("mousedown",e=>{e.stopPropagation()});
+function openTab(name){document.querySelectorAll(".tab,.panel").forEach(x=>x.classList.remove("active"));document.querySelector(`[data-tab="${name}"]`).classList.add("active");$(name).classList.add("active")}
+function contextButton(x){const usable=x.status==="parsed"||x.status==="analyzed";return usable?`<button class="file-action ${x.use_in_chat?"active":""}" data-file-id="${esc(x.id)}">${x.use_in_chat?"正在用于后续对话":"用于后续对话"}</button>`:""}
+function visionCard(x){const facts=(x.visible_facts||[]).map(v=>`<li>${esc(v)}</li>`).join("");const guesses=(x.inferences||[]).map(v=>`<li>${esc(v.content)} <span class="pill">${esc(v.confidence)}</span><br><small>依据：${esc(v.basis)}</small></li>`).join("");const unknowns=(x.unknowns||[]).map(v=>`<li>${esc(v)}</li>`).join("");const questions=(x.architecture_questions||[]).map(v=>`<li>${esc(v)}</li>`).join("");const be=x.building_elements||{};const beHtml=((be.windows&&be.windows.length)||(be.doors&&be.doors.length)||(be.stairs&&be.stairs.length)||(be.openings&&be.openings.length))?`<div class="source-label">建筑要素（结构化识别）</div><ul>${(be.windows||[]).map(w=>`<li>窗：${esc(w.location||"")}${w.count?` ×${esc(w.count)}`:""}${w.confidence?` <span class="pill">${esc(w.confidence)}</span>`:""}</li>`).join("")}${(be.doors||[]).map(d=>`<li>门：${esc(d.id||"未编号")}${d.location?` @ ${esc(d.location)}`:""}</li>`).join("")}${(be.stairs||[]).map(s=>`<li>楼梯：${esc(typeof s==="string"?s:(s.location||""))}</li>`).join("")}${(be.openings||[]).map(o=>`<li>开口：${esc(typeof o==="string"?o:(o.location||""))}</li>`).join("")}</ul>`:"";const nv=x.numeric_verification||{};const bindHtml=(nv.bind_suspects&&nv.bind_suspects.length)?`<div class="file-error">⚠ 标注绑定待验证：${nv.bind_suspects.map(b=>`「${esc(b.text)}」——图中检测到更大标注 ${esc(b.bigger_values.join("/"))}，该绑定不可作为事实`).join("；")}</div>`:"";const noteHtml=nv.note?`<div class="file-error">${esc(nv.note)}</div>`:"";const numHtml=((nv.annotations&&nv.annotations.length)||bindHtml||noteHtml)?`<div class="source-label">尺寸识别（数值待核验，不默认确认）</div>${bindHtml}${noteHtml}<ul>${(nv.annotations||[]).map(a=>{const st=a.status==="confirmed"?"✓ 可信":a.status==="conflicting"?"✗ 冲突":"⚠ 待核验";const tag=a.kind==="explicit_total"?"图纸明确标注 · ":"";return `<li>${esc(tag)}${esc(a.text)} <span class="pill ${a.status==="conflicting"?"warning":""}">${esc(st)}</span>${a.conflict_note?`<br><small>${esc(a.conflict_note)}</small>`:""}</li>`}).join("")}</ul>${(nv.conflicts&&nv.conflicts.length)?`<div class="file-error">${nv.conflicts.map(esc).join("；")}</div>`:""}`:"";return `<article class="file-card"><strong>${esc(x.filename)}</strong><div class="file-meta">${esc(x.extension.toUpperCase())} · ${(x.size_bytes/1024).toFixed(1)} KB · ${x.width}×${x.height} · ${esc(x.image_type||"unknown")}</div><span class="pill">${x.status==="analyzed"?"视觉分析完成":"视觉分析失败"}</span>${x.status==="failed"?`<div class="file-error">${esc(x.error)}</div>`:`${numHtml}${beHtml}<div class="source-label">图片中明确可见（几何/图形）</div><ul>${facts||"<li>模型没有返回可确认的可见事实。</li>"}</ul><div class="source-label">AI推测（不是已确认事实）</div><ul>${guesses||"<li>没有需要展示的推测。</li>"}</ul><div class="source-label">无法从当前图片判断</div><ul>${unknowns}</ul><div class="source-label">帮助学生继续思考</div><ul>${questions||"<li>暂无进一步问题。</li>"}</ul>${contextButton(x)}`}</article>`}
+function documentCard(x){return `<article class="file-card"><strong>${esc(x.filename)}</strong><div class="file-meta">${esc(x.extension.toUpperCase())} · ${(x.size_bytes/1024).toFixed(1)} KB${x.page_count?` · ${x.page_count} 页`:""} · ${x.character_count||0} 字符</div><span class="pill">${x.status==="parsed"?"解析完成":x.status==="ocr_required"?"需要 OCR":"无可读文字"}</span>${x.truncated?'<span class="pill warning">文本已截断</span>':""}${x.text?`<div class="file-preview">${esc(x.text.slice(0,1200))}</div>${contextButton(x)}`:`<div class="file-error">${esc(x.message)}</div>`}</article>`}
+function renderFiles(){const imgs=parsedFiles.filter(f=>String(f.mime_type||"").startsWith("image/"));const docs=parsedFiles.filter(f=>!String(f.mime_type||"").startsWith("image/"));let html="";if(imgs.length)html+=`<div class="file-group-title">图片 · ${imgs.length}</div>`+imgs.map(visionCard).join("");if(docs.length)html+=`<div class="file-group-title">文档 · ${docs.length}</div>`+docs.map(documentCard).join("");$("filesContent").innerHTML=safe(html||'<div class="empty">支持 PNG、JPG、WEBP、PDF、DOCX、TXT 和 MD。</div>');$("filesContent").querySelectorAll("[data-file-id]").forEach(b=>b.onclick=()=>{const item=parsedFiles.find(x=>x.id===b.dataset.fileId);if(item){item.use_in_chat=!item.use_in_chat;renderFiles();save()}})}
+function selectedFileContexts(){return parsedFiles.filter(x=>x.use_in_chat&&(x.status==="parsed"||x.status==="analyzed")).map(x=>String(x.mime_type||"").startsWith("image/")?{id:x.id,filename:x.filename,kind:"image",source:"vision",status:"reference_only",visible_facts:x.visible_facts||[],inferences:x.inferences||[],unknowns:x.unknowns||[],building_elements:x.building_elements||{},spatial_model:x.spatial_model||{},cross_level:x.cross_level||{},dimension_annotations:x.dimension_annotations||[],numeric_verification:x.numeric_verification||{}}:{id:x.id,filename:x.filename,kind:"document",source:"document",status:"reference_only",content:String(x.text||"").slice(0,12000)})}
+async function tryCrossLevel(){const imgs=parsedFiles.filter(x=>String(x.mime_type||"").startsWith("image/")&&x.content_base64);if(imgs.length<2)return;const images=imgs.slice(0,2).map(x=>({filename:x.filename,content_base64:x.content_base64}));try{const r=await fetch(`http://${HOST}:8787/api/analyze_cross_level`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({images})});const d=await r.json();if(!r.ok||d.status!=="analyzed")return;imgs[0].cross_level=d.cross_level||{};renderFiles();save()}catch(e){}}
+function renderProjectHeader(){const n=$("projHeaderName");if(!n)return;n.textContent=projectName();const st=$("projHeaderStage"),dt=$("projHeaderDate"),ct=$("projHeaderCounts");if(st){const s=(state.design_stage&&state.design_stage.value)||"";st.textContent=s||"Concept Development"}if(dt){const d=new Date();dt.textContent=`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`}if(ct){const dec=(state.student_decisions||[]).length;const dw=(parsedFiles||[]).filter(f=>String(f.mime_type||"").startsWith("image/")).length;ct.textContent=`${dec} 项设计决定　${dw} 张图纸`}}
+function render(){
+ try{
+  renderProjectHeader();
+  const p=state.project||{}, labels={project_type:"项目类型",site:"场地",users:"使用者",functions:"功能",scale:"规模",goals:"目标",constraints:"限制"};
+  const facts=Object.entries(labels).filter(([k])=>p[k]&&p[k].value).map(([k,l])=>`<div class="fact"><label>${l}</label><div>${esc(p[k].value)} <span class="pill">学生确认</span></div></div>`).join("");
+  const conflicts=(state.conflicts||[]).map(x=>`<div class="warning">${esc(x.value||x)}</div>`).join("");
+  const sources=(state.source_records||[]).map(x=>`<div class="fact"><label>资料来源</label><div>${esc(x.filename)} <span class="pill">${x.source==="vision"?"视觉资料":"文档资料"}</span><span class="pill">仅供参考</span></div></div>`).join("");
+  const memFacts=facts?`<div class="section-head">项目档案</div>${facts}`:"";const memConflict=conflicts?`<div class="section-head">待澄清的冲突</div>${conflicts}`:"";const memSources=sources?`<div class="section-head">资料来源</div>${sources}`:"";
+  // V1.2：语义事件状态——主面板只显示当前有效，历史收进可展开 details
+  const activeChoices=(state.selected_options||[]).filter(x=>x.status==="active").map(x=>`<div class="fact"><label>当前探索方向</label><div>${esc(x.label)} <span class="pill">学生选择</span></div></div>`).join("");
+  const revokedChoices=(state.selected_options||[]).filter(x=>x.status==="revoked").map(x=>`<div class="tl-item"><div class="tl-head">历史方向</div>${esc(x.label)} <span class="pill warning">已改选</span></div>`).join("");
+  const factHistory=(state.drawing_facts||[]).filter(f=>f.status==="superseded").map(f=>`<div class="tl-item"><div class="tl-head">图纸事实（已更正）</div>${esc(f.statement)} <span class="pill warning">已被新确认覆盖</span></div>`).join("");
+  const semEvents=(state.semantic_events||[]).slice(-10).reverse().map(e=>{const lb={select:"选择",revise:"改选",correct:"纠正",refocus:"切换主线",confirm:"确认",weak_ack:"弱回应",supplement:"补充",request_output:"请求产出"}[e.type]||e.type;const val=e.payload&&(e.payload.label||e.payload.statement||e.payload.new_topic)||"";return `<div class="tl-item"><div class="tl-head">${esc(lb)}</div>${esc(val||e.raw||"")}</div>`}).join("");
+  const semCurrent=activeChoices?`<div class="section-head">当前方向</div>${activeChoices}`:"";
+  const semHistory=(revokedChoices||factHistory||semEvents)?`<details class="sem-history"><summary>历史记录（${(state.semantic_events||[]).length}）</summary><div class="timeline">${revokedChoices}${factHistory}${semEvents}</div></details>`:"";
+  $("memoryContent").innerHTML=safe(memFacts+memConflict+memSources+semCurrent+semHistory||'<div class="empty">还没有已确认的项目信息。</div>');
+  renderKnowledge();
+  renderFiles();
+  const changes=(state.change_log||[]).map(x=>`<div class="tl-item"><div class="tl-head">学生修改</div>${esc(x.from)} → <strong>${esc(x.to)}</strong></div>`).join("");
+  const decisions=(state.student_decisions||[]).map(x=>`<div class="tl-item"><div class="tl-head">学生决定</div>${esc(x.value)}</div>`).join("");
+  const criticLabels={requirement_response:"需求回应",site_response:"场地回应",function_flow:"功能与流线",spatial_experience:"空间体验",architectural_scale:"建筑尺度",constructability:"结构与建造",knowledge_transfer:"知识迁移",student_intent:"学生意图保留"};
+  const critic=state.last_critique&&state.last_critique.criteria?`<div class="critic-grid">${Object.entries(state.last_critique.criteria).map(([k,x])=>`<div class="fact"><label>${esc(criticLabels[k]||k)}</label><div><span class="pill">${esc(x.status||"无法判断")}</span> ${esc(x.evidence||x.comment||"缺少信息")}</div></div>`).join("")}</div>`:"";
+  const versions=(state.versions||[]).map(x=>`<div class="version"><span>阶段成果 V${x.number}</span><button data-version="${x.number}">查看</button></div>`).join("");
+  const events=(state.interaction_log||[]).slice(-20).reverse().map(x=>`<div class="tl-item"><div class="tl-head">第 ${esc(x.turn_id)} 轮 · 人机协作</div><p><strong>学生：</strong>${esc(x.student_message)}</p><p><strong>AI辅助：</strong>${esc(x.ai_reply)}</p><p>${x.file_ids&&x.file_ids.length?`<span class="pill">使用文件 ${x.file_ids.length}</span>`:""}${x.knowledge_ids&&x.knowledge_ids.length?`<span class="pill">使用知识 ${x.knowledge_ids.length}</span>`:""}<span class="pill">${x.is_student_decision?"包含学生决定":"AI内容未确认为决定"}</span></p></div>`).join("");
+  const changesHtml=changes?`<div class="section-head">学生修改</div><div class="timeline">${changes}</div>`:"";
+  const decisionsHtml=decisions?`<div class="section-head">学生决定</div><div class="timeline">${decisions}</div>`:"";
+  const criticHtml=critic?`<div class="section-head">AI 评图建议 · 不自动修改方案</div>${critic}`:"";
+  const versionsHtml=versions?`<div class="section-head">阶段版本</div>${versions}`:"";
+  const eventsHtml=events?`<div class="section-head">人机协作记录</div><div class="timeline">${events}</div>`:"";
+  $("processContent").innerHTML=safe(changesHtml+decisionsHtml+criticHtml+versionsHtml+eventsHtml||'<div class="empty">还没有决策、修改或阶段版本。</div>');
+  $("processContent").querySelectorAll("[data-version]").forEach(b=>b.onclick=()=>{const v=(state.versions||[]).find(x=>x.number==b.dataset.version);if(v)add("assistant",v.content,"历史阶段成果 V"+v.number)});
+ }catch(e){console.error("render 异常:",e)}
+}
+async function send(){if(busy)return;const input=$("input"), text=input.value.trim();if(!text)return;input.value="";add("user",text);busy=true;$("sendBtn").disabled=true;const typing=add("assistant","正在检索案例与核对证据");typing.classList.add("typing");const busyTimer=setTimeout(()=>{busy=false;$("sendBtn").disabled=false;input.focus()},130000);try{const r=await fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:text,history,state,turn_id:history.length+1,file_contexts:selectedFileContexts()})});const d=await r.json();typing.remove();if(!r.ok)throw new Error(d.error||`HTTP ${r.status}`);const annotations=d.knowledge_annotations||[];add("assistant",d.reply,d.model_status==="failed"?"模型调用失败，状态已保留":d.retrieval_status==="matched"?"本轮调用了本地知识库":"建筑协作回复",annotations,d.retrieved_annotations||[],d.unsupported_claims||[],d.case_assets||[]);history.push({role:"user",content:text},{role:"assistant",content:d.reply,annotations,retrieved:d.retrieved_annotations||[],unsupported:d.unsupported_claims||[],assets:d.case_assets||[]});state=d.state||state;activeAnnotations=annotations;render();save();projects[activeId].updated=Date.now();if(projects[activeId].name==="新项目"||projects[activeId].name==="未命名项目"){projects[activeId].name=projectName()}renderProjects()}catch(e){try{typing.remove()}catch(_){}add("assistant","本轮处理失败："+e.message,"真实错误状态")}finally{clearTimeout(busyTimer);busy=false;$("sendBtn").disabled=false;input.focus()}}
+$("sendBtn").onclick=send;$("input").onkeydown=e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}};
+document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{document.querySelectorAll(".tab,.panel").forEach(x=>x.classList.remove("active"));t.classList.add("active");$(t.dataset.tab).classList.add("active")});
+function addImage(role, src, caption, annotations=[], persist=false){const a=document.createElement("article");a.className="message "+role;const inline=role==="assistant"&&annotations&&annotations.length?inlineKnowledge(annotations):"";a.innerHTML=safe(`<div class="speaker">${role==="user"?"你":"筑思Agent"}</div><div class="bubble">${caption?`<p style="margin:0 0 8px">${esc(caption)}</p>`:""}<img src="${esc(src)}" style="max-width:340px;height:auto;border-radius:6px;border:1px solid var(--line);box-shadow:0 1px 4px rgba(0,0,0,.15);cursor:pointer" alt="上传图纸">${annotations.length?`<button class="evidence-btn" type="button" style="display:block;margin-top:8px">查看分析 · ${annotations.length}</button>`:""}${inline}</div>`);const btn=a.querySelector(".evidence-btn");if(btn)btn.onclick=()=>openAnnotations(annotations);const imgEl=a.querySelector(".bubble img");if(imgEl)imgEl.onclick=()=>openLightbox(imgEl.getAttribute("src"),imgEl.alt);$("messages").appendChild(a);$("messages").scrollTop=$("messages").scrollHeight;if(persist){history.push({role,content:caption||"",image:src,annotations})}return a}
+function compressImage(dataUrl, maxW=600, quality=0.7){return new Promise(resolve=>{const img=new Image();img.onload=()=>{const scale=Math.min(1,maxW/img.width);const c=document.createElement("canvas");c.width=Math.round(img.width*scale);c.height=Math.round(img.height*scale);c.getContext("2d").drawImage(img,0,0,c.width,c.height);resolve(c.toDataURL("image/jpeg",quality))};img.onerror=()=>resolve(dataUrl);img.src=dataUrl})}
+function fileBase64(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result).split(",",2)[1]||"");reader.onerror=()=>reject(new Error("无法读取本地文件"));reader.readAsDataURL(file)})}
+async function parseSelectedFile(file){if(!file)return;const isImage=/^image\/(png|jpeg|webp)$/.test(file.type)||/\.(png|jpe?g|webp)$/i.test(file.name);if(isImage&&!confirm("这张图片将发送到 Qwen-VL 视觉服务进行分析。请确认图片不包含不应上传的隐私或保密内容。是否继续？")){$("fileInput").value="";return}const limit=isImage?8:10;if(file.size>limit*1024*1024){add("assistant",`文件超过 ${limit} MB 限制，请压缩后重试。`,"文件未上传");return}busy=true;$("attachBtn").disabled=true;openTab("files");$("filesContent").innerHTML=`<div class="empty">正在${isImage?"进行建筑图像分析":"解析文档"}…</div>`;try{const content_base64=await fileBase64(file);const dataUrl=`data:${file.type||"image/png"};base64,${content_base64}`;const endpoint=isImage?"analyze_image":"parse_document";const payload={filename:file.name,content_base64};if(isImage)payload.question=$("input").value.trim();const r=await fetch(`http://${HOST}:8787/api/${endpoint}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});const d=await r.json();if(!r.ok)throw new Error(d.error||`HTTP ${r.status}`);d.id=`file-${Date.now()}-${Math.random().toString(16).slice(2)}`;d.use_in_chat=true;if(isImage)d.content_base64=content_base64;parsedFiles.push(d);renderFiles();save();if(isImage){const thumb=await compressImage(dataUrl);addImage("user",thumb,"上传图片："+file.name,[],true);save();add("assistant","你上传的图片已收到，视觉分析已完成。分析结果分为「可见事实 / 推测 / 未知项」三层，具体在右侧「项目文件」面板；我会基于图中可见的内容来分析，不会替你改方案。这张图是任务书、参考案例、场地资料还是你自己画的方案？告诉我它的角色，我按对应方式帮你。","视觉分析完成");tryCrossLevel()}}catch(e){renderFiles();add("assistant",`${isImage?"图像分析":"文档解析"}失败：`+e.message,"真实错误状态")}finally{busy=false;$("attachBtn").disabled=false;$("fileInput").value=""}}
+$("attachBtn").onclick=()=>$("fileInput").click();$("fileInput").onchange=e=>parseSelectedFile(e.target.files[0]);
+$("resetBtn").onclick=()=>{if(confirm("新建项目？当前对话会保存到项目列表，可随时切回。")){newProject()}};
+$("projAdd").onclick=newProject;
+$("exportBtn").onclick=()=>{const lines=["# 筑思Agent 人机协作设计记录","",...history.map(x=>`## ${x.role==="user"?"学生":"筑思Agent"}\n\n${x.content}`),"","## 设计工作记忆","","```json",JSON.stringify(state,null,2),"```"];const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([lines.join("\n")],{type:"text/markdown;charset=utf-8"}));a.download="筑思Agent_协作设计记录.md";a.click();URL.revokeObjectURL(a.href)};
+function initProjects(){
+  try{
+    // 迁移旧单项目存储
+    try{const saved=JSON.parse(localStorage.getItem(STORE)||"null");if(saved&&saved.history&&!localStorage.getItem(PSTORE)){const id="p-"+Date.now();projects[id]={name:"历史项目",history:saved.history||[],state:saved.state||{},parsedFiles:saved.parsedFiles||[],updated:Date.now()};activeId=id;localStorage.setItem(PSTORE,JSON.stringify({projects,activeId}));localStorage.removeItem(STORE)}}
+    catch(e){localStorage.removeItem(STORE)}
+    try{const data=JSON.parse(localStorage.getItem(PSTORE)||"null");if(data&&data.projects){projects=data.projects;activeId=data.activeId&&data.projects[data.activeId]?data.activeId:Object.keys(data.projects)[0]||null}}
+    catch(e){projects={};activeId=null}
+    if(!activeId){const id="p-"+Date.now();projects[id]={name:"新项目",history:[],state:{},parsedFiles:[],updated:Date.now()};activeId=id;save()}
+    loadProject(activeId);
+  }catch(e){
+    // 数据严重损坏：重置为干净状态，保证基本交互可用
+    console.error("初始化失败，重置项目:",e);
+    try{localStorage.removeItem(PSTORE)}catch(_){}
+    projects={};const id="p-"+Date.now();projects[id]={name:"新项目",history:[],state:{},parsedFiles:[],updated:Date.now()};activeId=id;
+    try{loadProject(activeId)}catch(e2){history=[];state={};parsedFiles=[];$("messages").innerHTML='';add("assistant","检测到本地数据异常，已为你新建项目。");renderProjects();$("input").focus()}
+  }
+}
+initProjects();
+</script>
+</body></html>

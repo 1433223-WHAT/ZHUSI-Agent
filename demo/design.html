@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArchAI — 建筑设计推演系统</title>
+<script src="vendor/marked.min.js"></script>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --text: #2d2d2d;
+    --muted: #888;
+    --ok: #27ae60;
+    --warn: #e67e22;
+    --line: #e5e5e5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 28px 40px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 16px; }
+  .logo {
+    width: 44px; height: 44px; background: var(--accent); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold;
+  }
+  header h1 { font-size: 20px; }
+  header .sub { color: rgba(255,255,255,0.65); font-size: 12px; margin-top: 2px; }
+  main { max-width: 1200px; margin: 0 auto; padding: 28px 20px 60px; }
+
+  /* 输入区 */
+  .input-area {
+    background: var(--card); border-radius: 16px; padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  textarea {
+    width: 100%; min-height: 80px; border: 1.5px solid var(--line);
+    border-radius: 10px; padding: 14px; font-size: 14px; font-family: inherit;
+    resize: vertical; outline: none; transition: border-color 0.2s;
+  }
+  textarea:focus { border-color: var(--accent); }
+  .input-actions { display: flex; gap: 12px; margin-top: 14px; align-items: center; }
+  .btn {
+    background: var(--accent); color: white; border: none; padding: 12px 28px;
+    border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+  }
+  .btn:hover { transform: translateY(-1px); opacity: 0.92; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .example-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    background: #f0f0f3; border: 1px solid var(--line); border-radius: 20px;
+    padding: 6px 14px; font-size: 12px; cursor: pointer; transition: background 0.2s;
+  }
+  .chip:hover { background: #e3e3e8; }
+
+  /* 加载 */
+  .loading { display: none; margin-top: 20px; padding: 20px; text-align: center; color: var(--muted); }
+  .loading.visible { display: block; }
+  .spinner {
+    width: 36px; height: 36px; border: 3px solid var(--line); border-top-color: var(--accent);
+    border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* 推演阶段 */
+  .stage {
+    background: var(--card); border-radius: 14px; padding: 24px; margin-top: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05); border-left: 4px solid var(--accent);
+  }
+  .stage-title { font-size: 17px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .stage-num {
+    background: var(--accent); color: white; width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0;
+  }
+  .stage-body { color: var(--text); font-size: 14px; }
+
+  /* 任务分析 */
+  .analysis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+  .analysis-item { background: #fafafa; border-radius: 10px; padding: 14px; border: 1px solid var(--line); }
+  .analysis-item .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .analysis-item .value { font-size: 13px; margin-top: 6px; }
+
+  /* 知识卡片 */
+  .kb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .kb-card { background: #fafafa; border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .kb-card .tag { font-size: 11px; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-bottom: 6px; }
+  .tag-case { background: #e8f5e9; color: #2e7d32; }
+  .tag-theory { background: #e3f2fd; color: #1565c0; }
+  .tag-method { background: #fff3e0; color: #e65100; }
+  .kb-card .name { font-size: 13px; font-weight: 600; }
+  .kb-card .desc { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* 方案 */
+  .proposal-body { font-size: 14px; }
+  .proposal-body img { max-width: 100%; border-radius: 8px; }
+  .proposal-body table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+  .proposal-body th, .proposal-body td { border: 1px solid var(--line); padding: 8px; font-size: 13px; }
+  .proposal-body th { background: #f8f8f8; }
+
+  /* 评审 */
+  .score-banner {
+    display: flex; align-items: center; gap: 20px; padding: 16px 20px;
+    background: #fafafa; border-radius: 10px; border: 1px solid var(--line); margin-bottom: 16px;
+  }
+  .score-circle {
+    width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+  .critic-section { margin-bottom: 14px; }
+  .critic-section .h { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .critic-section ul { padding-left: 20px; font-size: 13px; }
+  .critic-section li { margin-bottom: 4px; }
+  .strengths { color: var(--ok); }
+  .problems { color: var(--warn); }
+
+  /* 图片 */
+  .image-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .image-card { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); cursor: pointer; }
+  .image-card img { width: 100%; height: 120px; object-fit: cover; display: block; }
+  .image-card .cap { padding: 8px; font-size: 11px; color: var(--muted); background: #fafafa; }
+
+  .section-spacer { height: 12px; }
+  .error-box {
+    background: #fdecea; border: 1px solid #f5c6c4; color: #c0392b;
+    padding: 14px; border-radius: 10px; margin-top: 20px; font-size: 13px;
+  }
+
+  /* 轻量图片放大 */
+  .lightbox {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999;
+    align-items: center; justify-content: center; cursor: zoom-out;
+  }
+  .lightbox.visible { display: flex; }
+  .lightbox img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">A</div>
+    <div>
+      <h1>ArchAI 建筑设计推演系统</h1>
+      <div class="sub">任务理解 · 知识调用 · 方案生成 · AI 评图 · 方案优化</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- 输入区 -->
+  <div class="input-area">
+    <textarea id="taskInput" placeholder="输入建筑设计任务，例如：设计一个大学生服务中心，面积3000平方米，北侧是食堂，南侧是教学楼，要求形成交流空间…"></textarea>
+    <div class="input-actions">
+      <button class="btn" id="runBtn" onclick="runLoop()">开始设计推演</button>
+      <div class="example-chips">
+        <span class="chip" onclick="fillTask(this)">大学生服务中心</span>
+        <span class="chip" onclick="fillTask(this)">100㎡校园纪念空间</span>
+        <span class="chip" onclick="fillTask(this)">社区图书馆</span>
+        <span class="chip" onclick="fillTask(this)">战争纪念馆</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <div id="loadingText">正在分析设计任务…</div>
+  </div>
+  <div class="error-box" id="errorBox" style="display:none;"></div>
+
+  <div id="results"></div>
+</main>
+
+<!-- 图片放大 -->
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('visible')">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script>
+const API_BASE = "http://127.0.0.1:8787";
+const EXAMPLES = {
+  "大学生服务中心": "设计一个大学生服务中心，面积3000平方米，位于大学校园内。基地北侧是食堂，南侧是教学楼，西侧是校园主干道，东侧是学生宿舍区。要求：形成学生交流空间，增强空间体验，回应基地环境。",
+  "100㎡校园纪念空间": "设计一个100㎡的校园纪念空间，需要安静、精神性、光环境，面向师生。",
+  "社区图书馆": "设计一个社区图书馆，面积800平方米，需要阅读空间、儿童区、交流区，自然采光。",
+  "战争纪念馆": "设计一个战争纪念馆，面积800平方米，需要精神性空间、纪念序列、光线营造、安静庄重。"
+};
+
+function fillTask(chip) {
+  const key = chip.textContent;
+  document.getElementById("taskInput").value = EXAMPLES[key] || key;
+}
+function showError(msg) {
+  const el = document.getElementById("errorBox");
+  el.textContent = msg;
+  el.style.display = "block";
+}
+function clearError() {
+  document.getElementById("errorBox").style.display = "none";
+}
+function setLoading(text) {
+  document.getElementById("loadingText").textContent = text;
+  document.getElementById("loading").classList.add("visible");
+  document.getElementById("runBtn").disabled = true;
+}
+function stopLoading() {
+  document.getElementById("loading").classList.remove("visible");
+  document.getElementById("runBtn").disabled = false;
+}
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+// ═══ 第一层：设计驾驶舱 ════════════════════════
+function renderDashboard(d) {
+  const s = document.createElement("div");
+  s.className = "stage";
+  s.style.borderLeftColor = "#1a1a2e";
+  const title = el("div", "stage-title");
+  title.appendChild(el("span", "stage-num", "①"));
+  title.appendChild(el("span", "", "项目定位"));
+  s.appendChild(title);
+
+  const body = el("div", "stage-body");
+
+  // 项目定位（一行）
+  const taskBox = el("div", "analysis-item");
+  taskBox.appendChild(el("div", "label", "🎯 项目定位"));
+  const pt = (d.task_analysis || {}).project_type || "—";
+  taskBox.appendChild(el("div", "value", pt));
+  body.appendChild(taskBox);
+
+  // 核心矛盾（一句话，口语）
+  const conflict = d.core_conflict;
+  if (conflict) {
+    const cBox = el("div", "analysis-item");
+    cBox.style.marginTop = "10px";
+    cBox.appendChild(el("div", "label", "⚡ 核心矛盾"));
+    cBox.appendChild(el("div", "value", conflict));
+    body.appendChild(cBox);
+  }
+
+  // AI 发现的 3 个设计挑战
+  const questions = d.key_questions || [];
+  if (questions.length) {
+    const qLabel = el("div", "label", "AI 发现 3 个设计挑战");
+    qLabel.style.marginTop = "12px";
+    body.appendChild(qLabel);
+    const qList = el("div", "");
+    qList.style.cssText = "margin-top:8px;";
+    const marks = ["①", "②", "③"];
+    questions.forEach((q, i) => {
+      const qItem = el("div", "analysis-item");
+      qItem.style.cssText = "margin-top:6px;padding:10px;background:#f8f8fa;";
+      qItem.appendChild(el("div", "value", marks[i] + " " + q));
+      qList.appendChild(qItem);
+    });
+    body.appendChild(qList);
+  }
+
+  s.appendChild(body);
+  return s;
+}
+
+// ═══ 第二层：方向推演 ════════════════════════
+function renderDirections(directions) {
+  const s = document.createElement("div");
+  s.className = "stage";
+  s.id = "directionStage";
+  const title = el("div", "stage-title");
+  title.appendChild(el("span", "stage-num", "②"));
+  title.appendChild(el("span", "", "方向推演 · 请选择设计方向"));
+  s.appendChild(title);
+
+  const body = el("div", "stage-body");
+  const hint = el("div", "", "AI 基于案例与理论提出了 3 个设计方向。请选择你倾向的方向（可补充要求）：");
+  hint.style.cssText = "font-size:13px;color:#666;margin-bottom:14px;";
+  body.appendChild(hint);
+
+  const grid = el("div", "kb-grid");
+  const selected = { index: 0 };
+
+  directions.forEach((dir, i) => {
+    const card = el("div", "kb-card direction-card");
+    card.style.cssText = "cursor:pointer;transition:all .15s;border:2px solid var(--line);";
+    card.addEventListener("click", () => {
+      document.querySelectorAll(".direction-card").forEach(c => c.style.borderColor = "var(--line)");
+      card.style.borderColor = "var(--accent)";
+      card.style.background = "#fff5f5";
+      selected.index = i;
+      // 选中时展开描述
+      const desc = card.querySelector(".dir-desc");
+      if (desc) desc.style.display = "block";
+    });
+    card.appendChild(el("div", "tag tag-case", "方向" + (i + 1)));
+    const name = el("div", "name", dir.name || ("方向" + (i + 1)));
+    name.style.fontSize = "14px";
+    card.appendChild(name);
+
+    // 核心策略（兼容 core_strategy 或 strategy）
+    const cs = dir.core_strategy || (Array.isArray(dir.strategy) ? dir.strategy.join("、") : dir.strategy || "");
+    if (cs) {
+      const strat = el("div", "desc", "核心策略：" + cs);
+      strat.style.marginTop = "6px";
+      card.appendChild(strat);
+    }
+
+    if (dir.suitable_for) {
+      const sf = el("div", "desc", "适合：" + dir.suitable_for);
+      sf.style.marginTop = "4px";
+      sf.style.color = "#2e7d32";
+      card.appendChild(sf);
+    }
+
+    const cases = el("div", "desc", "参考：" + (dir.cases || []).join("、"));
+    cases.style.marginTop = "4px";
+    cases.style.color = "#888";
+    card.appendChild(cases);
+
+    if (dir.risk) {
+      const rk = el("div", "desc", "风险：" + dir.risk);
+      rk.style.marginTop = "4px";
+      rk.style.color = "#e65100";
+      card.appendChild(rk);
+    }
+
+    // 描述默认折叠，选中展开
+    if (dir.description) {
+      const desc = el("div", "desc dir-desc", dir.description);
+      desc.style.cssText = "margin-top:6px;display:none;color:#555;";
+      card.appendChild(desc);
+    }
+    grid.appendChild(card);
+  });
+  body.appendChild(grid);
+
+  const wrap = el("div", "");
+  wrap.style.cssText = "margin-top:14px;";
+  wrap.appendChild(el("div", "", "补充要求（可选）："));
+  const supInput = document.createElement("input");
+  supInput.type = "text";
+  supInput.id = "supplementInput";
+  supInput.placeholder = "例如：希望加强安静氛围、增加自然采光…";
+  supInput.style.cssText = "width:100%;padding:10px;border:1.5px solid var(--line);border-radius:8px;margin-top:6px;font-size:13px;";
+  wrap.appendChild(supInput);
+  body.appendChild(wrap);
+
+  const confirmBtn = el("button", "btn", "确认方向，进入深化");
+  confirmBtn.id = "confirmBtn";
+  confirmBtn.style.marginTop = "14px";
+  confirmBtn.addEventListener("click", async () => {
+    const supplement = document.getElementById("supplementInput").value.trim();
+    const userChoice = { direction_index: selected.index, supplement: supplement };
+    const chosen = directions[selected.index];
+    selectedDirection = chosen;
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = "正在按所选方向深化…";
+    const chosenBox = el("div", "", "已选方向：" + chosen.name + (supplement ? "（补充：" + supplement + "）" : ""));
+    chosenBox.style.cssText = "background:#e8f7ee;padding:10px;border-radius:8px;font-size:13px;margin-top:10px;";
+    body.appendChild(chosenBox);
+    await runFullLoop(userTask, userChoice, directions);
+  });
+  body.appendChild(confirmBtn);
+  s.appendChild(body);
+  return s;
+}
+
+// ═══ 第三层：深化助手（交互选择器）════════════════
+function renderDeepenCard(d, direction) {
+  const s = document.createElement("div");
+  s.className = "stage";
+  s.style.borderLeftColor = "#27ae60";
+  const title = el("div", "stage-title");
+  title.appendChild(el("span", "stage-num", "③"));
+  title.appendChild(el("span", "", "深化助手"));
+  s.appendChild(title);
+
+  const body = el("div", "stage-body");
+
+  // 当前方向 + 策略
+  if (direction) {
+    const dirBox = el("div", "analysis-item");
+    dirBox.appendChild(el("div", "label", "当前方向"));
+    dirBox.appendChild(el("div", "value", direction.name || ""));
+    body.appendChild(dirBox);
+  }
+  const stratBox = el("div", "analysis-item");
+  stratBox.style.marginTop = "8px";
+  stratBox.appendChild(el("div", "label", "核心策略"));
+  const stratText = direction?.core_strategy || extractStrategySummary(d.initial_proposal);
+  stratBox.appendChild(el("div", "value", stratText));
+  body.appendChild(stratBox);
+
+  // 深化选择
+  const deepenWrap = el("div", "");
+  deepenWrap.style.cssText = "margin-top:16px;";
+  deepenWrap.appendChild(el("div", "", "你想继续优化什么？"));
+  const dimGrid = el("div", "kb-grid");
+  dimGrid.style.cssText = "margin-top:10px;";
+
+  const DIMS = [
+    { key: "light", icon: "💡", label: "光环境", q: "如何强化空间情绪？" },
+    { key: "material", icon: "🧱", label: "材料氛围", q: "如何让空间更有氛围感？" },
+    { key: "sequence", icon: "🚶", label: "空间序列", q: "如何设计进入-停留-离开体验？" },
+    { key: "behavior", icon: "👥", label: "使用行为", q: "如何让人与空间产生关系？" },
+  ];
+
+  const resultBox = el("div", "");
+  resultBox.style.cssText = "margin-top:14px;";
+
+  DIMS.forEach(dim => {
+    const card = el("div", "kb-card deepen-card");
+    card.style.cssText = "cursor:pointer;transition:all .15s;border:1.5px solid var(--line);";
+    card.addEventListener("click", () => {
+      // 高亮选中
+      document.querySelectorAll(".deepen-card").forEach(c => c.style.borderColor = "var(--line)");
+      card.style.borderColor = "var(--accent)";
+      // 加载建议
+      resultBox.innerHTML = "";
+      const loading = el("div", "", dim.icon + " " + dim.label + " 深化中…");
+      loading.style.cssText = "color:#666;font-size:13px;padding:10px;";
+      resultBox.appendChild(loading);
+      fetchDeepen(dim.key, resultBox);
+    });
+    card.appendChild(el("div", "name", dim.icon + " " + dim.label));
+    const q = el("div", "desc", "解决：" + dim.q);
+    q.style.marginTop = "6px";
+    card.appendChild(q);
+    dimGrid.appendChild(card);
+  });
+
+  deepenWrap.appendChild(dimGrid);
+  body.appendChild(deepenWrap);
+  body.appendChild(resultBox);
+
+  s.appendChild(body);
+  return s;
+}
+
+async function fetchDeepen(dimKey, resultBox) {
+  try {
+    const resp = await fetch(API_BASE + "/api/deepen", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: userTask, direction: selectedDirection, dimension: dimKey }),
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const d = await resp.json();
+    resultBox.innerHTML = "";
+
+    // 当前策略
+    if (d.current_strategy) {
+      const cur = el("div", "analysis-item");
+      cur.appendChild(el("div", "label", "当前设计策略"));
+      cur.appendChild(el("div", "value", d.current_strategy));
+      resultBox.appendChild(cur);
+    }
+    // 案例借鉴
+    if (d.case_reference) {
+      const ref = el("div", "analysis-item");
+      ref.style.marginTop = "8px";
+      ref.appendChild(el("div", "label", "案例借鉴"));
+      ref.appendChild(el("div", "value", d.case_reference));
+      resultBox.appendChild(ref);
+    }
+    // 可尝试
+    if (d.suggestions && d.suggestions.length) {
+      const sugLabel = el("div", "label", "可尝试");
+      sugLabel.style.marginTop = "10px";
+      resultBox.appendChild(sugLabel);
+      const ul = el("ul", "");
+      ul.style.cssText = "padding-left:20px;font-size:13px;margin-top:6px;";
+      d.suggestions.forEach(t => {
+        const li = el("li", "", t);
+        li.style.marginBottom = "4px";
+        ul.appendChild(li);
+      });
+      resultBox.appendChild(ul);
+    }
+    // 设计提醒
+    if (d.reminder) {
+      const rem = el("div", "desc", "💡 设计提醒：" + d.reminder);
+      rem.style.cssText = "margin-top:10px;font-size:12px;color:#e65100;background:#fff8f0;padding:8px;border-radius:8px;";
+      resultBox.appendChild(rem);
+    }
+  } catch (e) {
+    resultBox.innerHTML = "";
+    const err = el("div", "", "深化失败：" + e.message);
+    err.style.cssText = "color:#c0392b;font-size:13px;padding:8px;";
+    resultBox.appendChild(err);
+  }
+}
+
+function extractStrategySummary(proposal) {
+  if (!proposal) return "—";
+  const markers = ["空间组织", "设计概念", "核心手法"];
+  for (const m of markers) {
+    const idx = proposal.indexOf(m);
+    if (idx >= 0) {
+      return proposal.slice(idx, Math.min(idx + 80, proposal.length)).replace(/[\n#*|]/g, " ").trim();
+    }
+  }
+  return proposal.slice(0, 80).replace(/[\n#*|]/g, " ");
+}
+
+function renderImages(images) {
+  if (!images || !images.length) return null;
+  const s = document.createElement("div");
+  s.className = "stage";
+  const title = el("div", "stage-title");
+  title.appendChild(el("span", "stage-num", "参考图"));
+  title.appendChild(el("span", "", "参考图片"));
+  s.appendChild(title);
+  const grid = el("div", "image-grid");
+  images.forEach(img => {
+    const card = el("div", "image-card");
+    const im = document.createElement("img");
+    const path = "../" + (img.path || "");
+    im.src = path;
+    im.loading = "lazy";
+    im.onerror = function() {
+      this.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120'%3E%3Crect width='100%25' height='100%25' fill='%23eee'/%3E%3Ctext x='50%25' y='50%25' fill='%23999' font-size='10' text-anchor='middle'%3E" + (img.case || "") + "%3C/text%3E%3C/svg%3E";
+    };
+    im.onclick = function() {
+      document.getElementById("lightboxImg").src = path;
+      document.getElementById("lightbox").classList.add("visible");
+    };
+    card.appendChild(im);
+    const cap = el("div", "cap", (img.case || "") + " · " + (img.strategy || img.caption || ""));
+    card.appendChild(cap);
+    grid.appendChild(card);
+  });
+  s.appendChild(grid);
+  return s;
+}
+
+function renderProposal(title, md, stageNum) {
+  const s = document.createElement("div");
+  s.className = "stage";
+  const t = el("div", "stage-title");
+  t.appendChild(el("span", "stage-num", stageNum));
+  t.appendChild(el("span", "", title));
+  s.appendChild(t);
+  const body = el("div", "proposal-body");
+  body.innerHTML = marked.parse(md || "（无内容）");
+  s.appendChild(body);
+  return s;
+}
+
+function scoreColor(score) {
+  if (score >= 90) return "#27ae60";
+  if (score >= 75) return "#2ecc71";
+  if (score >= 60) return "#e67e22";
+  return "#e74c3c";
+}
+
+function renderCritic(d) {
+  const s = document.createElement("div");
+  s.className = "stage";
+  const title = el("div", "stage-title");
+  title.appendChild(el("span", "stage-num", "④"));
+  title.appendChild(el("span", "", "AI 评图"));
+  s.appendChild(title);
+  const critic = d.critic || {};
+  const score = critic.score || 0;
+  const banner = el("div", "score-banner");
+  const circle = el("div", "score-circle");
+  circle.style.background = scoreColor(score);
+  circle.textContent = score + "分";
+  banner.appendChild(circle);
+  const scoreInfo = el("div", "");
+  scoreInfo.appendChild(el("div", "", "初稿评分"));
+  scoreInfo.appendChild(el("div", "", "评审维度：基地回应 / 案例迁移 / 理论一致性 / 建筑合理性"));
+  banner.appendChild(scoreInfo);
+  s.appendChild(banner);
+  const body = el("div", "stage-body");
+  const strengths = el("div", "critic-section");
+  strengths.appendChild(el("div", "h strengths", "✓ 优势"));
+  const ul1 = el("ul", "");
+  (critic.strengths || []).forEach(t => { ul1.appendChild(el("li", "", t)); });
+  strengths.appendChild(ul1);
+  body.appendChild(strengths);
+  const problems = el("div", "critic-section");
+  problems.appendChild(el("div", "h problems", "✗ 不足"));
+  const ul2 = el("ul", "");
+  (critic.problems || []).forEach(t => { ul2.appendChild(el("li", "", t)); });
+  problems.appendChild(ul2);
+  body.appendChild(problems);
+  const rev = el("div", "critic-section");
+  rev.appendChild(el("div", "h", "▶ 修改建议"));
+  const ul3 = el("ul", "");
+  (critic.revision || []).forEach(t => { ul3.appendChild(el("li", "", t)); });
+  rev.appendChild(ul3);
+  body.appendChild(rev);
+  s.appendChild(body);
+  return s;
+}
+
+// ═══ 主流程 ════════════════════════
+let userTask = "";
+let selectedDirection = null;
+
+async function runFullLoop(task, userChoice, directions) {
+  setLoading("AI 正在深化设计（生成 → 评图 → 优化）…");
+  try {
+    const resp = await fetch(API_BASE + "/api/design_loop", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: task, user_choice: userChoice, directions: directions }),
+    });
+    if (!resp.ok) {
+      const err = await resp.json().catch(() => ({}));
+      throw new Error(err.error || "HTTP " + resp.status);
+    }
+    const d = await resp.json();
+    const results = document.getElementById("results");
+    results.appendChild(renderDeepenCard(d, selectedDirection));
+    results.appendChild(renderImages(d.images));
+    results.appendChild(renderProposal("初稿方案 V1", d.initial_proposal, "④"));
+    results.appendChild(renderCritic(d));
+    results.appendChild(renderProposal("优化方案 V2", d.revision, "⑤"));
+    // 设计反馈循环
+    results.appendChild(renderFeedbackBox(userTask, d.revision, d.critic, 2));
+    stopLoading();
+    results.scrollIntoView({ behavior: "smooth" });
+  } catch (e) {
+    stopLoading();
+    showError("推演失败：" + e.message);
+  }
+}
+
+// ── 设计反馈循环（自由输入意见 → 方案迭代）────────────
+function renderFeedbackBox(task, currentSolution, review, version) {
+  const s = document.createElement("div");
+  s.className = "stage";
+  s.id = "feedbackStage";
+  s.style.borderLeftColor = "#2980b9";
+  const title = el("div", "stage-title");
+  title.appendChild(el("span", "stage-num", "⑥"));
+  title.appendChild(el("span", "", "设计反馈 · 继续迭代"));
+  s.appendChild(title);
+
+  const body = el("div", "stage-body");
+  const hint = el("div", "", "有想调整的地方？直接告诉我，AI 会基于你的意见继续优化（如「加入校园文化元素」「大厅太封闭，更开放一点」）：");
+  hint.style.cssText = "font-size:13px;color:#666;margin-bottom:10px;";
+  body.appendChild(hint);
+
+  // 常见反馈 chips
+  const chipRow = el("div", "example-chips");
+  chipRow.style.cssText = "margin-bottom:10px;";
+  ["加入校园文化元素", "空间更开放通透", "强化入口仪式感", "使用更多自然材料"].forEach(fb => {
+    const chip = el("span", "chip", fb);
+    chip.addEventListener("click", () => {
+      const inp = document.getElementById("feedbackInput");
+      inp.value = fb;
+    });
+    chipRow.appendChild(chip);
+  });
+  body.appendChild(chipRow);
+
+  const fbInput = document.createElement("textarea");
+  fbInput.id = "feedbackInput";
+  fbInput.placeholder = "输入你的设计意见…";
+  fbInput.style.cssText = "width:100%;min-height:60px;border:1.5px solid var(--line);border-radius:8px;padding:10px;font-size:13px;resize:vertical;";
+  body.appendChild(fbInput);
+
+  const sendBtn = el("button", "btn", "提交反馈，生成 V" + (version + 1));
+  sendBtn.id = "sendFeedbackBtn";
+  sendBtn.style.cssText = "margin-top:10px;background:#2980b9;";
+  sendBtn.addEventListener("click", async () => {
+    const feedback = document.getElementById("feedbackInput").value.trim();
+    if (!feedback) { showError("请输入反馈意见"); return; }
+    sendBtn.disabled = true;
+    sendBtn.textContent = "AI 正在根据你的意见调整…";
+    try {
+      const resp = await fetch(API_BASE + "/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: task, current_solution: currentSolution, feedback: feedback, review: review }),
+      });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const d = await resp.json();
+      // 渲染新版本
+      const results = document.getElementById("results");
+      results.appendChild(renderProposal("优化方案 V" + (version + 1), d.revised, "⑥"));
+      // 递归渲染下一个反馈框
+      results.appendChild(renderFeedbackBox(task, d.revised, review, version + 1));
+      sendBtn.remove();
+      results.scrollIntoView({ behavior: "smooth" });
+    } catch (e) {
+      sendBtn.disabled = false;
+      sendBtn.textContent = "提交反馈";
+      showError("反馈失败：" + e.message);
+    }
+  });
+  body.appendChild(sendBtn);
+
+  s.appendChild(body);
+  return s;
+}
+
+async function runLoop() {
+  clearError();
+  userTask = document.getElementById("taskInput").value.trim();
+  if (!userTask) { showError("请输入设计任务"); return; }
+  document.getElementById("results").innerHTML = "";
+  setLoading("正在分析设计任务…");
+
+  try {
+    // 阶段1：AI 主动提问（设计导师对话层）
+    setLoading("AI 正在理解你的设计意图…");
+    const askResp = await fetch(API_BASE + "/api/mentor_ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: userTask }),
+    });
+    const askData = await askResp.json();
+    const questions = (askData.questions || []).filter(q => q && q.question);
+
+    const results = document.getElementById("results");
+
+    if (questions.length > 0) {
+      // 渲染设计导师提问阶段
+      results.appendChild(renderMentorAsk(userTask, questions));
+      stopLoading();
+      results.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // 无提问直接提案
+      await proposeAndRender(userTask, [], null);
+    }
+  } catch (e) {
+    stopLoading();
+    showError("任务分析失败：" + e.message);
+  }
+}
+
+// ── 设计导师提问阶段 ─────────────────────────
+function renderMentorAsk(task, questions) {
+  const s = document.createElement("div");
+  s.className = "stage";
+  s.id = "mentorStage";
+  s.style.borderLeftColor = "#8e44ad";
+  const title = el("div", "stage-title");
+  title.appendChild(el("span", "stage-num", "①"));
+  title.appendChild(el("span", "", "设计导师 · 先了解你的想法"));
+  s.appendChild(title);
+
+  const body = el("div", "stage-body");
+  const intro = el("div", "", "在给你方向建议前，我想先问几个问题，这样方向会更贴合你的想法（也可以直接跳过）：");
+  intro.style.cssText = "font-size:13px;color:#666;margin-bottom:14px;";
+  body.appendChild(intro);
+
+  const answers = [];
+
+  questions.forEach((q, qi) => {
+    const qBox = el("div", "analysis-item");
+    qBox.style.cssText = "margin-bottom:12px;";
+    qBox.appendChild(el("div", "label", "问题 " + (qi + 1)));
+    qBox.appendChild(el("div", "value", q.question));
+    if (q.purpose) {
+      const purpose = el("div", "desc", "影响：" + q.purpose);
+      purpose.style.cssText = "font-size:12px;color:#888;margin-top:4px;";
+      qBox.appendChild(purpose);
+    }
+    // 选项按钮
+    const optRow = el("div", "example-chips");
+    optRow.style.cssText = "margin-top:8px;gap:8px;";
+    const answerInput = { value: "" };
+    (q.options || []).forEach(opt => {
+      const chip = el("span", "chip", opt);
+      chip.addEventListener("click", () => {
+        optRow.querySelectorAll(".chip").forEach(c => c.style.background = "#e3e3e8");
+        chip.style.background = "#ffd6d6";
+        answerInput.value = opt;
+      });
+      optRow.appendChild(chip);
+    });
+    qBox.appendChild(optRow);
+    // 自由回答
+    const freeInput = document.createElement("input");
+    freeInput.type = "text";
+    freeInput.placeholder = "或输入你的想法…";
+    freeInput.style.cssText = "width:100%;padding:8px;border:1.5px solid var(--line);border-radius:8px;margin-top:8px;font-size:13px;";
+    freeInput.addEventListener("input", () => { answerInput.value = freeInput.value; });
+    qBox.appendChild(freeInput);
+    body.appendChild(qBox);
+    answers.push(answerInput);
+  });
+
+  // 操作按钮
+  const btnRow = el("div", "");
+  btnRow.style.cssText = "display:flex;gap:12px;margin-top:14px;align-items:center;";
+  const okBtn = el("button", "btn", "回答好了，给我方向");
+  okBtn.style.cssText = "background:#8e44ad;";
+  okBtn.addEventListener("click", async () => {
+    const finalAnswers = answers.map(a => a.value);
+    okBtn.disabled = true;
+    okBtn.textContent = "正在根据你的想法调整方向…";
+    // 根据回答调整方向并渲染
+    await proposeAndRender(task, finalAnswers, s);
+  });
+  btnRow.appendChild(okBtn);
+  const skipBtn = el("button", "btn", "跳过提问");
+  skipBtn.style.cssText = "background:#999;";
+  skipBtn.addEventListener("click", async () => {
+    skipBtn.disabled = true;
+    await proposeAndRender(task, [], s);
+  });
+  btnRow.appendChild(skipBtn);
+  body.appendChild(btnRow);
+
+  s.appendChild(body);
+  return s;
+}
+
+// ── 提案方向并渲染 ─────────────────────────
+async function proposeAndRender(task, answers, mentorStageEl) {
+  setLoading("AI 正在调用知识并推演方向…");
+  try {
+    // 1. 提案方向（带学生回答）
+    const resp = await fetch(API_BASE + "/api/propose_directions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: task, answers: answers }),
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const d = await resp.json();
+
+    const results = document.getElementById("results");
+    // 移除导师提问阶段（保留为已答标记）
+    if (mentorStageEl && answers.length && answers.some(a => a && a.trim())) {
+      const answered = el("div", "", "✓ 已听取你的想法：" + answers.filter(a => a && a.trim()).join("；"));
+      answered.style.cssText = "background:#e8f7ee;padding:8px;border-radius:8px;font-size:12px;margin-top:8px;";
+      mentorStageEl.querySelector(".stage-body").appendChild(answered);
+    }
+
+    // 2. 渲染项目定位 + 方向
+    results.appendChild(renderDashboard(d));
+    results.appendChild(renderDirections(d.directions || []));
+    stopLoading();
+    results.scrollIntoView({ behavior: "smooth" });
+  } catch (e) {
+    stopLoading();
+    showError("方向提案失败：" + e.message);
+  }
+}
+
+// ── 初始化：从 mentor 带入设计理解 ─────────────
+let designContext = null;
+
+window.onload = function() {
+  // 1. 从 URL 带任务
+  const params = new URLSearchParams(window.location.search);
+  const task = params.get("task");
+  if (task) {
+    document.getElementById("taskInput").value = decodeURIComponent(task);
+  }
+  // 2. 读取 mentor 形成的设计理解
+  const ctx = localStorage.getItem("archai_design_context");
+  if (ctx) {
+    try {
+      designContext = JSON.parse(ctx);
+    } catch (e) { designContext = null; }
+  }
+};
+
+</script>
+</body>
+</html>

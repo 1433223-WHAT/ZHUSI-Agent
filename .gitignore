@@ -1,0 +1,29 @@
+# API Keys and Secrets
+.env
+*.key
+
+# Python caches and local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Runtime logs, generated/private outputs, and backups
+*.log
+server_check.*
+output/
+downloads/
+_backup_*/
+/_audit_result.txt
+/_full_testC.txt
+/_reg_test.txt
+demo/shots/
+demo/*-e2e.png
+
+# Legacy connectivity probes contain local credentials; never publish them
+_test_callai_*.py
+
+# Local release artifacts and tunnel credentials
+releases/
+.cloudflared/
+*.pem

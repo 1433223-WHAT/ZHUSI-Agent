@@ -1,0 +1,5 @@
+requests
+python-docx
+pypdf
+Pillow
+pywin32; platform_system == "Windows"

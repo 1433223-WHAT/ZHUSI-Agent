@@ -1,0 +1,41 @@
+{
+  "architect": {
+    "name": "Tadao Ando",
+    "qid": "Q208220",
+    "birth": "1941",
+    "country": "日本"
+  },
+  "projects": [
+    {
+      "name": "Bourse de Commerce - Pinault Collection",
+      "qid": "Q108740128",
+      "year": "2021",
+      "location": "巴黎商業交易所"
+    },
+    {
+      "name": "和美术馆",
+      "qid": "Q85877621",
+      "year": "2020",
+      "location": ""
+    },
+    {
+      "name": "Wrightwood 659",
+      "qid": "Q136906366",
+      "year": "2018",
+      "location": ""
+    },
+    {
+      "name": "Foundation Casa Wabi",
+      "qid": "Q110884779",
+      "year": "2014",
+      "location": ""
+    },
+    {
+      "name": "秋田縣立美術館·平野政吉收藏庫",
+      "qid": "Q11483668",
+      "year": "2013",
+      "location": "Area Nakaichi"
+    }
+  ],
+  "source": "wikidata"
+}

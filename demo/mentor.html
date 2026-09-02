@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArchAI 设计导师</title>
+<script src="vendor/marked.min.js"></script>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --mentor: #8e44ad;
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --text: #2d2d2d;
+    --muted: #888;
+    --line: #e5e5e5;
+    --ok: #27ae60;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+    height: 100vh; display: flex; flex-direction: column;
+  }
+  header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #2c2c54 100%);
+    color: white; padding: 16px 28px; display: flex; align-items: center; gap: 14px;
+  }
+  .logo {
+    width: 40px; height: 40px; background: var(--mentor); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold;
+  }
+  header h1 { font-size: 18px; }
+  header .sub { color: rgba(255,255,255,0.65); font-size: 12px; }
+  .header-actions { margin-left:auto; display:flex; gap:8px; }
+  .header-actions button { width:34px; height:34px; border:1px solid rgba(255,255,255,.25); border-radius:6px; background:rgba(255,255,255,.08); color:#fff; cursor:pointer; font-size:16px; }
+
+  .workbench { flex: 1; display: flex; overflow: hidden; }
+
+  /* 左：聊天区 */
+  .chat-panel { flex: 1.4; display: flex; flex-direction: column; border-right: 1px solid var(--line); background: #fafafa; min-width: 0; }
+  .scroll-wrap { flex: 1; overflow-y: auto; min-height: 0; }
+  .chat-area { padding: 24px; }
+  .msg { display: flex; margin-bottom: 18px; }
+  .msg.ai { justify-content: flex-start; }
+  .msg.user { justify-content: flex-end; }
+  .bubble {
+    max-width: 75%; padding: 12px 16px; border-radius: 14px; font-size: 13.5px; line-height: 1.7;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .msg.ai .bubble { background: #fff; border-top-left-radius: 4px; }
+  .msg.user .bubble { background: #e8e8f0; border-top-right-radius: 4px; }
+  .msg .who { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+  .msg.user .who { text-align: right; }
+
+  /* 选项 chips */
+  .options { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .opt-chip {
+    background: #f0f0f3; border: 1px solid var(--line); border-radius: 18px;
+    padding: 6px 14px; font-size: 12.5px; cursor: pointer; transition: all .15s;
+  }
+  .opt-chip:hover { background: #e3e3e8; }
+  .opt-chip.selected { background: #ffd6d6; border-color: var(--accent); }
+
+  /* 输入区 */
+  .input-area { display: flex; gap: 10px; padding: 14px 20px; background: #fff; border-top: 1px solid var(--line); }
+  .input-area textarea {
+    flex: 1; border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 14px;
+    font-size: 13.5px; font-family: inherit; resize: none; outline: none; min-height: 44px;
+  }
+  .input-area textarea:focus { border-color: var(--mentor); }
+  .send-btn {
+    background: var(--mentor); color: white; border: none; border-radius: 10px;
+    padding: 0 22px; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .send-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* 右：设计理解状态栏 */
+  .status-panel {
+    flex: 0.8; background: #fff; padding: 24px; overflow-y: auto; min-width: 300px;
+  }
+  .status-title { font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .progress-wrap { margin-bottom: 20px; }
+  .progress-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin-top: 6px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--mentor), #e94560); width: 0%; transition: width .4s; border-radius: 4px; }
+  .progress-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .status-item { margin-bottom: 14px; }
+  .status-item .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .status-item .value { font-size: 13px; margin-top: 4px; }
+  .status-item .value.focus { color: var(--ok); }
+  .status-item .value.avoid { color: #e65100; }
+  .status-empty { color: #bbb; font-size: 12px; text-align: center; margin-top: 40px; }
+
+  /* 理解形成卡片 */
+  .understanding-card {
+    background: #f8f8fa; border: 1.5px solid var(--line); border-radius: 12px; padding: 16px; margin-top: 8px;
+  }
+  .understanding-card .h { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+  .go-btn {
+    display: block; width: 100%; margin-top: 14px; padding: 12px; background: var(--accent);
+    color: white; border: none; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer;
+  }
+  .go-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  .typing { color: var(--muted); font-size: 12px; font-style: italic; }
+  @media (max-width: 760px) {
+    body { height: auto; min-height: 100vh; }
+    header { padding: 12px 14px; gap: 10px; }
+    .logo { width: 36px; height: 36px; border-radius: 8px; }
+    header h1 { font-size: 16px; }
+    header .sub { display: none; }
+    .workbench { flex-direction: column; overflow: visible; }
+    .chat-panel { height: 72vh; min-height: 560px; border-right: 0; border-bottom: 1px solid var(--line); }
+    .chat-area { padding: 16px 12px; }
+    .bubble { max-width: 90%; }
+    .input-area { padding: 10px; }
+    .send-btn { padding: 0 16px; }
+    .status-panel { min-width: 0; padding: 18px 14px; overflow: visible; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">A</div>
+  <div>
+    <h1>ArchAI 设计导师</h1>
+    <div class="sub">通过对话理解你的设计意图 · 辅助设计推演</div>
+  </div>
+  <div class="header-actions">
+    <button title="新建设计任务" onclick="resetTask()">↻</button>
+    <button title="载入比赛演示案例" onclick="loadDemoPreset()">▣</button>
+    <button title="导出设计过程" onclick="exportProcess()">⇩</button>
+  </div>
+</header>
+
+<div class="workbench">
+  <!-- 左：聊天区 + 推演区 -->
+  <div class="chat-panel">
+    <div class="scroll-wrap" id="scrollWrap">
+      <div class="chat-area" id="chatArea"></div>
+      <!-- 推演结果区（讨论达标后动态展开）-->
+      <div id="results" style="display:none; padding:0 24px 24px; background:#fafafa; border-top:2px solid #8e44ad;"></div>
+    </div>
+    <div class="input-area">
+      <textarea id="msgInput" placeholder="输入你的想法…（回车发送）" rows="1"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">发送</button>
+    </div>
+  </div>
+
+  <!-- 右：设计认知板 -->
+  <div class="status-panel" id="statusPanel">
+    <div class="status-title">🧭 设计认知板</div>
+    <div class="progress-wrap">
+      <div style="font-size:12px;color:var(--muted);">需求理解度</div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-label" id="progressLabel">0%</div>
+    </div>
+    <div id="statusContent">
+      <div class="status-empty">开始讨论后，这里会显示 AI 对你设计的认知</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const API_BASE = "http://127.0.0.1:8787";
+
+// 全局状态
+let initialTask = "";
+let discussion = [];      // 完整讨论记录（学生发言）
+let understanding = {};   // 当前理解状态
+let currentQuestion = {}; // 当前 AI 的问题
+let knownFacts = {};      // 已经学生确认的设计事实（按问题维度存储）
+let knownFactStates = {}; // 各项是部分理解还是已明确
+let askedQuestions = [];  // 已问过的问题，避免动态追问重复
+let directionApproved = false;
+// 流程阶段：discuss=讨论中 / direction=方向待选 / deepen=深化中 / done=方案已出
+let phase = "discuss";
+let currentDirections = [];   // 当前方向
+let currentSolution = "";     // 当前方案（供反馈迭代）
+let currentReview = null;     // 当前评审
+let currentVersion = 1;
+let versionSections = [];     // 已生成方案版本的容器
+let versionHistory = [];      // 可持久化的版本数据
+let selectedDirection = {};   // 学生确认的方向及知识依据
+let pendingAnswerDimension = ""; // 仅点击追问选项时绑定回答维度
+
+function resetTask() {
+  localStorage.removeItem("archai-mentor-session");
+  location.reload();
+}
+
+function escapeHtml(value) {
+  return String(value == null ? "" : value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char]);
+}
+
+function sanitizeHtml(html) {
+  const template = document.createElement("template");
+  template.innerHTML = String(html || "");
+  template.content.querySelectorAll("script,style,iframe,object,embed,link,meta").forEach(node => node.remove());
+  template.content.querySelectorAll("*").forEach(node => {
+    [...node.attributes].forEach(attr => {
+      const name = attr.name.toLowerCase();
+      const value = attr.value.trim().toLowerCase();
+      if (name.startsWith("on") || ((name === "href" || name === "src") && value.startsWith("javascript:"))) node.removeAttribute(attr.name);
+    });
+  });
+  return template.innerHTML;
+}
+
+function renderMarkdown(value) {
+  const source = String(value || "");
+  return sanitizeHtml(window.marked ? marked.parse(source) : escapeHtml(source).replace(/\n/g, "<br>"));
+}
+
+function saveSession() {
+  const state = {initialTask, discussion, understanding, knownFacts, knownFactStates, askedQuestions, directionApproved, phase, currentDirections, selectedDirection, currentSolution, currentReview, currentVersion, versionHistory};
+  localStorage.setItem("archai_competition_session", JSON.stringify(state));
+}
+
+function restoreSession() {
+  try {
+    const state = JSON.parse(localStorage.getItem("archai_competition_session") || "null");
+    if (!state || !state.initialTask) return false;
+    ({initialTask, discussion, understanding, knownFacts, knownFactStates, askedQuestions, directionApproved, phase, currentDirections, selectedDirection, currentSolution, currentReview, currentVersion, versionHistory} = {...state, versionHistory: state.versionHistory || []});
+    renderStatus(understanding || {});
+    addMsg("ai", "已恢复上一次设计任务。当前阶段：" + (phase === "done" ? "方案迭代" : phase === "direction" ? "方向选择" : "需求理解"));
+    if (versionHistory.length) renderStoredVersions();
+    return true;
+  } catch (_error) { return false; }
+}
+
+// ── 聊天渲染 ─────────────────────────
+function addMsg(role, html) {
+  const area = document.getElementById("chatArea");
+  const msg = document.createElement("div");
+  msg.className = "msg " + role;
+  const who = role === "ai" ? "ArchAI 导师" : "你";
+  msg.innerHTML = sanitizeHtml('<div><div class="who">' + escapeHtml(who) + '</div><div class="bubble">' + html + '</div></div>');
+  area.appendChild(msg);
+  scrollToBottom();
+  return msg;
+}
+
+function scrollToBottom() {
+  const wrap = document.getElementById("scrollWrap");
+  if (wrap) wrap.scrollTop = wrap.scrollHeight;
+}
+
+function addTyping() {
+  const area = document.getElementById("chatArea");
+  const msg = document.createElement("div");
+  msg.className = "msg ai";
+  msg.id = "typingMsg";
+  msg.innerHTML = '<div><div class="who">ArchAI 导师</div><div class="bubble typing">正在思考…</div></div>';
+  area.appendChild(msg);
+  scrollToBottom();
+}
+function removeTyping() {
+  const t = document.getElementById("typingMsg");
+  if (t) t.remove();
+}
+
+// ── 状态栏更新 ─────────────────────────
+// ── 对话流程（连续对话，非问卷）────────────
+async function startDiscussion(task) {
+  initialTask = task;
+  discussion.push(task);
+  addMsg("user", task);
+  addTyping();
+  try {
+    const understanding = await assess();
+    // AI 开场 + 第一轮追问
+    addMsg("ai", "你好，我是 ArchAI 设计导师。先不急着给方案，我想一步步了解你的想法。");
+    await askNext();
+  } catch (e) {
+    removeTyping();
+    addMsg("ai", "讨论失败：" + e.message);
+  }
+}
+
+// 评估当前理解
+async function assess(answerDimension = "") {
+  addTyping();
+  const resp = await fetch(API_BASE + "/api/discuss_assess", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: initialTask, discussion: discussion, known_facts: knownFacts, known_fact_states: knownFactStates, previous_percent: understanding.understanding_percent || 0, answer_dimension: answerDimension }),
+  });
+  if (!resp.ok) throw new Error("HTTP " + resp.status);
+  const d = await resp.json();
+  removeTyping();
+  knownFacts = Object.fromEntries((d.filled_dimensions || [])
+    .filter(item => item.value && item.status !== "unknown")
+    .map(item => [item.dim, item.value]));
+  knownFactStates = d.fact_states || knownFactStates;
+  understanding = d;
+  renderStatus(d);
+  saveSession();
+  return d;
+}
+
+// AI 追问下一个关键问题
+async function askNext() {
+  addTyping();
+  try {
+    const resp = await fetch(API_BASE + "/api/discuss_ask", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: initialTask, discussion: discussion, understanding: understanding, asked_questions: askedQuestions }),
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const d = await resp.json();
+    removeTyping();
+    if (!d.need_more) {
+      showUnderstandingReview();
+      return;
+    }
+    currentQuestion = d;
+    if (d.question && !askedQuestions.includes(d.question)) askedQuestions.push(d.question);
+    let html = "<div>" + escapeHtml(d.question || "还有一点想确认：") + "</div>";
+    if (d.why) html += '<div style="font-size:12px;color:#888;margin-top:4px;">（' + escapeHtml(d.why) + '）</div>';
+    html += '<div class="options">';
+    (d.options || []).forEach((opt, oi) => {
+      html += '<button class="opt-chip" data-option-index="' + oi + '">' + escapeHtml(opt) + '</button>';
+    });
+    html += '</div>';
+    const message = addMsg("ai", html);
+    message.querySelectorAll("[data-option-index]").forEach(button => {
+      button.addEventListener("click", () => selectOpt(Number(button.dataset.optionIndex), button));
+    });
+  } catch (e) {
+    removeTyping();
+    addMsg("ai", "追问失败：" + e.message);
+  }
+}
+
+function showUnderstandingReview() {
+  currentQuestion = {};
+  const facts = (understanding.filled_dimensions || [])
+    .filter(item => item.value && item.value.trim())
+    .map(item => '<div style="margin-top:4px;"><b>' + item.label + '：</b>' + item.value + '</div>')
+    .join("");
+  const message = addMsg("ai", '<div>我先把目前的理解整理出来，请你核对：</div>' + facts +
+    '<div style="font-size:12px;color:#888;margin-top:8px;">如果还想补充或修改，直接继续输入；确认后才会生成设计方向。</div>' +
+    '<button class="opt-chip confirm-understanding" style="margin-top:10px;">确认理解，开始生成方向</button>');
+  message.querySelector(".confirm-understanding").addEventListener("click", confirmUnderstandingAndPropose);
+}
+
+async function confirmUnderstandingAndPropose() {
+  directionApproved = true;
+  await finishDiscussion();
+}
+
+function selectOpt(oi, chipEl) {
+  const opt = (currentQuestion.options || [])[oi];
+  pendingAnswerDimension = currentQuestion.dimension || "";
+  chipEl.parentElement.querySelectorAll(".opt-chip").forEach(c => c.classList.remove("selected"));
+  chipEl.classList.add("selected");
+  document.getElementById("msgInput").value = opt;
+  document.getElementById("msgInput").focus();
+}
+
+async function sendMessage() {
+  const input = document.getElementById("msgInput");
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = "";
+  addMsg("user", text);
+  input.disabled = true;
+
+  try {
+    // 阶段1：首次发送 → 开始讨论
+    if (!initialTask) {
+      initialTask = text;
+      discussion.push(text);
+      input.disabled = false;
+      addMsg("ai", "好的，我理解你想设计这个。让我先了解你的设计想法。");
+      await assess();
+      await askNext();
+      return;
+    }
+
+    // 阶段2：方向待选（学生在聊天框说话）
+    if (phase === "direction") {
+      discussion.push(text);
+      knownFacts.design_intent = (knownFacts.design_intent ? knownFacts.design_intent + "；" : "") + text;
+      const d = await assess();
+      addMsg("ai", "收到，我会把这条补充作为新的设计意图，重新调整三条方向。");
+      await proposeDirections(initialTask, d, [text]);
+      input.disabled = false;
+      return;
+    }
+
+    // 阶段3：方案已出（聊天框作为反馈入口）
+    if (phase === "done") {
+      await handleFeedback(text);
+      return;
+    }
+
+    // 阶段4：讨论中 → 追问
+    const answerDimension = pendingAnswerDimension;
+    pendingAnswerDimension = "";
+    if (currentQuestion.conflict_resolution && currentQuestion.dimension) {
+      knownFacts[currentQuestion.dimension] = text;
+      knownFactStates[currentQuestion.dimension] = {value:text, status:"clear", evidence:"用户已确认冲突选项"};
+    }
+    currentQuestion = {};
+    discussion.push(text);
+    await assess(answerDimension);
+    input.disabled = false;
+    await askNext();
+  } catch (e) {
+    input.disabled = false;
+    addMsg("ai", "处理出错：" + e.message);
+  }
+}
+
+// 方案已出后的反馈处理（走对比）
+  async function handleFeedback(feedback) {
+    addMsg("ai", "收到你的意见，我基于它优化方案并对比改动。");
+    addTyping();
+    try {
+    const resp = await fetch(API_BASE + "/api/feedback", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: initialTask, current_solution: currentSolution, feedback: feedback, review: currentReview, version_number: Math.max(1, ...versionHistory.map(item => item.number || 0)) + 1, parent_version: currentVersion, selected_direction: selectedDirection }),
+    });
+      if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const d = await resp.json();
+      removeTyping();
+      if (!d.revised_plan || !d.revised_plan.trim()) throw new Error("后端没有返回完整的更新方案");
+    currentVersion = (d.version && d.version.number) || (Math.max(1, ...versionHistory.map(item => item.number || 0)) + 1);
+    // 渲染对比卡片
+    renderDiffCard(d, feedback);
+    // 更新当前方案
+    currentSolution = d.revised_plan;
+    versionHistory.push({number: currentVersion, solution: d.revised_plan, diff: d.diff_summary || {}, version: d.version || {}, critic: currentReview});
+    saveSession();
+    document.getElementById("msgInput").disabled = false;
+    } catch (e) {
+      removeTyping();
+      document.getElementById("msgInput").disabled = false;
+      addMsg("ai", "反馈失败：" + e.message);
+    }
+  }
+
+  function renderVersionControls(activeVersion) {
+    const results = document.getElementById("results");
+    let controls = document.getElementById("versionControls");
+    if (!controls) {
+      controls = document.createElement("div");
+      controls.id = "versionControls";
+      controls.style.cssText = "display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin:14px 0 4px;";
+      results.appendChild(controls);
+    }
+    controls.innerHTML = "";
+    const index = versionSections.findIndex(item => item.version === activeVersion);
+    const previous = document.createElement("button");
+    previous.textContent = "‹";
+    previous.title = "查看上一版方案";
+    previous.disabled = index <= 0;
+    previous.style.cssText = "width:30px;height:30px;border:1px solid #d9d9e2;border-radius:6px;background:#fff;cursor:pointer;font-size:20px;";
+    previous.addEventListener("click", () => showVersion(versionSections[index - 1].version));
+    controls.appendChild(previous);
+    versionSections.forEach(item => {
+      const button = document.createElement("button");
+      button.textContent = "V" + item.version;
+      button.title = "查看方案 V" + item.version;
+      button.style.cssText = "height:30px;min-width:42px;border:1px solid " + (item.version === activeVersion ? "#8e44ad" : "#d9d9e2") + ";border-radius:6px;background:" + (item.version === activeVersion ? "#8e44ad" : "#fff") + ";color:" + (item.version === activeVersion ? "#fff" : "#555") + ";cursor:pointer;font-size:12px;font-weight:700;";
+      button.addEventListener("click", () => showVersion(item.version));
+      controls.appendChild(button);
+    });
+    const next = document.createElement("button");
+    next.textContent = "›";
+    next.title = "查看下一版方案";
+    next.disabled = index < 0 || index >= versionSections.length - 1;
+    next.style.cssText = "width:30px;height:30px;border:1px solid #d9d9e2;border-radius:6px;background:#fff;cursor:pointer;font-size:20px;";
+    next.addEventListener("click", () => showVersion(versionSections[index + 1].version));
+    controls.appendChild(next);
+  }
+
+function showVersion(version) {
+  versionSections.forEach(item => { item.element.style.display = item.version === version ? "block" : "none"; });
+  const stored = versionHistory.find(item => item.number === version);
+  if (stored) {
+    currentSolution = stored.solution || currentSolution;
+    currentReview = stored.critic || currentReview;
+    currentVersion = version;
+  }
+  renderVersionControls(version);
+}
+
+// 渲染改动对比卡片
+  function renderDiffCard(d, feedback) {
+    const results = document.getElementById("results");
+    const ds = d.diff_summary || {};
+    const section = document.createElement("section");
+    section.className = "version-section";
+    section.id = "version-" + currentVersion;
+    const card = document.createElement("div");
+  card.style.cssText = "background:#fff;border-radius:12px;padding:14px;margin-top:14px;border:2px solid #2980b9;";
+  let html = '<div style="font-size:14px;font-weight:700;color:#2980b9;margin-bottom:8px;">🔄 方案更新 V' + currentVersion + '</div>';
+  html += '<div style="font-size:12.5px;color:#666;margin-bottom:10px;">你的反馈：' + feedback + '</div>';
+  html += '<div style="font-size:12.5px;color:#27ae60;margin-bottom:10px;">✓ ' + (ds.feedback_response || "") + '</div>';
+  // 改动对比表
+  if (ds.changes && ds.changes.length) {
+    html += '<div style="font-size:13px;font-weight:600;margin-bottom:6px;">改动对比</div>';
+    ds.changes.forEach(c => {
+      html += '<div style="background:#f8f8fa;border-radius:8px;padding:10px;margin-bottom:8px;">' +
+        '<div style="font-size:12.5px;font-weight:600;">📍 ' + (c.what || "") + '</div>' +
+        '<div style="font-size:12px;color:#999;margin-top:3px;">改前：' + (c.from || "") + '</div>' +
+        '<div style="font-size:12px;color:#27ae60;margin-top:2px;">改后：' + (c.to || "") + '</div>' +
+        '<div style="font-size:12px;color:#888;margin-top:3px;">原因：' + (c.why || "") + '</div></div>';
+    });
+  }
+  if ((ds.kept || []).length) html += '<div style="font-size:12px;color:#2e7d32;">保留：' + ds.kept.join('、') + '</div>';
+  if ((ds.removed || []).length) html += '<div style="font-size:12px;color:#a04444;">删除：' + ds.removed.join('、') + '</div>';
+  const evidenceChanges = d.evidence_changes || {};
+  html += '<div style="font-size:12px;margin-top:8px;padding-top:7px;border-top:1px solid #eee;"><b>知识依据变化</b>' +
+    '<div>保留：' + ((evidenceChanges.kept || []).join('、') || '无变化') + '</div>' +
+    '<div>新增：' + ((evidenceChanges.added || []).join('、') || '无') + '</div>' +
+    '<div>失效：' + ((evidenceChanges.invalidated || []).join('、') || '无') + '</div></div>';
+  card.innerHTML = sanitizeHtml(html);
+    section.appendChild(card);
+  // 渲染完整新方案（折叠）
+  const prop = document.createElement("div");
+  prop.style.cssText = "background:#fff;border-radius:12px;padding:14px;margin-top:10px;border:1px solid #e5e5e5;";
+    prop.innerHTML = sanitizeHtml('<div style="font-size:13px;font-weight:700;margin-bottom:6px;">方案 V' + currentVersion + ' 完整文本</div>' +
+      '<div style="font-size:13px;color:#555;max-height:300px;overflow-y:auto;">' + renderMarkdown(d.revised_plan) + '</div>');
+    section.appendChild(prop);
+    results.appendChild(section);
+    versionSections.push({ version: currentVersion, element: section });
+    showVersion(currentVersion);
+    addMsg("ai", "已生成 V" + currentVersion + "，上方是改动对比。你可以继续告诉我哪里还要调整。");
+  scrollToBottom();
+}
+
+// 状态栏渲染（分项进度）
+function renderStatus(d) {
+  const pct = d.understanding_percent || 0;
+  document.getElementById("progressFill").style.width = pct + "%";
+  document.getElementById("progressLabel").textContent = pct + "% — " + (d.is_sufficient ? "已足以形成方向，等待你确认" : "AI仍在识别影响设计的关键疑问");
+  const sc = document.getElementById("statusContent");
+  let html = "";
+  // 分项进度
+  (d.filled_dimensions || []).forEach(dim => {
+      const ok = dim.value && dim.value.trim();
+      const mark = dim.status === "clear" ? "✓ " : (dim.status === "partial" ? "◐ " : dim.status === "conflict" ? "! " : "○ ");
+      const stateText = dim.status === "partial" ? "（部分理解）" : dim.status === "conflict" ? "（存在冲突）" : "";
+      html += '<div class="status-item"><div class="label">' + mark + dim.label + stateText + '</div>' +
+              '<div class="value">' + (ok ? dim.value : "待确认") + '</div></div>';
+  });
+    if (d.understanding_summary) {
+    html += '<div class="status-item"><div class="label">当前理解</div><div class="value">' + d.understanding_summary + '</div></div>';
+  }
+  sc.innerHTML = sanitizeHtml(html);
+}
+
+async function finishDiscussion() {
+  if (!directionApproved) {
+    showUnderstandingReview();
+    return;
+  }
+  addTyping();
+  try {
+    // 最终评估
+    const d = await assess();
+    removeTyping();
+    phase = "direction";
+    renderStatus(d);
+    // 设计认知已形成 → 进入推演（不跳转，在 results 区展开）
+    addMsg("ai", "我们已经明确了设计认知。接下来我会基于这些理解，为你推演设计方向。");
+    // 保存 context
+    localStorage.setItem("archai_design_context", JSON.stringify(d));
+    localStorage.setItem("archai_design_task", initialTask);
+    // 在 results 区展开方向推演
+    document.getElementById("results").style.display = "block";
+    await proposeDirections(initialTask, d);
+  } catch (e) {
+    removeTyping();
+    addMsg("ai", "进入推演失败：" + e.message);
+  }
+}
+
+// ── 方向推演（融进 mentor，不跳转）────────────
+async function proposeDirections(task, context, answers = []) {
+  const results = document.getElementById("results");
+  results.innerHTML = "";
+  // 阶段标题
+  const stageTitle = document.createElement("div");
+  stageTitle.style.cssText = "font-size:15px;font-weight:700;margin-bottom:14px;color:#2c2c54;";
+  stageTitle.textContent = "🎨 方向推演 · 请选择设计方向";
+  results.appendChild(stageTitle);
+
+  // AI 引导语（在聊天区）
+  addMsg("ai", "根据我们的讨论，我形成了 3 个可能的设计方向，你可以选择一个继续深化：");
+
+  try {
+    const resp = await fetch(API_BASE + "/api/propose_directions", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: task, design_context: context, answers: answers }),
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const d = await resp.json();
+      currentDirections = d.directions || [];
+      saveSession();
+      renderDashboard(d, results);
+    renderDirections(d.directions || [], results, task);
+  } catch (e) {
+    const err = document.createElement("div");
+    err.style.cssText = "color:#c0392b;font-size:13px;padding:8px;";
+    err.textContent = "方向提案失败：" + e.message;
+    results.appendChild(err);
+  }
+}
+
+// 渲染项目定位（精简版）
+  function renderDashboard(d, container) {
+  const box = document.createElement("div");
+  box.style.cssText = "background:#fff;border-radius:12px;padding:14px;margin-bottom:14px;border:1px solid #e5e5e5;";
+  if (d.core_conflict) {
+    box.innerHTML = '<div style="font-size:12px;color:#888;">⚡ 核心矛盾</div>' +
+      '<div style="font-size:13px;margin-top:4px;">' + d.core_conflict + '</div>';
+  }
+  const questions = d.key_questions || [];
+  if (questions.length) {
+    box.innerHTML += '<div style="font-size:12px;color:#888;margin-top:10px;">AI 发现的设计挑战</div>';
+    questions.forEach((q, i) => {
+      box.innerHTML += '<div style="font-size:12.5px;margin-top:4px;color:#555;">' + "①②③".split("")[i] + " " + q + '</div>';
+    });
+    box.innerHTML = sanitizeHtml(box.innerHTML);
+    }
+    if (d.progress_reason) html += '<div class="status-item"><div class="label">进度变化原因</div><div class="value">' + d.progress_reason + '</div></div>';
+    if ((d.changes || []).length) {
+      html += '<div class="status-item"><div class="label">本轮理解变化</div>';
+      d.changes.forEach(change => { html += '<div class="value focus">' + ({added:"新增", corrected:"纠正", retracted:"撤销"}[change.type] || "更新") + '：' + (change.to || change.from || "") + '</div>'; });
+      html += '</div>';
+    }
+    if ((d.conflicts || []).length) {
+      html += '<div class="status-item"><div class="label">需要你确认的冲突</div>';
+      d.conflicts.forEach(conflict => { html += '<div class="value avoid">已确认“' + conflict.confirmed + '”，新表达为“' + conflict.candidate + '”</div>'; });
+      html += '</div>';
+    }
+    container.appendChild(box);
+    renderKnowledgeEvidence(d);
+  }
+
+  // 右侧单独说明本次方向的知识依据，不把未核验建议伪装成知识库结论。
+  function renderKnowledgeEvidence(d) {
+    const panel = document.getElementById("statusContent");
+    const note = d.knowledge_note || {};
+    const verified = note.status === "verified";
+    const hasSources = note.status === "verified" || note.status === "partial";
+    let html = '<div class="status-item" style="margin-top:16px;padding-top:14px;border-top:1px solid #ececf0;">';
+    html += '<div class="label">方案知识依据</div>';
+    html += '<div class="value" style="color:' + (verified ? '#2e7d32' : '#b45309') + ';">' +
+      (verified ? '来源与适配均已核验' : hasSources ? '来源已核验 · 适配待核实' : '未通过逐条知识引用校验') + '</div>';
+    if (note.message) html += '<div style="font-size:12px;color:#666;line-height:1.6;margin-top:5px;">' + note.message + '</div>';
+    if (hasSources) {
+      html += '<div style="font-size:12px;color:#777;margin-top:6px;">本次检索：' +
+        (d.retrieved_cases || []).length + ' 个案例、' + (d.retrieved_theories || []).length + ' 条理论、' +
+        (d.retrieved_methods || []).length + ' 种方法</div>';
+      (d.directions || []).forEach((direction, index) => {
+        const evidence = direction.evidence || {};
+        if (!evidence.case || !evidence.theory || !evidence.method) return;
+        html += '<details style="margin-top:10px;border-top:1px solid #eee;padding-top:8px;">';
+        html += '<summary style="font-size:12.5px;font-weight:700;cursor:pointer;color:#333;">方向' + (index + 1) + ' · ' + (direction.name || '') + '</summary>';
+        html += '<div style="font-size:11.5px;line-height:1.65;color:#555;margin-top:7px;">';
+        html += '<div style="font-weight:700;color:#2e7d32;">案例依据：' + evidence.case.name + '</div>';
+        if (evidence.case.strategy) html += '<div><b>原建筑策略：</b>' + evidence.case.strategy + '</div>';
+        html += '<div><b>知识库原文：</b>' + (evidence.case.source_text || '本地条目未提供详细原文') + '</div>';
+        html += '<div><b>迁移到本方案：</b>' + evidence.case.why + '</div>';
+        const fit = evidence.case.fit || {};
+        if (fit.average !== undefined) {
+          html += '<div><b>适配度：</b>类型 ' + (fit.project_type || 0) + ' · 尺度 ' + (fit.scale || 0) + ' · 功能 ' + (fit.function || 0) + ' · 场地气候 ' + (fit.site_climate || 0) + '</div>';
+          html += '<div><b>可迁移：</b>' + (fit.transferable || '待核实') + '</div>';
+          html += '<div><b>不可照搬：</b>' + (fit.not_copy || '待核实') + '</div>';
+          html += '<div><b>迁移风险：</b>' + (fit.risk || '待核实') + '</div>';
+        }
+        html += '<div style="font-weight:700;color:#2e7d32;margin-top:8px;">理论依据：' + evidence.theory.name + '</div>';
+        html += '<div><b>理论原文：</b>' + (evidence.theory.source_text || '本地条目未提供详细原文') + '</div>';
+        html += '<div><b>本方案如何使用：</b>' + evidence.theory.why + '</div>';
+        html += '<div style="font-weight:700;color:#2e7d32;margin-top:8px;">方法依据：' + evidence.method.name + '</div>';
+        html += '<div><b>方法定义：</b>' + (evidence.method.source_text || '本地条目未提供详细原文') + '</div>';
+        html += '<div><b>本方案如何落实：</b>' + evidence.method.why + '</div>';
+        html += '</div></details>';
+      });
+    }
+    html += '</div>';
+    panel.innerHTML = sanitizeHtml(panel.innerHTML + html);
+  }
+
+// 渲染方向卡片（可点选）
+  function renderDirections(directions, container, task) {
+    currentDirections = directions;
+    if (!directions.length) {
+      const empty = document.createElement("div");
+      empty.style.cssText = "font-size:13px;color:#a04444;padding:10px 0;";
+      empty.textContent = "当前没有可展示的方向，请补充任务信息后重新推演。";
+      container.appendChild(empty);
+      return;
+    }
+  const grid = document.createElement("div");
+  grid.style.cssText = "display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;";
+  let selectedIdx = 0;
+  directions.forEach((dir, i) => {
+    const card = document.createElement("div");
+    card.style.cssText = "background:#fff;border:2px solid #e5e5e5;border-radius:12px;padding:14px;cursor:pointer;transition:all .15s;";
+    card.addEventListener("click", () => {
+      grid.querySelectorAll(".dir-card").forEach(c => { c.style.borderColor = "#e5e5e5"; c.style.background = "#fff"; });
+      card.style.borderColor = "#e94560";
+      card.style.background = "#fff5f5";
+      selectedIdx = i;
+    });
+    let html = '<div style="font-size:11px;color:#e94560;font-weight:600;">方向' + (i + 1) + '</div>';
+    html += '<div style="font-size:14px;font-weight:700;margin-top:4px;">' + (dir.name || "") + '</div>';
+    const cs = dir.core_strategy || (Array.isArray(dir.strategy) ? dir.strategy.join("、") : dir.strategy || "");
+    if (cs) html += '<div style="font-size:12px;color:#555;margin-top:6px;">' + cs + '</div>';
+      if (dir.suitable_for) html += '<div style="font-size:12px;color:#2e7d32;margin-top:4px;">适合：' + dir.suitable_for + '</div>';
+      if (dir.risk) html += '<div style="font-size:12px;color:#e65100;margin-top:4px;">风险：' + dir.risk + '</div>';
+      const evidence = dir.evidence || {};
+      if ((dir.evidence_status === "verified" || dir.evidence_status === "partial") && evidence.case && evidence.theory && evidence.method) {
+        html += '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:11.5px;line-height:1.55;color:#555;">';
+        html += '<div style="color:' + (dir.evidence_status === "verified" ? '#2e7d32' : '#a16207') + ';font-weight:700;margin-bottom:4px;">' + (dir.evidence_status === "verified" ? '来源与适配已核验' : '来源已核验 · 适配待确认') + '</div>';
+        html += '<div>案例：' + evidence.case.name + (evidence.case.strategy ? '（' + evidence.case.strategy + '）' : '') + '</div>';
+        html += '<div>理论：' + evidence.theory.name + '</div>';
+        html += '<div>方法：' + evidence.method.name + '</div>';
+        html += '<div style="margin-top:4px;color:#777;">匹配理由：' + evidence.method.why + '</div></div>';
+      } else {
+        html += '<div style="margin-top:10px;padding-top:8px;border-top:1px solid #eee;font-size:11.5px;line-height:1.55;color:#a16207;">通用设计建议：本方向未借鉴或未能核验本地知识库案例、理论与方法。</div>';
+      }
+      card.classList.add("dir-card");
+    card.innerHTML = sanitizeHtml(html);
+    grid.appendChild(card);
+  });
+  container.appendChild(grid);
+
+  // 确认按钮 + 补充要求
+  const wrap = document.createElement("div");
+  wrap.style.cssText = "margin-top:14px;";
+  const supInput = document.createElement("input");
+  supInput.type = "text";
+  supInput.placeholder = "补充要求（可选）：例如 希望更开放、加入文化元素…";
+  supInput.style.cssText = "width:100%;padding:10px;border:1.5px solid #e5e5e5;border-radius:8px;font-size:13px;";
+  wrap.appendChild(supInput);
+  const goBtn = document.createElement("button");
+  goBtn.textContent = "确认方向，进入深化";
+  goBtn.style.cssText = "margin-top:10px;padding:11px 22px;background:#8e44ad;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;";
+    goBtn.addEventListener("click", async () => {
+      const userChoice = { direction_index: selectedIdx, supplement: supInput.value.trim() };
+      selectedDirection = directions[selectedIdx] || {};
+      saveSession();
+    goBtn.disabled = true;
+    goBtn.textContent = "正在按所选方向生成…";
+    await runDeepen(task, userChoice, directions, understanding);
+  });
+  wrap.appendChild(goBtn);
+  container.appendChild(wrap);
+}
+
+// ── 深化 + 评图 + 反馈（后续阶段）────────────
+async function runDeepen(task, userChoice, directions, designContext) {
+  const results = document.getElementById("results");
+  // 方向已选，追加深化阶段
+  addMsg("ai", "你选择了方向：" + directions[userChoice.direction_index].name + "。我先基于这个方向生成方案并评图。");
+  const loading = document.createElement("div");
+  loading.style.cssText = "color:#666;font-size:13px;padding:12px;text-align:center;";
+  loading.textContent = "AI 正在生成方案并评图（约 60-90 秒）…";
+  results.appendChild(loading);
+
+  try {
+    const resp = await fetch(API_BASE + "/api/design_loop", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: task, user_choice: userChoice, directions: directions, design_context: designContext }),
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+      const d = await resp.json();
+      loading.remove();
+      versionSections = [];
+      versionHistory = [];
+      currentVersion = 1;
+      const versionOne = document.createElement("section");
+      versionOne.className = "version-section";
+      versionOne.id = "version-1";
+
+    // 初稿方案（折叠）
+    const prop = document.createElement("div");
+    prop.style.cssText = "background:#fff;border-radius:12px;padding:14px;margin-top:14px;border:1px solid #e5e5e5;";
+    prop.innerHTML = sanitizeHtml('<div style="font-size:14px;font-weight:700;margin-bottom:8px;">初稿方案</div>' +
+      '<div style="font-size:13px;color:#555;max-height:200px;overflow:auto;">' + renderMarkdown(d.initial_proposal) + '</div>');
+      versionOne.appendChild(prop);
+
+    // 评图
+    const critic = d.critic || {};
+    const crit = document.createElement("div");
+    crit.style.cssText = "background:#fff;border-radius:12px;padding:14px;margin-top:14px;border:1px solid #e5e5e5;";
+    crit.innerHTML = '<div style="font-size:14px;font-weight:700;margin-bottom:8px;">📊 AI 评图</div>' +
+      '<div style="font-size:24px;font-weight:700;color:' + (critic.score >= 75 ? "#27ae60" : "#e67e22") + ';">' + critic.score + ' 分</div>';
+    if (critic.strengths && critic.strengths.length) {
+      crit.innerHTML += '<div style="font-size:12px;color:#27ae60;margin-top:8px;">优势：</div>';
+      critic.strengths.forEach(s => { crit.innerHTML += '<div style="font-size:12px;margin-top:2px;">✓ ' + s + '</div>'; });
+    }
+    if (critic.problems && critic.problems.length) {
+      crit.innerHTML += '<div style="font-size:12px;color:#e65100;margin-top:8px;">不足：</div>';
+      critic.problems.forEach(p => { crit.innerHTML += '<div style="font-size:12px;margin-top:2px;">✗ ' + p + '</div>'; });
+    }
+    const criteriaLabels = {requirement_response:"需求回应",site_response:"场地回应",function_flow:"功能与流线",spatial_experience:"空间体验",architectural_scale:"建筑尺度",constructability:"结构与建造",knowledge_transfer:"知识迁移",student_intent:"学生意图"};
+    Object.entries(critic.criteria || {}).forEach(([key, item]) => {
+      crit.innerHTML += '<div style="border-top:1px solid #eee;padding-top:7px;margin-top:7px;font-size:12px;"><b>' + (criteriaLabels[key] || key) + ' · ' + item.score + '</b>　' + item.status + '<div style="color:#777;">证据：' + (item.evidence || '方案中缺少信息') + '</div><div>' + (item.comment || '') + '</div></div>';
+    });
+    crit.innerHTML = sanitizeHtml(crit.innerHTML);
+      versionOne.appendChild(crit);
+
+    // 优化方案（固定高度内部滚动）
+    const opt = document.createElement("div");
+    opt.style.cssText = "background:#fff;border-radius:12px;padding:14px;margin-top:14px;border:1px solid #e5e5e5;";
+    opt.innerHTML = sanitizeHtml('<div style="font-size:14px;font-weight:700;margin-bottom:8px;">优化方案 V1</div>' +
+      '<div style="font-size:13px;color:#555;max-height:300px;overflow-y:auto;">' + renderMarkdown(d.revision) + '</div>');
+      versionOne.appendChild(opt);
+      results.appendChild(versionOne);
+      versionSections.push({ version: 1, element: versionOne });
+      selectedDirection = d.selected_direction || selectedDirection || {};
+      versionHistory.push({number: 1, solution: d.revision, initial: d.initial_proposal, critic: d.critic, version: d.version || {}, direction: selectedDirection});
+      showVersion(1);
+
+    // 进入"方案已出"阶段：聊天框作为反馈入口（可对话、可反馈、有对比）
+    phase = "done";
+    currentSolution = d.revision;
+    currentReview = d.critic;
+    saveSession();
+    addMsg("ai", '方案 V1 已生成（上方），并已评图。你可以直接告诉我哪里不满意（如“入口太封闭，希望更开放”），我会对比改动后迭代出 V2。也可以继续聊设计想法。');
+
+    scrollToBottom();
+  } catch (e) {
+    loading.remove();
+    const err = document.createElement("div");
+    err.style.cssText = "color:#c0392b;font-size:13px;padding:8px;";
+    err.textContent = "方案生成失败：" + e.message;
+    results.appendChild(err);
+  }
+}
+
+function renderStoredVersions() {
+  const results = document.getElementById("results");
+  results.style.display = "block";
+  results.innerHTML = '<div style="font-size:15px;font-weight:700;margin:14px 0;">方案版本记录</div>';
+  versionSections = [];
+  versionHistory.forEach(item => {
+    const section = document.createElement("section");
+    section.className = "version-section";
+    section.style.cssText = "background:#fff;border:1px solid #e5e5e5;padding:14px;margin-top:10px;";
+    const meta = item.version || {};
+    section.innerHTML = sanitizeHtml('<div style="font-weight:700;">V' + item.number + ' · ' + escapeHtml(meta.direction || selectedDirection.name || '设计方案') + '</div>' +
+      (meta.feedback ? '<div style="font-size:12px;color:#777;margin:5px 0;">本轮反馈：' + escapeHtml(meta.feedback) + '</div>' : '') +
+      '<div style="font-size:13px;max-height:360px;overflow:auto;">' + renderMarkdown(item.solution || '') + '</div>');
+    results.appendChild(section);
+    versionSections.push({version: item.number, element: section});
+  });
+  showVersion(currentVersion || versionHistory[versionHistory.length - 1].number);
+}
+
+function loadDemoPreset() {
+  const preset = "我想改造一座乡村民宿，场地是村口的旧粮仓，主要接待周末来住的亲子家庭。希望孩子能亲近田地，家长可以放松；预算有限，必须保留旧木架，先做6间客房。";
+  const input = document.getElementById("msgInput");
+  input.value = preset;
+  input.focus();
+}
+
+function exportProcess() {
+  const lines = ["# ArchAI 人机协同设计过程", "", "## 原始任务", initialTask || "尚未开始", "", "## AI 当前理解"];
+  Object.entries(knownFacts || {}).forEach(([key, value]) => lines.push("- " + key + "：" + value));
+  lines.push("", "## 学生选择的方向", selectedDirection.name || "尚未选择", "", "## 版本记录");
+  versionHistory.forEach(item => {
+    lines.push("", "### V" + item.number, "反馈：" + ((item.version || {}).feedback || "初版"), "", item.solution || "");
+  });
+  const blob = new Blob([lines.join("\n")], {type:"text/markdown;charset=utf-8"});
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "ArchAI-设计过程.md";
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+// ── 初始化 ─────────────────────────
+window.onload = function() {
+  // 若从 URL 带任务过来，直接开始讨论
+  const params = new URLSearchParams(window.location.search);
+  const task = params.get("task");
+  if (restoreSession()) {
+    document.getElementById("msgInput").placeholder = "继续输入你的想法…";
+  } else if (task) {
+    document.getElementById("msgInput").placeholder = "继续输入你的想法…";
+    startDiscussion(task);
+  } else {
+    addMsg("ai", "你好，我是 ArchAI 设计导师。请告诉我你想设计什么，我们可以一起探讨。");
+    document.getElementById("msgInput").placeholder = "例如：我想设计一个乡村民宿，保留乡村感觉…";
+  }
+
+  // 回车发送
+  document.getElementById("msgInput").addEventListener("keydown", e => {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+};
+</script>
+</body>
+</html>

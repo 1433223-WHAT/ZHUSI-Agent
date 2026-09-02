@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArchAI — 建筑设计智能助手</title>
+<script src="vendor/marked.min.js"></script>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #e94560;
+    --bg: #f5f5f7;
+    --card: #ffffff;
+    --text: #2d2d2d;
+    --muted: #888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  header {
+    background: var(--primary);
+    color: white;
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .logo {
+    width: 48px;
+    height: 48px;
+    background: var(--accent);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  header h1 { font-size: 22px; }
+  header p { color: rgba(255,255,255,0.7); font-size: 13px; }
+
+  main { max-width: 960px; margin: 0 auto; padding: 32px 20px; }
+
+  .input-area {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 90px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 15px;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.2s;
+  }
+
+  textarea:focus { outline: none; border-color: var(--accent); }
+
+  .btn-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .analyze-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 12px 32px;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .analyze-btn:hover { opacity: 0.9; }
+  .analyze-btn:disabled { opacity: 0.5; cursor: wait; }
+
+  .quick-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  .quick-q {
+    background: #f0f0f2;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+
+  .quick-q:hover { background: #e6e6ea; border-color: var(--accent); }
+
+  .api-config {
+    margin-top: 14px;
+    padding: 12px;
+    background: #fafafa;
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .api-config input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 6px 10px;
+    margin-top: 4px;
+    font-size: 12px;
+    font-family: monospace;
+  }
+
+  .loading {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    color: var(--muted);
+  }
+
+  .loading.visible { display: block; }
+  .spinner {
+    width: 28px; height: 28px;
+    border: 3px solid #e0e0e0;
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 10px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .results { margin-top: 24px; }
+
+  /* 左右分栏布局 */
+  .split-layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .answer-panel {
+    flex: 0.8;
+    min-width: 0;
+  }
+
+  .image-panel {
+    flex: 1.2;
+    min-width: 0;
+  }
+
+  .answer-card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    font-size: 15px;
+  }
+
+  .answer-scroll {
+    /* 不设固定高度，页面整体滚动（问题5修复） */
+    padding-right: 8px;
+  }
+
+  .answer-scroll h2 { font-size: 18px; margin: 16px 0 8px; color: var(--primary); }
+  .answer-scroll h3 { font-size: 16px; margin: 14px 0 6px; color: var(--primary); }
+  .answer-scroll ul { margin: 6px 0 6px 20px; }
+  .answer-scroll li { margin: 4px 0; }
+  .answer-scroll strong { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .split-layout { flex-direction: column; }
+  }
+
+  .answer-card h3 {
+    margin-bottom: 12px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title {
+    margin: 28px 0 14px;
+    font-size: 18px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .image-card {
+    background: var(--card);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.2s;
+  }
+
+  .image-card:hover { transform: translateY(-3px); }
+
+  .image-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    background: #eee;
+  }
+
+  .image-card .info {
+    padding: 14px;
+  }
+
+  .image-card .caption {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .image-card .reason {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .image-card .case-tag {
+    display: inline-block;
+    margin-top: 8px;
+    background: #eef2f7;
+    color: #335;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+  }
+
+  /* 设计策略标签 */
+  .topic-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .topic-tag {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .error-msg {
+    background: #fdecea;
+    color: #b00020;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 14px;
+    font-size: 14px;
+    display: none;
+  }
+
+  /* 设置按钮（header 右上角） */
+  .settings-btn {
+    margin-left: auto;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .settings-btn:hover { background: rgba(255,255,255,0.2); }
+
+  /* 设置弹窗 */
+  .settings-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .settings-content {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  }
+  .settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .settings-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #888;
+  }
+  .settings-content input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 13px;
+    font-family: monospace;
+    box-sizing: border-box;
+  }
+  .save-config {
+    width: 100%;
+    margin-top: 16px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .save-config:hover { opacity: 0.9; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AI</div>
+  <div>
+    <h1>ArchAI 建筑设计智能助手</h1>
+    <p>建筑案例理解 + 设计策略迁移 + 视觉知识检索</p>
+  </div>
+  <button class="settings-btn" onclick="toggleSettings()">⚙ 设置</button>
+</header>
+
+<main>
+  <div class="input-area">
+    <textarea id="question" placeholder="输入你的建筑设计问题，例如：如何把光之教堂的空间精神性应用到纪念馆？"></textarea>
+    <div class="btn-row">
+      <button class="analyze-btn" id="analyzeBtn" onclick="analyze()">开始分析</button>
+      <span style="font-size:12px;color:#888;">或选择示例问题：</span>
+    </div>
+    <div class="quick-questions">
+      <button class="quick-q" onclick="setQ(this)">如何利用自然光创造精神性空间？</button>
+      <button class="quick-q" onclick="setQ(this)">设计一个 200㎡ 的小型纪念馆</button>
+      <button class="quick-q" onclick="setQ(this)">比较光之教堂和金贝尔的采光策略</button>
+      <button class="quick-q" onclick="setQ(this)">如何把卒姆托的材料感知应用到展厅？</button>
+      <button class="quick-q" onclick="setQ(this)">流动空间如何在展览建筑中实现？</button>
+    </div>
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+
+  <!-- 设置弹窗（默认隐藏，右上角 ⚙ 打开） -->
+  <div class="settings-modal" id="settingsModal" style="display:none;">
+    <div class="settings-content">
+      <div class="settings-header">
+        <span>ArchAI 后端状态</span>
+        <button class="settings-close" onclick="toggleSettings()">✕</button>
+      </div>
+      <p style="font-size:12px;color:#888;margin-bottom:12px;">本演示通过本地后端代理连接 Dify 知识库 + DeepSeek 生成，API Key 保存在服务端，不出现在浏览器。</p>
+      <div id="backendStatus" style="font-size:13px;padding:10px;border-radius:8px;background:#f6f6f6;margin-bottom:12px;">检测中…</div>
+      <div style="font-size:12px;color:#666;line-height:1.8;">
+        <b>启动后端：</b><br>
+        <code style="background:#eee;padding:2px 6px;border-radius:4px;">cd ArchAI_Builder && python server.py</code>
+      </div>
+      <button class="save-config" onclick="toggleSettings()" style="margin-top:12px;">知道了</button>
+    </div>
+  </div>
+
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <span>ArchAI 正在分析建筑问题并检索视觉案例…</span>
+  </div>
+
+  <div class="results" id="results" style="display:none;">
+    <div class="split-layout">
+      <!-- 左侧：文字分析 -->
+      <div class="answer-panel">
+        <div class="answer-card" id="answerBox">
+          <h3>📋 建筑分析</h3>
+          <div id="answerText" class="answer-scroll"></div>
+        </div>
+        <div class="section-title" style="margin-top:20px;">🧩 相关案例</div>
+        <div id="relatedCases" style="display:flex;flex-wrap:wrap;gap:12px;"></div>
+      </div>
+
+      <!-- 右侧：图片卡片 -->
+      <div class="image-panel">
+        <div class="section-title" style="margin-top:0;">📷 参考案例图片</div>
+        <div class="image-grid" id="imageGrid"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>ArchAI — AI 建筑知识自动构建与推理系统 · 演示版 v0.1</footer>
+
+<script>
+// ── 配置 ──────────────────────────────────────────────
+const DIFY_API_BASE = "https://api.dify.ai/v1";
+const IMAGE_INDEX_PATH = "../ArchAI_Image_DB/image_index.frontend.json";
+
+// 概念映射（与 search_images.py 保持一致）
+// 值 = {tags: 英文技术标签, topics: 中文 design_topics 同义词, transfer: 中文 design_transfer 同义词}
+const CONCEPT_MAP = {
+  "自然光": { tags: ["natural_light", "light"] },
+  "光": { tags: ["natural_light", "light", "light_shadow"] },
+  "采光": { tags: ["natural_light", "light", "top_light"] },
+  "光影": { tags: ["light_shadow", "natural_light"] },
+  "光环境": { tags: ["natural_light", "light"], topics: ["光环境"] },
+  "明暗对比": { topics: ["明暗对比"], tags: ["light_shadow", "contrast"] },
+  "单一光源": { topics: ["单一光源"] },
+  "光路径": { tags: ["light_path"], topics: ["光路径"] },
+  "光线": { tags: ["light", "natural_light"] },
+  "清水混凝土": { tags: ["concrete"], topics: ["清水混凝土"] },
+  "混凝土": { tags: ["concrete"] },
+  "材料": { tags: ["material", "concrete", "texture"] },
+  "质感": { tags: ["material", "texture"] },
+  "材料表达": { tags: ["material", "texture"], topics: ["材料表达"] },
+  "材料与光": { topics: ["材料与光协同"], tags: ["material", "light"] },
+  "空间组织": { tags: ["geometry", "circulation", "spatial_sequence"], topics: ["空间组织"] },
+  "空间序列": { tags: ["spatial_sequence", "circulation"], topics: ["空间序列"] },
+  "平面组织": { topics: ["空间组织", "平面布局"], tags: ["geometry"] },
+  "平面图": { topics: ["平面布局"], tags: ["geometry"] },
+  "动线": { tags: ["circulation", "spatial_sequence"], topics: ["动线分析"] },
+  "流线": { tags: ["circulation"] },
+  "几何": { tags: ["geometry"] },
+  "布局": { tags: ["geometry", "circulation"] },
+  "体量": { topics: ["体量组合"], tags: ["geometry"] },
+  "剖面": { tags: ["section", "vertical_sequence", "light_path"], topics: ["剖面关系"] },
+  "高度": { tags: ["section", "vertical_sequence"] },
+  "压缩释放": { topics: ["压缩释放"], tags: ["compression"] },
+  "序列": { topics: ["空间序列"], tags: ["spatial_sequence"] },
+  "氛围": { tags: ["atmosphere", "space_photo"] },
+  "精神": { tags: ["spiritual_space", "atmosphere"], topics: ["精神性空间", "空间体验"] },
+  "精神性": { tags: ["spiritual_space", "atmosphere"], topics: ["精神性空间", "空间体验"] },
+  "精神性空间": { topics: ["精神性空间", "空间体验"] },
+  "神圣": { tags: ["spiritual_space", "atmosphere"], topics: ["精神性空间"] },
+  "安静": { tags: ["atmosphere"] },
+  "静谧": { tags: ["atmosphere"] },
+  "内省": { tags: ["atmosphere", "spiritual_space"] },
+  "空间体验": { topics: ["空间体验"], tags: ["experience", "atmosphere"] },
+  "叙事": { topics: ["空间叙事"] },
+  "纪念馆": { topics: ["精神性空间"], transfer: ["纪念空间", "冥想空间"] },
+  "纪念": { topics: ["精神性空间"], transfer: ["纪念空间", "冥想空间"] },
+  "纪念建筑": { transfer: ["纪念空间"] },
+  "冥想": { transfer: ["冥想空间"] },
+  "冥想空间": { transfer: ["冥想空间"] },
+  "展览": { transfer: ["展览空间"] },
+  "展厅": { transfer: ["展览空间"] },
+  "博物馆": { tags: ["museum"], transfer: ["博物馆"] },
+  "公共建筑": { transfer: ["小型公共建筑"] },
+  "宗教": { tags: ["spiritual_space"], transfer: ["宗教空间"] },
+  "教堂": { transfer: ["宗教空间"] },
+  "住宅": { tags: ["residential"], transfer: ["住宅设计"] },
+  "屋顶": { tags: ["roof", "top_light"] },
+  "水疗": { tags: ["spa", "water"] },
+  "休闲": { tags: ["spa", "relaxation"] },
+  "设计": { topics: ["空间组织", "空间序列"] },
+  "方案": { topics: ["空间组织", "空间序列"] },
+};
+
+let imageDB = null; // 全局图片索引
+
+// ── 初始化：加载图片索引 ─────────────────────────────
+async function init() {
+  try {
+    const resp = await fetch(IMAGE_INDEX_PATH);
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    const data = await resp.json();
+    imageDB = data;
+    console.log("Image DB loaded:", imageDB.total_images, "images");
+  } catch (e) {
+    console.error("Failed to load image index:", e);
+    showError("无法加载图片索引。请用 python -m http.server 运行本页面。");
+  }
+}
+
+// ── 快捷问题 ─────────────────────────────────────────
+function setQ(btn) {
+  document.getElementById("question").value = btn.textContent;
+  analyze();
+}
+
+function showError(msg) {
+  const el = document.getElementById("errorMsg");
+  el.textContent = msg;
+  el.style.display = "block";
+}
+
+function clearError() {
+  document.getElementById("errorMsg").style.display = "none";
+}
+
+// ── 设置弹窗 ─────────────────────────────────────────
+function toggleSettings() {
+  const modal = document.getElementById("settingsModal");
+  modal.style.display = modal.style.display === "none" ? "flex" : "none";
+  if (modal.style.display === "flex") checkBackend();
+}
+
+async function checkBackend() {
+  const el = document.getElementById("backendStatus");
+  if (!el) return;
+  try {
+    const resp = await fetch(API_BASE + "/api/health", { timeout: 5000 });
+    if (resp.ok) {
+      el.innerHTML = "🟢 <b>后端已连接</b> — Dify 知识库 + DeepSeek 就绪，可直接提问。";
+      el.style.background = "#e8f7ee";
+    } else {
+      throw new Error("HTTP " + resp.status);
+    }
+  } catch (e) {
+    el.innerHTML = "🔴 <b>后端未连接</b> — 请先运行：<code style='background:#ddd;padding:2px 6px;border-radius:4px;'>python server.py</code>";
+    el.style.background = "#fdeaea";
+  }
+}
+
+function saveConfig() {
+  // 代理模式下无需前端保存 API Key，保留空函数兼容旧调用
+  toggleSettings();
+}
+
+// ── 图片检索（前端版 search_images）─────────────────
+function matchScore(meta, keywords, field) {
+  if (!keywords || keywords.length === 0) return 0;
+  const values = meta[field] || [];
+  let score = 0;
+  for (const kw of keywords) {
+    for (const v of values) {
+      // 子串匹配（中文同义）
+      if (v.includes(kw) || kw.includes(v)) score += 1;
+    }
+  }
+  return score;
+}
+
+function searchImages(query, topN = 4) {
+  if (!imageDB) return [];
+  const images = imageDB.images || [];
+
+  // 解析查询 → 三层关键词
+  let tagKeywords = [];
+  let topicKeywords = [];
+  let transferKeywords = [];
+
+  for (const [concept, mapping] of Object.entries(CONCEPT_MAP)) {
+    if (query.includes(concept)) {
+      if (mapping.tags) tagKeywords.push(...mapping.tags);
+      if (mapping.topics) topicKeywords.push(...mapping.topics);
+      if (mapping.transfer) transferKeywords.push(...mapping.transfer);
+    }
+  }
+
+  // 整句也作为潜在匹配词
+  if (topicKeywords.length === 0 && transferKeywords.length === 0) {
+    topicKeywords.push(query);
+  }
+
+  // 案例名命中（含简称）：案例名去掉"艺术博物馆"等后缀后出现在查询中
+  function caseHit(caseCn, caseEn) {
+    if (caseEn && query.toLowerCase().includes(caseEn.toLowerCase())) return true;
+    if (caseCn && query.includes(caseCn)) return true;
+    if (caseCn) {
+      for (const sfx of ["艺术博物馆", "德国馆", "温泉浴场", "长屋", "别墅", "教堂"]) {
+        if (caseCn.endsWith(sfx)) {
+          const short = caseCn.slice(0, -sfx.length);
+          if (short.length >= 2 && query.includes(short)) return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  const scored = [];
+  for (const img of images) {
+    let score = 0;
+    // 第一优先级：案例名直接匹配（用户指定案例时优先）
+    if (caseHit(img.case || "", img.case_en || "")) score += 100;
+    // 建筑师名匹配
+    if (img.architect && query.includes(img.architect)) score += 50;
+    // 图片类型匹配（用户说"平面图" → 优先 plan）
+    if (query.includes("平面图") && img.image_type === "plan") score += 30;
+    if (query.includes("剖面图") && img.image_type === "section") score += 30;
+    if ((query.includes("照片") || query.includes("内部") || query.includes("实景")) && img.image_type === "space_photo") score += 15;
+    // 设计任务 boost：用户要"设计XX" → 优先分析图
+    if ((query.includes("设计") || query.includes("方案") || query.includes("帮我做")) && img.image_type === "analysis_diagram") score += 20;
+
+    score += matchScore(img, transferKeywords, "design_transfer") * 3;
+    score += matchScore(img, topicKeywords, "design_topics") * 2;
+    score += matchScore(img, tagKeywords, "tags") * 1;
+    score += matchScore(img, topicKeywords, "spatial_strategy") * 2;
+    if (score > 0) scored.push({ score, img });
+  }
+
+  // 按得分排序
+  scored.sort((a, b) => b.score - a.score);
+
+  // 案例多样性重排：避免同一案例图片过多
+  // 规则：查询点名案例优先填满 topN；其他案例最多 2 张
+  const namedCases = new Set();
+  for (const { img } of scored) {
+    if (caseHit(img.case || "", img.case_en || "")) {
+      namedCases.add(img.case_en || img.case);
+    }
+  }
+  const caseCount = {};
+  const diversified = [];
+  for (const { score, img } of scored) {
+    const key = img.case_en || img.case;
+    const count = caseCount[key] || 0;
+    // 点名案例：单案例填满 topN，多案例均分；其他案例最多 2 张
+    let cap = 2;
+    if (namedCases.has(key)) cap = (namedCases.size === 1) ? topN : Math.max(2, Math.floor(topN / namedCases.size));
+    if (count < cap) {
+      caseCount[key] = count + 1;
+      diversified.push(img);
+    }
+    if (diversified.length >= topN) break;
+  }
+
+  // 如果去重后不够 topN，再补充分数最高的
+  if (diversified.length < topN) {
+    for (const { score, img } of scored) {
+      if (!diversified.includes(img)) {
+        diversified.push(img);
+        if (diversified.length >= topN) break;
+      }
+    }
+  }
+
+  return diversified.slice(0, topN);
+}
+
+// ── Dify 检索 ────────────────────────────────────────
+async function retrieveFromDify(query, apiKey, datasetId) {
+  const url = `${DIFY_API_BASE}/datasets/${datasetId}/retrieve`;
+  const resp = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + apiKey,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query: query,
+      retrieval_model: {
+        search_method: "semantic_search",
+        reranking_enable: true,
+        top_k: 3,
+        score_threshold_enabled: false
+      }
+    })
+  });
+  if (!resp.ok) {
+    const errText = await resp.text();
+    throw new Error("Dify API HTTP " + resp.status + ": " + errText.slice(0, 200));
+  }
+  const data = await resp.json();
+  const records = data.records || [];
+  return records.map(r => r.segment.content).join("\n\n---\n\n");
+}
+
+// ── 图片卡片渲染 ────────────────────────────────────
+function renderImageCard(img, index) {
+  const card = document.createElement("div");
+  card.className = "image-card";
+  // 图片路径修正：index 里的 path 相对 ArchAI_Builder 根目录，demo 页面在 /demo/ 下需加 ../
+  const imagePath = "../" + img.path;
+  // 设计策略标签（加分项：展示图片对应的可迁移设计主题）
+  const topicTags = (img.design_topics || []).slice(0, 3)
+    .map(t => `<span class="topic-tag">✓ ${t}</span>`).join("");
+  card.innerHTML = `
+    <img src="${imagePath}" alt="${img.description}" loading="lazy"
+         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22200%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23eee%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 fill=%22%23999%22 font-size=%2214%22 text-anchor=%22middle%22%3E${img.case}%3C/text%3E%3C/svg%3E';this.onerror=null;">
+    <div class="info">
+      <div class="caption">${img.caption || img.description}</div>
+      <div class="reason">${img.reason || img.recommended_usage || ""}</div>
+      ${topicTags ? `<div class="topic-tags">${topicTags}</div>` : ""}
+      <div class="case-tag">${img.case} · ${img.architect}</div>
+    </div>
+  `;
+  return card;
+}
+
+// ── 推荐案例（从图片反推）───────────────────────────
+function getRelatedCases(images) {
+  const seen = new Set();
+  const cases = [];
+  for (const img of images) {
+    const key = img.case_en || img.case;
+    if (!seen.has(key)) {
+      seen.add(key);
+      cases.push({ case: img.case, case_en: img.case_en, architect: img.architect, count: 0 });
+    }
+    const c = cases.find(x => (x.case_en || x.case) === key);
+    if (c) c.count++;
+  }
+  return cases;
+}
+
+// ── 主流程 ──────────────────────────────────────────
+// 后端代理地址（key 在服务端 .env，不暴露给浏览器）
+const API_BASE = "http://127.0.0.1:8787";
+
+async function analyze() {
+  clearError();
+  const question = document.getElementById("question").value.trim();
+  if (!question) { showError("请输入设计问题"); return; }
+
+  // UI 状态
+  document.getElementById("loading").classList.add("visible");
+  document.getElementById("analyzeBtn").disabled = true;
+  document.getElementById("results").style.display = "none";
+
+  try {
+    // 1. 图片检索（本地，快）
+    const matchedImages = searchImages(question, 4);
+    console.log("Matched images:", matchedImages.length);
+
+    // 2. 后端完整闭环：图片 + 文本检索 + DeepSeek 生成方案
+    let answerText = "";
+    let serverImages = null;
+    try {
+      const resp = await fetch(API_BASE + "/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: question }),
+      });
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.error || "HTTP " + resp.status);
+      }
+      const data = await resp.json();
+      answerText = data.answer || "";
+      if (data.images && data.images.length > 0) serverImages = data.images;
+    } catch (e) {
+      console.error("Backend error:", e);
+      answerText = "⚠️ 后端生成失败：" + e.message + "\n\n请确认已运行 `python server.py`（在 ArchAI_Builder 目录）。";
+    }
+
+    // 若后端返回了图片，用后端结果（更权威）；否则用本地检索
+    const displayImages = serverImages || matchedImages;
+
+    // 3. 渲染（Markdown 解析）
+    const answerEl = document.getElementById("answerText");
+    if (window.marked) {
+      answerEl.innerHTML = marked.parse(answerText);
+    } else {
+      answerEl.textContent = answerText;
+    }
+
+    // 图片卡片
+    const grid = document.getElementById("imageGrid");
+    grid.innerHTML = "";
+    displayImages.forEach((img, i) => {
+      grid.appendChild(renderImageCard(img, i));
+    });
+
+    // 相关案例
+    const relBox = document.getElementById("relatedCases");
+    relBox.innerHTML = "";
+    const related = getRelatedCases(displayImages);
+    related.forEach(c => {
+      const chip = document.createElement("div");
+      chip.style.cssText = "background:#fff;border:1px solid #ddd;border-radius:12px;padding:12px 18px;font-size:14px;";
+      chip.innerHTML = `<b>${c.case}</b> <span style="color:#888;">(${c.architect})</span>`;
+      relBox.appendChild(chip);
+    });
+
+    document.getElementById("results").style.display = "block";
+
+  } catch (e) {
+    console.error("Analysis error:", e);
+    showError("分析出错：" + e.message);
+  } finally {
+    document.getElementById("loading").classList.remove("visible");
+    document.getElementById("analyzeBtn").disabled = false;
+  }
+}
+
+// 初始化
+init();
+</script>
+
+</body>
+</html>
