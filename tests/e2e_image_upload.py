@@ -2,8 +2,7 @@ import io
 import json
 import tempfile
 import threading
-from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 
 from PIL import Image, ImageDraw
@@ -11,6 +10,9 @@ from playwright.sync_api import sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT))
+from server import ArchAIHandler
 
 
 with tempfile.TemporaryDirectory() as temp_dir:
@@ -20,8 +22,7 @@ with tempfile.TemporaryDirectory() as temp_dir:
     draw.rectangle((40, 40, 600, 380), outline="black", width=5)
     image.save(image_path)
 
-    handler = partial(SimpleHTTPRequestHandler, directory=str(ROOT))
-    httpd = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+    httpd = ThreadingHTTPServer(("127.0.0.1", 0), ArchAIHandler)
     threading.Thread(target=httpd.serve_forever, daemon=True).start()
     base = f"http://127.0.0.1:{httpd.server_port}/demo/collaborator.html"
 
@@ -48,11 +49,13 @@ with tempfile.TemporaryDirectory() as temp_dir:
         page.route("**/api/analyze_image", analyze_handler)
         page.goto(base, wait_until="networkidle")
         page.fill("#input", "请分析入口与人流，但不要猜测尺寸")
-        page.locator("#fileInput").set_input_files(str(image_path))
-        page.wait_for_function("!document.querySelector('#attachBtn').disabled")
+        with page.expect_response("**/api/analyze_image") as response_info:
+            page.locator("#fileInput").set_input_files(str(image_path))
+        assert response_info.value.ok
+        page.get_by_text("图片中明确可见（几何/图形）", exact=True).wait_for(timeout=5000)
 
         files = page.locator("#filesContent")
-        assert files.get_by_text("图片中明确可见", exact=True).count() == 1
+        assert files.get_by_text("图片中明确可见（几何/图形）", exact=True).count() == 1
         assert files.get_by_text("图中可见一个矩形边界", exact=False).count() == 1
         assert files.get_by_text("AI推测（不是已确认事实）", exact=True).count() == 1
         assert files.get_by_text("可能表示场地边界", exact=False).count() == 1

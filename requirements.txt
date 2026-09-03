@@ -1,4 +1,7 @@
 requests
+numpy
+torch
+transformers
 python-docx
 pypdf
 Pillow

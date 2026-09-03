@@ -45,6 +45,13 @@ class WindowsLauncherContractTests(unittest.TestCase):
         self.assertIn("停止筑思Agent.bat", readme)
         self.assertIn("真实限制", readme)
         self.assertNotIn("生成完整方案", readme)
+        self.assertIn("http://127.0.0.1:8787/", readme)
+        self.assertIn("tools/build_web_release.ps1", readme)
+        self.assertIn("Cloudflare Named Tunnel", readme)
+        self.assertIn("cloudflared tunnel run", readme)
+        self.assertNotIn("127.0.0.1:8000", readme)
+        self.assertNotIn("http.server 8000", readme)
+        self.assertNotIn("前端端口 8000", readme)
 
 
 if __name__ == "__main__":

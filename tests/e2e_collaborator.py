@@ -1,13 +1,16 @@
 import json
 import threading
-from functools import partial
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
+import sys
+sys.path.insert(0, str(ROOT))
+from server import ArchAIHandler
+
 SHOT = ROOT / "demo" / "collaborator-e2e.png"
 
 
@@ -29,8 +32,7 @@ def state(project_type="", users="", knowledge=None, changes=None, versions=None
     }
 
 
-handler = partial(SimpleHTTPRequestHandler, directory=str(ROOT))
-httpd = ThreadingHTTPServer(("127.0.0.1", 0), handler)
+httpd = ThreadingHTTPServer(("127.0.0.1", 0), ArchAIHandler)
 threading.Thread(target=httpd.serve_forever, daemon=True).start()
 base = f"http://127.0.0.1:{httpd.server_port}/demo/collaborator.html"
 

@@ -72,8 +72,29 @@ class SingleOriginWebReleaseTests(unittest.TestCase):
         self.assertNotIn(':8787/api/', source)
         self.assertNotIn(':8000', source)
 
+    def test_browser_flows_run_against_the_real_single_origin_handler(self):
+        for filename in (
+            "e2e_collaborator.py",
+            "e2e_document_upload.py",
+            "e2e_image_upload.py",
+        ):
+            source = (ROOT / "tests" / filename).read_text(encoding="utf-8")
+            with self.subTest(filename=filename):
+                self.assertIn("ArchAIHandler", source)
+                self.assertNotIn("SimpleHTTPRequestHandler", source)
+
 
 class WebReleaseBuilderTests(unittest.TestCase):
+    def test_requirements_declare_existing_local_retrieval_runtime(self):
+        requirements = {
+            line.split(";", 1)[0].strip().lower()
+            for line in (ROOT / "requirements.txt").read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        }
+        for package in ("numpy", "torch", "transformers"):
+            with self.subTest(package=package):
+                self.assertIn(package, requirements)
+
     def test_release_builder_uses_allowlist_and_excludes_private_files(self):
         script = ROOT / "tools" / "build_web_release.ps1"
         with tempfile.TemporaryDirectory() as temp_dir:
