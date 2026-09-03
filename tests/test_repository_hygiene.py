@@ -38,6 +38,8 @@ class RepositoryHygieneTests(unittest.TestCase):
             "_backup_*/",
             "output/",
             "downloads/",
+            ".local-tools/",
+            ".cloudflared/",
             "server_check.*",
             "_test_callai_*.py",
         }

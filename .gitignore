@@ -25,5 +25,6 @@ _test_callai_*.py
 
 # Local release artifacts and tunnel credentials
 releases/
+.local-tools/
 .cloudflared/
 *.pem
