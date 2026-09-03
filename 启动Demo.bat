@@ -4,8 +4,7 @@ chcp 65001 >nul
 cd /d "%~dp0"
 
 set "BACKEND_PORT=8787"
-set "FRONTEND_PORT=8000"
-set "APP_URL=http://127.0.0.1:%FRONTEND_PORT%/demo/collaborator.html"
+set "APP_URL=http://127.0.0.1:%BACKEND_PORT%/demo/collaborator.html"
 set "HEALTH_URL=http://127.0.0.1:%BACKEND_PORT%/api/health"
 
 echo.
@@ -44,16 +43,14 @@ if errorlevel 1 (
     goto :failed
 )
 
-for %%P in (%BACKEND_PORT% %FRONTEND_PORT%) do (
-    powershell -NoProfile -Command "if (Get-NetTCPConnection -State Listen -LocalPort %%P -ErrorAction SilentlyContinue) { exit 1 }"
-    if errorlevel 1 (
-        echo  [错误] 端口 %%P 已被占用。请先运行 停止筑思Agent.bat，或关闭占用该端口的程序。
-        goto :failed
-    )
+powershell -NoProfile -Command "if (Get-NetTCPConnection -State Listen -LocalPort %BACKEND_PORT% -ErrorAction SilentlyContinue) { exit 1 }"
+if errorlevel 1 (
+    echo  [错误] 端口 %BACKEND_PORT% 已被占用。请先运行 停止筑思Agent.bat，或关闭占用该端口的程序。
+    goto :failed
 )
 
-echo  [1/4] 环境检查通过：%PYTHON_EXE%
-echo  [2/4] 启动后端服务（端口 %BACKEND_PORT%）...
+echo  [1/3] 环境检查通过：%PYTHON_EXE%
+echo  [2/3] 启动网页与 API 服务（端口 %BACKEND_PORT%）...
 start "筑思Agent-Backend" cmd /k ""%PYTHON_EXE%" server.py --port %BACKEND_PORT%"
 
 powershell -NoProfile -Command "$ok=$false; for ($i=0; $i -lt 20; $i++) { try { $r=Invoke-RestMethod -Uri '%HEALTH_URL%' -TimeoutSec 2; if ($r.status -eq 'ok') { $ok=$true; break } } catch {}; Start-Sleep -Milliseconds 500 }; if (-not $ok) { exit 1 }"
@@ -63,16 +60,14 @@ if errorlevel 1 (
     goto :failed
 )
 
-echo  [3/4] 后端健康检查通过。
-echo  [4/4] 启动前端服务（端口 %FRONTEND_PORT%）...
-start "筑思Agent-Frontend" cmd /k ""%PYTHON_EXE%" -m http.server %FRONTEND_PORT% --bind 127.0.0.1"
-
 powershell -NoProfile -Command "$ok=$false; for ($i=0; $i -lt 20; $i++) { try { $r=Invoke-WebRequest -UseBasicParsing -Uri '%APP_URL%' -TimeoutSec 2; if ($r.StatusCode -eq 200) { $ok=$true; break } } catch {}; Start-Sleep -Milliseconds 500 }; if (-not $ok) { exit 1 }"
 if errorlevel 1 (
-    echo  [错误] 前端未在 10 秒内就绪：%APP_URL%
-    echo         请查看“筑思Agent-Frontend”窗口中的错误信息。
+    echo  [错误] 主页面未在 10 秒内就绪：%APP_URL%
+    echo         请查看“筑思Agent-Backend”窗口中的错误信息。
     goto :failed
 )
+
+echo  [3/3] 后端健康检查与主页面检查通过。
 
 echo.
 echo  启动成功：%APP_URL%

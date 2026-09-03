@@ -23,11 +23,16 @@ class WindowsLauncherContractTests(unittest.TestCase):
 
         self.assertNotIn("timeout /t 3", script.lower())
         self.assertNotIn('cmd /k "python ', script.lower())
+        self.assertIn("BACKEND_PORT=8787", script)
+        self.assertIn("http://127.0.0.1:%BACKEND_PORT%/demo/collaborator.html", script)
+        self.assertNotIn("FRONTEND_PORT", script)
+        self.assertNotIn("http.server", script)
 
     def test_stop_script_is_scoped_to_project_ports_and_python(self):
         script = (ROOT / "停止筑思Agent.bat").read_text(encoding="utf-8-sig")
 
-        self.assertIn("8787,8000", script)
+        self.assertIn("$ports=8787", script)
+        self.assertNotIn("8000", script)
         self.assertIn("python", script.lower())
         self.assertIn("Read-Host", script)
         self.assertIn("Stop-Process", script)
