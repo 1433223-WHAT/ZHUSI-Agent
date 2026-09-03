@@ -25,9 +25,10 @@ import sys
 import io
 import base64
 import binascii
+import mimetypes
 from pathlib import Path
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlparse
+from urllib.parse import unquote, urlparse
 
 import requests
 
@@ -36,6 +37,25 @@ if sys.stdout:
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 BASE = Path(__file__).resolve().parent
+STATIC_ROOTS = {
+    "/demo/": BASE / "demo",
+    "/images/": BASE / "images",
+}
+
+
+def _resolve_static_path(url_path: str) -> Path | None:
+    """Resolve only files below the public demo and image roots."""
+    decoded = unquote(url_path)
+    for prefix, root in STATIC_ROOTS.items():
+        if not decoded.startswith(prefix):
+            continue
+        candidate = (root / decoded[len(prefix):]).resolve()
+        try:
+            candidate.relative_to(root.resolve())
+        except ValueError:
+            return None
+        return candidate if candidate.is_file() else None
+    return None
 
 # ── 从 .env 加载配置 ──────────────────────────────────────────────
 def _load_env() -> dict:
@@ -295,10 +315,23 @@ class ArchAIHandler(BaseHTTPRequestHandler):
         body = json.dumps(data, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
         self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _send_file(self, path: Path):
+        body = path.read_bytes()
+        content_type = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        if content_type.startswith("text/") or content_type in {
+            "application/javascript",
+            "application/json",
+            "image/svg+xml",
+        }:
+            content_type += "; charset=utf-8"
+        self.send_response(200)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("X-Content-Type-Options", "nosniff")
         self.end_headers()
         self.wfile.write(body)
 
@@ -309,8 +342,15 @@ class ArchAIHandler(BaseHTTPRequestHandler):
         path = urlparse(self.path).path
         if path == "/api/health":
             self._send(200, {"status": "ok", "service": "ArchAI Demo Backend"})
-        else:
-            self._send(404, {"error": "not found"})
+            return
+        if path == "/":
+            self._send_file(BASE / "demo" / "collaborator.html")
+            return
+        static_path = _resolve_static_path(path)
+        if static_path is not None:
+            self._send_file(static_path)
+            return
+        self._send(404, {"error": "not found"})
 
     def do_POST(self):
         path = urlparse(self.path).path
