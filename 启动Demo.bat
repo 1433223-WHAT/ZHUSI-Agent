@@ -14,15 +14,14 @@ echo  =============================================
 echo.
 
 set "PYTHON_EXE="
-for /f "delims=" %%P in ('where python 2^>nul') do if not defined PYTHON_EXE set "PYTHON_EXE=%%P"
-if not defined PYTHON_EXE (
-    echo  [错误] 未找到 Python，请先安装 Python 3.8 或更高版本。
-    goto :failed
+for /f "delims=" %%P in ('where python 2^>nul') do (
+    if not defined PYTHON_EXE (
+        "%%P" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)" >nul 2>nul
+        if not errorlevel 1 set "PYTHON_EXE=%%P"
+    )
 )
-
-"%PYTHON_EXE%" -c "import sys; raise SystemExit(0 if sys.version_info >= (3, 8) else 1)" >nul 2>nul
-if errorlevel 1 (
-    echo  [错误] Python 版本低于 3.8：%PYTHON_EXE%
+if not defined PYTHON_EXE (
+    echo  [错误] 未找到可运行的 Python 3.8 或更高版本。请检查 PATH 中的 Python 安装位置。
     goto :failed
 )
 
@@ -38,9 +37,15 @@ if not exist "requirements.txt" (
 
 "%PYTHON_EXE%" -c "import requests, docx, pypdf, PIL; import win32com.client" >nul 2>nul
 if errorlevel 1 (
-    echo  [错误] Python 依赖不完整，请运行：
-    echo         "%PYTHON_EXE%" -m pip install -r requirements.txt
-    goto :failed
+    echo  [提示] 正在安装核心依赖（requests / numpy / python-docx / pypdf / Pillow，约几十 MB）
+    "%PYTHON_EXE%" -m pip install -r requirements.txt
+    "%PYTHON_EXE%" -c "import requests, docx, pypdf, PIL; import win32com.client" >nul 2>nul
+    if errorlevel 1 (
+        echo  [错误] 依赖未安装成功，请手动执行后重试：
+        echo         "%PYTHON_EXE%" -m pip install -r requirements.txt
+        goto :failed
+    )
+    echo  [0/3] 核心依赖安装完成。
 )
 
 powershell -NoProfile -Command "if (Get-NetTCPConnection -State Listen -LocalPort %BACKEND_PORT% -ErrorAction SilentlyContinue) { exit 1 }"

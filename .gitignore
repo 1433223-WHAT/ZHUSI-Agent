@@ -1,30 +1,32 @@
-# API Keys and Secrets
+# ── 密钥与本地配置（绝对不能提交）──────────────────────
 .env
+.env.*
+!.env.example
 *.key
+*.pem
+config.local.json
 
-# Python caches and local tooling
+# ── Python ────────────────────────────────────────────
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.mypy_cache/
+*.egg-info/
+.venv/
+venv/
+env/
 
-# Runtime logs, generated/private outputs, and backups
+# ── 运行日志与临时产物 ────────────────────────────────
 *.log
-server_check.*
+tmp/
+temp/
+_output/
 output/
-downloads/
-_backup_*/
-/_audit_result.txt
-/_full_testC.txt
-/_reg_test.txt
-demo/shots/
-demo/*-e2e.png
-
-# Legacy connectivity probes contain local credentials; never publish them
-_test_callai_*.py
-
-# Local release artifacts and tunnel credentials
 releases/
-.local-tools/
-.cloudflared/
-*.pem
+
+# ── 系统文件 ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── 编辑器 ────────────────────────────────────────────
+.vscode/
+.idea/

@@ -123,7 +123,8 @@ def split_meta_feedback(message: str) -> tuple[list[str], str]:
                     meta_parts.append(seg)
                 else:
                     design_parts.append(seg)
-    return meta_parts, "".join(design_parts)
+    # 没有元反馈时无需改写原句，保留字段声明与新答案之间的标点边界。
+    return meta_parts, text if not meta_parts else "".join(design_parts)
 
 
 def _strip_meta_prefix(sent: str) -> tuple[str, str]:
@@ -300,6 +301,8 @@ def register_vision_facts(updated: dict, vision_items: list[dict], turn_id: int)
         statement = str(item.get("statement") or item.get("value") or "").strip()[:200]
         if not statement:
             continue
+        if any(c.get("origin") == "vision" and c.get("statement") == statement for c in candidates):
+            continue  # 同一原始陈述重传不能恢复已被纠正的候选。
         fid = f"vision-{turn_id}-{i}"
         candidates.append({
             "id": fid,
@@ -330,6 +333,7 @@ def record_drawing_fact(updated: dict, statement: str, turn_id: int) -> None:
     facts = updated.setdefault("drawing_facts", [])
     # 同主题判定：新陈述与旧陈述包含同一图面要素词（楼梯/窗/门/车库…）
     new_kw = _fact_keywords(statement)
+    identity = _contrastive_identity(statement)
     for f in facts:
         if f.get("statement") == statement:
             f["turn_id"] = turn_id
@@ -338,16 +342,24 @@ def record_drawing_fact(updated: dict, statement: str, turn_id: int) -> None:
         if f.get("status") == "superseded":
             continue
         old_kw = _fact_keywords(f.get("statement", ""))
-        if new_kw & old_kw and _DRAWING_CORRECT_RE.search(statement):
+        conflicts = (_matches_rejected_identity(f.get("statement", ""), identity)
+                     if identity else bool(new_kw & old_kw and _DRAWING_CORRECT_RE.search(statement)))
+        if conflicts:
             f["status"] = "superseded"
             f["superseded_by"] = statement
     # 视觉覆盖不变量：找可指向的同主题视觉事实
     vision_target = None
     for vf in _active_vision_facts(updated):
         vf_kw = _fact_keywords(vf.get("statement", ""))
-        if new_kw & vf_kw:
-            vision_target = vf.get("id") or "vision_unknown"
-            break
+        matches = (_matches_rejected_identity(vf.get("statement", ""), identity)
+                   if identity else bool(new_kw & vf_kw))
+        if matches:
+            vision_target = vision_target or vf.get("id") or "vision_unknown"
+            if identity:
+                vf["status"] = "superseded"
+                vf["superseded_by"] = statement
+            else:
+                break
     if vision_target:
         facts.append({
             "statement": statement,
@@ -374,6 +386,27 @@ def _fact_keywords(text: str) -> set[str]:
     return {w for w in _FACT_KEYWORDS if w in str(text)}
 
 
+def _contrastive_identity(message: str) -> tuple[str, str, str] | None:
+    """明确的 X不是Y，Z才是（Y），不依赖地名或建筑要素词表。"""
+    text = str(message).strip().rstrip("。.")
+    if re.search(r"[？?]|吗|可能|也许|好像|似乎|不确定|是不是", text):
+        return None
+    match = re.fullmatch(r"([^，,；;。]{1,60}?)不是([^，,；;。]{1,60})[，,；;]\s*([^，,；;。]{1,60}?)才是(.*)", text)
+    if not match:
+        return None
+    old, identity, new, repeated = (part.strip() for part in match.groups())
+    if repeated and repeated != identity:
+        return None
+    return old, identity, new
+
+
+def _matches_rejected_identity(statement: str, parts: tuple[str, str, str]) -> bool:
+    old, identity, _new = parts
+    text = re.sub(r"\s+", "", str(statement)).strip("。.")
+    old, identity = re.escape(old), re.escape(identity)
+    return bool(re.fullmatch(rf"{old}(?:是|为|有){identity}|{identity}(?:在|位于){old}", text))
+
+
 def detect_drawing_correction(message: str) -> str | None:
     """检测学生是否在纠正图面要素/数值（"车库西侧不是楼梯"）→ 返回提取的 statement。
 
@@ -391,6 +424,8 @@ def detect_drawing_correction(message: str) -> str | None:
     # 1) 疑问句 → 不是纠正（提问/判断请求）
     if _DRAWING_QUESTION_RE.search(msg):
         return None
+    if _contrastive_identity(msg):
+        return msg.strip(" ，。！？!?")[:200]
     # 2) 必须有被纠正对象：图面要素词 或 数值
     has_element = any(w in msg for w in _DRAWING_ELEMENT_WORDS)
     has_number = bool(_DRAWING_NUM_RE.search(msg))
@@ -540,11 +575,25 @@ def _replace_previous(state: dict, text: str, turn_id: int) -> bool:
     if not is_previous_answer_revision(text):
         return False
     all_history = [item for item in state.get("question_history", []) if item.get("dimension") in PROJECT_FIELDS]
+    # 显式字段 + 后续完整陈述，也是在提供新答案，不要求学生使用“改为”。
+    # 只识别已有项目字段；未知范围和疑问仍交给原澄清路径。
+    clauses = re.split(r"[，,；;。]\s*", text, maxsplit=1)
+    stated_dimension = ""
+    stated_value = ""
+    if len(clauses) == 2:
+        field_patterns = (("users", r"使用者|服务对象|人群"), ("site", r"场地|基地"),
+                          ("scale", r"面积|规模"), ("functions", r"功能"),
+                          ("goals", r"目标"), ("constraints", r"限制|预算"))
+        dimensions = [key for key, pattern in field_patterns if re.search(pattern, clauses[0])]
+        assertion = clauses[1].strip(" ，。；,;")
+        if (len(dimensions) == 1 and re.search(r"\S.{0,50}是\S.{1,80}$", assertion)
+                and not re.search(r"[？?]|(?:是否|是不是|可能|也许|好像|不确定|不知道)|(?:吗|呢)$", assertion)):
+            stated_dimension, stated_value = dimensions[0], assertion
     match = re.search(r"(?:修改为|改为|改成|换成|应该是|不是.+?是|放(?:在|到)|挪(?:到|向|去)|改(?:到|成|为|放)|还是放)\s*([^，。；,;]{2,40})", text)
-    if not match:
+    if not match and not stated_value:
         state["pending_clarification"] = "你想修改前面的哪一项？请同时告诉我新的答案。"
         return True
-    value = match.group(1).strip(" ，。；,;")
+    value = stated_value or match.group(1).strip(" ，。；,;")
     semantic_rules = (
         ("users", r"面向|群体|使用者|服务对象"), ("site", r"场地|基地|位于|河边|山地"),
         ("scale", r"面积|规模|平方米|平米|㎡"), ("functions", r"功能|活动|展陈|办公|会议"),
@@ -553,7 +602,7 @@ def _replace_previous(state: dict, text: str, turn_id: int) -> bool:
     semantic_dimension = next((key for key, pattern in semantic_rules if re.search(pattern, value)), "")
     answered = [item for item in all_history if item.get("answer")]
     fallback_dimension = (answered or all_history)[-1]["dimension"] if (answered or all_history) else ""
-    dimension = semantic_dimension or fallback_dimension
+    dimension = stated_dimension or semantic_dimension or fallback_dimension
     if not dimension:
         state["pending_clarification"] = "你想修改前面的哪一项？可以直接说使用者、场地、功能或其他具体内容。"
         return True
@@ -574,7 +623,9 @@ def update_state(state: dict | None, text: str, turn_id: int = 0) -> dict:
         updated["project"].setdefault(key, {})
     updated.setdefault("change_log", [])
     updated.setdefault("question_history", [])
-    updated.setdefault("pending_clarification", "")
+    # 澄清文字是当前轮的处理结果，不能作为下一轮的结论直接继承。
+    # 本轮仍不明确的撤销或修改会在下方重新产生澄清；原对话历史保留。
+    updated["pending_clarification"] = ""
     updated.setdefault("source_records", [])
     updated.setdefault("interaction_log", [])
     updated.setdefault("ai_contributions", [])
@@ -701,8 +752,12 @@ def update_state(state: dict | None, text: str, turn_id: int = 0) -> dict:
             updated["change_log"].append({"dimension": "project_type", "from": old, "to": project_type, "turn_id": turn_id})
         updated["project"]["project_type"] = _fact(project_type, text, turn_id)
 
+    site_assertion = _extract_site_assertion(text)
+    if site_assertion:
+        value, evidence = site_assertion
+        updated["project"]["site"] = _fact(value, evidence, turn_id)
+
     rules = {
-        "site": r"(?:场地|基地)(?:在|位于|是|选择)?\s*([^，。；,;]{2,60})",
         "users": r"(?:面向|服务于|使用者(?:是|为)?)\s*([^，。；,;]{2,40})",
         "scale": r"(\d+(?:\.\d+)?\s*(?:平方米|平米|㎡))",
     }
@@ -711,29 +766,48 @@ def update_state(state: dict | None, text: str, turn_id: int = 0) -> dict:
         if match:
             updated["project"][dimension] = _fact(match.group(1).strip(), match.group(0), turn_id)
 
-    # 功能清单抽取（V0.2 增强：让 state_summary 与 Router 能看到功能/动静信息）
-    function_terms = (
-        "阅览区|阅览|阅读区|自习室|自习区|儿童区|活动室|活动区|咖啡角|展厅|展览|办公室|办公区|"
-        "报告厅|小剧场|手工区|游戏区|书库|中庭|共享大厅|门厅|剧场|教室|会议室|健身房"
-    )
-    func_match = re.search(function_terms, text)
-    if func_match and not updated["project"]["functions"].get("value"):
-        # 抽取功能清单（最多取 6 个不同功能）
-        funcs = list(dict.fromkeys(re.findall(function_terms, text)))[:6]
-        relation = ""
-        if re.search(r"吵|热闹|活跃", text) and re.search(r"安静|静", text):
-            relation = "存在动静分区关系"
-        elif re.search(r"吵|热闹|活跃", text):
-            relation = "部分功能较吵"
-        if funcs:
-            value = "、".join(funcs) + (f"（{relation}）" if relation else "")
-            updated["project"]["functions"] = _fact(value, text, turn_id)
+    # 所有功能写入口共用同一提取规则。
+    function_value = _extract_function_value(text)
+    if function_value and not updated["project"]["functions"].get("value"):
+        updated["project"]["functions"] = _fact(function_value, text, turn_id)
 
     if re.search(r"我决定|我选择|就用|确定采用|保留这个", text):
         updated.setdefault("student_decisions", []).append({"value": text, "turn_id": turn_id, "source": "student"})
     if re.search(r"我的想法|我希望|我想让|设计意图", text):
         updated.setdefault("student_intent", []).append({"value": text, "turn_id": turn_id, "source": "student"})
     return updated
+
+
+def _extract_site_assertion(text: str) -> tuple[str, str] | None:
+    """普通场地写入需要陈述关系；回问和无新事实的提醒不能覆盖记忆。"""
+    for clause in re.split(r"[，,。；;！!\n]", text):
+        if (_DRAWING_QUESTION_RE.search(clause) or re.search(
+                r"吗|呢|哪里|哪儿|哪个|什么|怎么|是否|是不是|还是|有没有|"
+                r"可能|也许|好像|似乎|不确定", clause)):
+            continue
+        match = re.search(
+            r"(?:场地|基地)(?:(?:在|位于|是|为|选择|[:：])\s*([^，。；,;]{2,60})|"
+            r"([^，。；,;]{1,20}(?:是|有|临|靠|接)[^，。；,;]{1,40}))", clause)
+        if match:
+            return (match.group(1) or match.group(2)).strip(), match.group(0).strip()
+    return None
+
+
+def _extract_function_value(text: str) -> str:
+    """复用原有功能提取规则，供普通陈述和待回答问题共同使用。"""
+    function_terms = (
+        "阅览区|阅览|阅读区|自习室|自习区|儿童区|活动室|活动区|咖啡角|展厅|展览|办公室|办公区|"
+        "报告厅|小剧场|手工区|游戏区|书库|中庭|共享大厅|门厅|剧场|教室|会议室|健身房"
+    )
+    funcs = list(dict.fromkeys(re.findall(function_terms, text)))[:6]
+    if not funcs:
+        return ""
+    relation = ""
+    if re.search(r"吵|热闹|活跃", text) and re.search(r"安静|静", text):
+        relation = "存在动静分区关系"
+    elif re.search(r"吵|热闹|活跃", text):
+        relation = "部分功能较吵"
+    return "、".join(funcs) + (f"（{relation}）" if relation else "")
 
 
 def record_ai_question(state: dict, question: str, dimension: str, turn_id: int) -> dict:
@@ -769,6 +843,22 @@ def answer_pending_question(state: dict, answer: str, turn_id: int) -> dict:
         return updated  # 疑问句/不确定表达不是回答
     if re.search(r"帮我|请|分析|深化|看看|画|上传|评图|梳理|建议", text):
         return updated  # 请求/指令不是回答
+    if pending["dimension"] == "functions":
+        if re.search(r"我决定|我选择|就用|确定采用", text):
+            return updated
+        value = _extract_function_value(text)
+        if value:
+            pending["answer"] = answer
+            updated["project"]["functions"] = _fact(value, answer, turn_id)
+        return updated
+    if pending["dimension"] == "site":
+        # 「是」只能表明这是陈述，不能证明它回答了场地问题。
+        # 简短地点回答应带有空间落点；任务类型和对既有条件的提醒不应覆盖场地。
+        if not re.search(r"(?:边|侧|内|外|部|区|地|址|园|院|路|街|山|河|前|后|旁|面)$", text):
+            return updated
+        pending["answer"] = answer
+        updated["project"]["site"] = _fact(answer, answer, turn_id)
+        return updated
     if re.search(r"功能(?:上|包括|有|是)|阅览区|儿童区|活动室|咖啡角|展厅|自习|报告厅", text):
         return updated  # 功能清单陈述交给 functions 抽取，不是对问题的回答
     if re.search(r"我决定|我选择|就用|确定采用", text):

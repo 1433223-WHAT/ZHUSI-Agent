@@ -802,7 +802,7 @@ def _build_drawing_model(file_contexts: list[dict], state: dict) -> dict:
         "drawings": drawings,
         "cross_level": cl,
         "student_corrections": [f.get("statement", "") for f in (state.get("drawing_facts") or []) if f.get("status") != "superseded"],
-        "note": "这是建筑图纸模型：回答空间问题必须查询本模型的 spaces/connections/cross_level；标记为无法确定/unknown 的项不得当作事实猜测。",
+        "note": "这是建筑图纸模型：spaces/connections/adjacency/cross_level 来自视觉模型，未获学生确认；学生纠正优先。标记为无法确定/unknown 的项不得当作事实猜测。",
     }
 
 
@@ -1242,17 +1242,29 @@ def _build_visual_reference(file_contexts: list[dict], message: str) -> str:
                     parts.append(f"{label}：" + "；".join(str(x)[:60] for x in items[:4]))
             if parts:
                 cl_line = "  跨层关系：" + "；".join(parts)
-        lines.append(f"[图片{i}] {f.get('filename','')}\n  可见事实：{facts}\n  推测：{infs}\n  未知：{unks}"
+        lines.append(f"[图片{i}] {f.get('filename','')}\n  AI标注的可见内容（待核验）：{facts}\n  推测：{infs}\n  未知：{unks}"
                      + (("\n" + elem_line) if elem_line else "")
                      + (("\n" + sp_line) if sp_line else "")
                      + (("\n" + cl_line) if cl_line else "")
                      + (("\n" + dim_line) if dim_line else "")
                      + (("\n" + num_line) if num_line else ""))
-    return "用户提到了图片。以下是已完成并确认的视觉分析结果（严格区分事实/推测/未知）：\n" + "\n".join(lines)
+    return "用户提到了图片。以下是视觉模型分析结果（未获学生确认；严格区分可见描述、推测与未知，不得提升为学生确认事实）：\n" + "\n".join(lines)
 
 
-def _prepare_file_contexts(items: list[dict] | None) -> list[dict]:
+def _prepare_file_contexts(items: list[dict] | None, state: dict | None = None) -> list[dict]:
+    from conversation_state import _contrastive_identity, _matches_rejected_identity
+
     prepared = []
+    superseded = {str(f.get("statement", "")) for f in (state or {}).get("fact_candidates", [])
+                  if f.get("origin") == "vision" and f.get("status") == "superseded"}
+    rejected_identities = [parts for fact in (state or {}).get("drawing_facts", [])
+                           if fact.get("status") != "superseded"
+                           for parts in [_contrastive_identity(fact.get("statement", ""))] if parts]
+
+    def is_rejected_visual_relation(value: str) -> bool:
+        return value in superseded or any(
+            _matches_rejected_identity(value, parts) for parts in rejected_identities)
+
     remaining = 30_000
     for item in (items or [])[:5]:
         if not isinstance(item, dict) or remaining <= 0:
@@ -1265,14 +1277,35 @@ def _prepare_file_contexts(items: list[dict] | None) -> list[dict]:
         }
         if kind == "image":
             base["visible_facts"] = item.get("visible_facts", [])[:30] if isinstance(item.get("visible_facts"), list) else []
+            base["visible_facts"] = [f for f in base["visible_facts"]
+                                     if not is_rejected_visual_relation(
+                                         str(f.get("content", "")) if isinstance(f, dict) else str(f))]
             base["inferences"] = item.get("inferences", [])[:30] if isinstance(item.get("inferences"), list) else []
+            base["inferences"] = [inference for inference in base["inferences"]
+                                  if not is_rejected_visual_relation(
+                                      str(inference.get("content", "")) if isinstance(inference, dict)
+                                      else str(inference))]
             base["unknowns"] = item.get("unknowns", [])[:30] if isinstance(item.get("unknowns"), list) else []
             # 结构化建筑要素（windows/doors/stairs/openings；空数组=未检测到，不代表不存在）
             be = item.get("building_elements")
             base["building_elements"] = be if isinstance(be, dict) else {}
             # 空间模型（rooms/adjacency/links/circulation）——整体→局部分析的拓扑基础
             sm = item.get("spatial_model")
-            base["spatial_model"] = sm if isinstance(sm, dict) else {}
+            base["spatial_model"] = dict(sm) if isinstance(sm, dict) else {}
+            rooms = base["spatial_model"].get("rooms")
+            if isinstance(rooms, list):
+                base["spatial_model"]["rooms"] = [
+                    {k: v for k, v in room.items() if k != "location"}
+                    if isinstance(room, dict) and is_rejected_visual_relation(
+                        f"{room.get('name', '')}位于{room.get('location', '')}")
+                    else room for room in rooms
+                ]
+            # 与摘要同一条已作废的视觉关系，不能从结构化入口重新进入生成上下文。
+            for relation in ("adjacency", "links", "circulation"):
+                values = base["spatial_model"].get(relation)
+                if isinstance(values, list):
+                    base["spatial_model"][relation] = [value for value in values
+                        if not isinstance(value, str) or not is_rejected_visual_relation(value)]
             # 跨图联合分析（楼层对应：stair_matches/voids/projected_overlaps/uncertain_matches）
             cl = item.get("cross_level")
             base["cross_level"] = cl if isinstance(cl, dict) else {}
@@ -1406,6 +1439,8 @@ def _enforce_response_boundaries(reply: str, policy: str) -> str:
 
 # 实验开关：OFF → 完全走原路径（A/B/C 对照组）；ON → 插入 hidden check
 ENABLE_PREOUTPUT_CHECK = True
+# 纠正召回额外检查尚未通过真实稳定性验收，不默认增加模型调用。
+ENABLE_CORRECTION_SCOPE_CHECK = False
 ENABLE_PIL1_DEGRADATION = False
 ENABLE_PIL_MIDDLEWARE = False
 ENABLE_DESIGN_STATE_SUMMARY = False
@@ -3558,8 +3593,10 @@ def _is_design_output_turn(intent: str, last_user: str, draft: str) -> bool:
     return False
 
 
-def _should_run_preoutput_check(intent: str, last_user: str, draft: str) -> bool:
+def _should_run_preoutput_check(intent: str, last_user: str, draft: str, state: dict | None = None) -> bool:
     """Let recalled experience assertions reach the experimental checker even if intent routing misses."""
+    if ENABLE_CORRECTION_SCOPE_CHECK and _drawing_correction_scope(state or {}):
+        return True
     if _is_design_output_turn(intent, last_user, draft):
         return True
     return (
@@ -3586,6 +3623,7 @@ def _preoutput_check_state(state: dict) -> dict:
             s.get("label") for s in (state.get("selected_options") or []) if s.get("status") == "revoked"
         ],
         "current_focus": (state.get("design_focus") or {}).get("topic", ""),
+        "drawing_correction_scope": _drawing_correction_scope(state),
     }
 
 
@@ -3708,6 +3746,8 @@ def _hidden_check_revise(
         + "\n\n【当前有权约束方案的已确认信息】\n"
         + _json.dumps(check_state, ensure_ascii=False)
         + "\n\n【当前用户输入】\n" + (last_user or "（空）")
+        + ("\n\n【学生纠正的作用范围】\n" + DRAWING_FACT_RULE
+           if check_state["drawing_correction_scope"] else "")
         + "\n当前用户输入的明确决定优先级最高；若用户本轮明确决定/确定采用，"
           "不得将该决定降级为候选、未确认或非用户决定。"
         + "\n\n【本轮策略】\n" + policy
@@ -3817,6 +3857,43 @@ def _apply_pil_middleware_if_enabled(draft: str, state: dict, policy: str) -> di
     return {"reply": final_reply, "applied": final_reply != draft or bool(boundary_result), "boundary_check": boundary_result}
 
 
+DRAWING_FACT_RULE = (
+    "design_memory.drawing_facts 中未被 superseded 的陈述是学生提供或纠正的图纸/场地事实；"
+    "overrides 若存在，只指向被纠正的具体观察，不代表整份资料失效。"
+    "发生直接冲突时以学生明确纠正为准，不得继续沿用被否定的机器识别。"
+    "drawing_correction_scope 将明确的身份纠正拆为 rejected_identity 和 confirmed_identity。"
+    "否定某对象的一个身份，不等于否定该对象存在、取消该处边界条件或取消所有衔接关系。"
+    "只撤回与纠正直接冲突的关系及依赖该关系的推论，不能扩大为其他条件全部作废。"
+    "未涉及的条件保留原有证据等级：学生事实仍为学生事实，机器观察仍为待核验观察，"
+    "未知仍为未知；不能补造替代邻接关系，也不能把机器观察说成学生已确认。"
+    "此前助手若扩大了纠正范围，不得把那段回答当成后续事实依据。"
+)
+
+
+def _drawing_correction_scope(state: dict) -> list[dict]:
+    """只读展开已有明确身份纠正，不推断其他属性，也不改变存储。"""
+    from conversation_state import _contrastive_identity
+    result = []
+    for fact in state.get("drawing_facts", []) or []:
+        if fact.get("status") == "superseded":
+            continue
+        statement = fact.get("statement", "")
+        parts = _contrastive_identity(statement)
+        if parts:
+            old, identity, new = parts
+            result.append({
+                "statement": statement,
+                "rejected_identity": {"subject": old, "identity": identity},
+                "confirmed_identity": {"subject": new, "identity": identity},
+                "scope_summary": (
+                    f"本次否定的是“{old}是{identity}”，确认的是“{new}是{identity}”。"
+                    f"“{old}”的其他边界条件和衔接要求没有因此被取消；"
+                    "各条件仍须按各自原始证据判断，缺少证据的保持未知。"
+                ),
+            })
+    return result
+
+
 def _call_deepseek(messages: list[dict], state: dict, knowledge: list[dict], intent: str,
                    file_contexts: list[dict] | None = None, policy: str = "",
                    intent_route: dict | None = None, return_stages: bool = False):
@@ -3849,13 +3926,8 @@ def _call_deepseek(messages: list[dict], state: dict, knowledge: list[dict], int
             )
         ),
         # V0.2.1：图纸事实真值层——学生纠正 > 视觉识别
-        "drawing_fact_rule": (
-            "design_memory.drawing_facts 是学生明确确认的图纸事实（source=student_correction，"
-            "overrides=vision_detection，confidence=confirmed）：视觉模型的原始识别若与之冲突，"
-            "一律以学生确认为准（例如学生说'车库西侧不是楼梯'，则任何分析不得再把该处当楼梯）。"
-            "图纸事实属于'当前方案/图纸已确认事实'，不是场地条件、不是设计目标、不是议题；"
-            "分析图面关系时必须优先引用它。"
-        ),
+        "drawing_fact_rule": DRAWING_FACT_RULE,
+        "drawing_correction_scope": _drawing_correction_scope(state),
         # V0.2.1：整体布局分析——先建立整体认知，再排序问题，最后才进局部
         "overall_analysis_rule": (
             "当学生要求'整体分析/空间布局/看看有什么问题/怎么优化'时，必须按整体→局部的顺序完成："
@@ -3946,7 +4018,7 @@ def _call_deepseek(messages: list[dict], state: dict, knowledge: list[dict], int
         context["drawing_model"] = _dm
         context["drawing_model_rule"] = (
             "回答空间/连通/上下层问题必须查询 drawing_model，不得凭 visible_facts 摘要猜测："
-            "一，connections/adjacency 中有明确记录的，直接引用；"
+            "一，connections/adjacency 即使有记录也只是视觉模型观察，未获学生确认；与 student_corrections 冲突的视觉关系不得引用，其他关系须说明待核验；"
             "二，cross_level 中标记'无法确定'或 grid_aligned=false 的对应关系，不得当作事实发展建筑理论，"
             "只能说'当前无法可靠确认，需要核对原图'；"
             "三，模型中没有记录的连接关系，不得编造——只能声明'图纸模型中未记录此连接'，"
@@ -4022,14 +4094,21 @@ def _call_deepseek(messages: list[dict], state: dict, knowledge: list[dict], int
             "role": "system",
             "content": f"本轮回答策略（必须严格执行）：\n{policy}",
         })
-    response = requests.post(
-        DEEPSEEK_URL,
-        headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
-        json={"model": "deepseek-chat", "messages": payload_messages, "temperature": 0.35, "max_tokens": 1200},
-        timeout=120,
-    )
-    response.raise_for_status()
-    draft = response.json()["choices"][0]["message"]["content"].strip()
+    for max_tokens in (2200, 3600):
+        response = requests.post(
+            DEEPSEEK_URL,
+            headers={"Authorization": f"Bearer {DEEPSEEK_API_KEY}", "Content-Type": "application/json"},
+            json={"model": "deepseek-chat", "messages": payload_messages,
+                  "temperature": 0.35, "max_tokens": max_tokens},
+            timeout=120,
+        )
+        response.raise_for_status()
+        choice = response.json()["choices"][0]
+        if choice.get("finish_reason") != "length":
+            draft = choice["message"]["content"].strip()
+            break
+    else:
+        raise RuntimeError("模型回答连续两次被长度上限截断")
     last_user = ""
     for msg in reversed(messages):
         if msg.get("role") == "user" and msg.get("content"):
@@ -4045,7 +4124,7 @@ def _call_deepseek(messages: list[dict], state: dict, knowledge: list[dict], int
         pil_boundary_check = _pil_result.get("boundary_check", "")
         pil_middleware_applied = bool(_pil_result.get("applied"))
     checked_draft = draft
-    if ENABLE_PREOUTPUT_CHECK and _should_run_preoutput_check(intent, last_user, draft):
+    if ENABLE_PREOUTPUT_CHECK and _should_run_preoutput_check(intent, last_user, draft, state):
         _checked = _hidden_check_revise(draft, state, policy, last_user)
         if _checked and len(_checked.strip()) > 10:
             checked_draft = _checked
@@ -4412,16 +4491,25 @@ def chat_turn(message: str, history: list[dict] | None, state: dict | None, turn
         pass
     # V0.2.1 图纸事实真值层：学生对图纸要素的纠正（"车库西侧不是楼梯"）
     # 优先级最高——覆盖视觉原始识别，先于议题/目标修正记录
-    # P0-A 硬不变量：不存在可指向的 active 视觉事实时，绝不走"纠正视觉识别"路径
-    # （不记录 drawing correction、不注入"视觉识别此条作废"）。
-    # 因为"覆盖视觉事实"的前提是存在视觉事实；纯文本首轮（无图）任何"纠正"都无对象可覆盖。
+    # 已有学生事实也可被纠正；是否覆盖视觉由 record_drawing_fact 的具体证据匹配决定。
+    # 无任何旧事实的纯文本首轮仍不走本入口，避免凭空宣称覆盖证据。
     from conversation_state import _active_vision_facts
     _has_vision_evidence = bool(_active_vision_facts(updated))
-    _drawing_corr = detect_drawing_correction(design_message or message) if _has_vision_evidence else None
+    _has_student_drawing_facts = any(
+        f.get("status") != "superseded" and f.get("source") in {"student", "student_correction"}
+        for f in updated.get("drawing_facts", []))
+    _drawing_corr = detect_drawing_correction(design_message or message) if (
+        _has_vision_evidence or _has_student_drawing_facts) else None
     if _drawing_corr:
         record_drawing_fact(updated, _drawing_corr, turn_id)
         if not state_opener:
-            state_opener = f"已记下：{_drawing_corr}（以你的确认为准，视觉识别此条作废）。"
+            _recorded_corr = next((f for f in updated.get("drawing_facts", [])
+                                   if f.get("statement") == _drawing_corr), {})
+            _correction_notice = ("以你的确认为准，对应视觉识别作废"
+                                  if _recorded_corr.get("overrides") else "以你的本次说明为准")
+            state_opener = f"已记下：{_drawing_corr}（{_correction_notice}）。"
+    # 纠正记录与文件原文是两个生成入口；失效观察不能从文件入口重新进入。
+    file_contexts = _prepare_file_contexts(file_contexts, updated)
     # P1 学生合法回归：主动要求回看旧议题（optional/dormant → candidate）
     _return_opener = _apply_topic_return(updated, design_message or message, turn_id)
     if _return_opener:

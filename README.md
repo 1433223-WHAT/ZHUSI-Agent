@@ -25,6 +25,22 @@ python -m pip install -r requirements.txt
 
 根据需要编辑 `.env` 中的 DeepSeek、Dify 和 Qwen-VL 配置。API Key 只保存在服务端配置中，`.env` 已被 `.gitignore` 排除。
 
+> **依赖分两级，可以只装核心那一级。**
+>
+> - `requirements.txt`（必装）：requests / numpy / python-docx / pypdf / Pillow，约几十 MB，一两分钟装完。
+>   装完即可使用 **AI 对话、图像视觉分析、设计记忆、过程导出**。
+> - `requirements-full.txt`（可选）：额外包含 `torch` 与 `transformers`，只服务于**本地向量知识检索**这一路。
+>   需要时执行 `pip install -r requirements-full.txt` 并重启服务；
+>   想省体积可装 CPU 版 torch：`pip install torch --index-url https://download.pytorch.org/whl/cpu`。
+>
+>   **不装会影响什么（如实说明）**：`/api/local_retrieve` 返回 `available: false` 后，
+>   生成回答时不再注入本地检索到的**建筑判断原则与建筑思维方法**（见 `architect_chat.py` 判断层 / Skill 层注入）。
+>   对话、图像分析、设计记忆、过程导出仍完全可用，但回答里不会出现基于本地知识库的案例引用与判断框架提示，
+>   质量低于完整安装。
+
+双击「启动Demo.bat」时若检测到核心依赖缺失，会自动执行 `pip install -r requirements.txt`；
+自动安装失败时会给出手动执行的命令提示。
+
 双击 `启动Demo.bat`。脚本会依次检查：
 
 - Python 版本和运行依赖
@@ -43,6 +59,31 @@ python server.py --host 127.0.0.1 --port 8787
 ```
 
 然后打开 `http://127.0.0.1:8787/`。页面、API 和案例图片都由同一个服务提供，健康检查地址为 `http://127.0.0.1:8787/api/health`。
+
+## API Key 获取与配置（首次运行必读）
+
+密钥只在服务端 `.env` 中读取，不会下发到浏览器，也不进入发布包。发布包内没有 `.env`，需要先复制模板：
+
+```powershell
+Copy-Item .env.example .env
+```
+
+按重要性分三档，**只配第 1 项就能正常对话**：
+
+1. **DeepSeek（必需，负责对话与推理）**
+   访问 https://platform.deepseek.com 注册并登录 → 进入「API Keys」→ 创建新密钥 →
+   复制后填入 `.env` 的 `DEEPSEEK_API_KEY=sk-...`。
+   是否有赠送额度、额度多少以平台当时的政策为准，请先在平台确认。
+
+2. **阿里云百炼 DashScope（可选，负责建筑图像分析）**
+   访问 https://dashscope.aliyun.com 开通服务 → 控制台创建 API Key →
+   填入 `.env` 的 `DASHSCOPE_API_KEY=sk-...`。
+   未配置时对话和知识检索不受影响，只有图片上传后的视觉分析会失败；界面会显示真实失败状态，不会用本地结果冒充云端已连接。
+
+3. **Dify 知识库（可选）**
+   本包已内置本地建筑知识库，不配置 Dify 也能完成知识检索。需要扩展外部知识库时再填写 `DIFY_API_KEY` 与相关 Dataset ID。
+
+配置完成后重启服务生效。**若暂不配置任何 Key，界面仍可打开、可上传资料，但无法生成回答**——这属于预期行为，不是程序故障。
 
 ## 生成版本化发布包
 
@@ -83,6 +124,41 @@ cloudflared tunnel run <你的-Tunnel-名称>
 - `document_parser.py`：文档解析
 - `image_analyzer.py`：建筑图像分析框架
 - `tests/`：单元测试、边界测试和端到端测试脚本
+
+## 环境自检（可选）：`_smoke_test.py` 是干什么的
+
+简单说：**它是用来回答「我这套环境到底装对了没有」的检查脚本**，不是项目运行必需的文件。
+
+什么时候需要它：
+
+- 第一次配好 `.env` 并启动服务后，想确认是不是真能问答；
+- 有人反馈「跑不起来」时，用它快速定位断在哪一环。
+
+跑出来四项全绿就不用再管；平时正常使用不需要它。
+
+怎么用（两个命令行窗口）：
+
+```bat
+:: 第一个窗口：先启动服务
+启动Demo.bat
+:: 或：python server.py --host 127.0.0.1 --port 8787
+
+:: 第二个窗口：服务起来后，在本目录执行
+python _smoke_test.py
+```
+
+它依次检查四项，每项打印「通过 / 失败 / 跳过」：
+
+| 项 | 检查什么 | 不通过意味着什么 |
+|---|---|---|
+| `[1] 健康检查` | 服务有没有活着 | 服务没启动；这一项不过会直接退出 |
+| `[2] 本地知识库检索` | 内置知识库能否检索 | 未装 torch 时显示「跳过」，属正常 |
+| `[3] 核心对话问答` | 问一句真问题，AI 有没有回答 | Key 无效 / 余额不足 / 网络不通 |
+| `[4] 带资料上下文` | 上传任务书后 AI 会不会用上 | 同上，或文档解析链路有问题 |
+
+脚本只依赖 `requests`（核心依赖已包含），不需要额外安装。第 `[3][4]` 项会真实调用一次大模型，
+消耗极少量额度（每次约几千 token），跑一次就见效，不是本地模拟。
+脚本内置的《补园记》示例问题仅用于验证链路，不会写入你的项目数据。
 
 ## 真实限制
 

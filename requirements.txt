@@ -1,7 +1,7 @@
+# 核心依赖（必装）——约几十 MB，一两分钟装完
+# 覆盖：AI 对话、图像视觉分析、任务书/文档解析、设计记忆、过程导出
 requests
 numpy
-torch
-transformers
 python-docx
 pypdf
 Pillow

@@ -1,0 +1,17 @@
+# 完整依赖（可选）——在核心依赖之上，额外启用「本地向量知识检索」
+-r requirements.txt
+
+# 本地向量检索使用 BGE 中文小模型（bge-small-zh-v1.5，约 184 MB）
+# 首次检索时会自动下载模型到 ~/.cache/modelscope
+torch
+transformers
+
+# 安装提示：
+#   pip install -r requirements-full.txt
+# 想节省体积可装 CPU 版 torch（约 200 MB，而非默认 CUDA 版的 2 GB+）：
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+# 国内网络较慢时可用清华源：
+#   pip install -r requirements-full.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+#
+# 不装也能正常跑：AI 对话、图像分析、设计记忆、过程导出全部可用，
+# 只是 /api/local_retrieve 会返回 available=false 的降级结果。

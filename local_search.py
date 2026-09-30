@@ -17,8 +17,18 @@ import time
 from pathlib import Path
 
 import numpy as np
-import torch
-from transformers import AutoModel, AutoTokenizer
+
+# torch / transformers 仅"本地向量检索"这一路需要。
+# 未安装时降级为空结果，服务仍可正常启动，AI 对话 / 图像分析 / 记忆 / 导出不受影响。
+try:
+    import torch
+    from transformers import AutoModel, AutoTokenizer
+    HAS_TORCH = True
+except Exception:  # 未安装，或环境异常（如缺少 VC 运行库）
+    torch = None
+    AutoModel = None
+    AutoTokenizer = None
+    HAS_TORCH = False
 
 BASE = Path(__file__).resolve().parent
 VECTOR_DIR = BASE / "vector_db"
@@ -26,7 +36,7 @@ MODEL_DIR = os.path.expanduser(
     r"~/.cache/modelscope/hub/models/BAAI/bge-small-zh-v1___5"
 )
 
-DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
+DEVICE = "cuda" if (HAS_TORCH and torch.cuda.is_available()) else "cpu"
 
 # 全局缓存：索引 + 模型（server 常驻时避免重复加载）
 _INDEX = None
@@ -96,6 +106,18 @@ def local_retrieve(query: str, top_k: int = 3, prefer_category: str | None = Non
             "methods": [{"name", "content", "score"}],
         }
     """
+    # 降级：未装 torch/transformers 时不阻断主流程
+    if not HAS_TORCH:
+        return {
+            "available": False,
+            "reason": (
+                "未安装 torch/transformers，本地向量知识检索暂不可用。"
+                "AI 对话、图像分析、设计记忆与导出不受影响；"
+                "需要完整本地检索时执行 pip install torch transformers 后重启即可。"
+            ),
+            "cases": [], "theory": [], "methods": [], "judgments": [], "skills": [],
+        }
+
     index = _load_index()
     embeddings = index["embeddings"]
     metadata = index["metadata"]

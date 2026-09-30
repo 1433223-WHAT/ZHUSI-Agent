@@ -59,7 +59,7 @@ def _build_prompt(question: str) -> str:
 请只返回JSON对象：
 {{
   "image_type": "site_photo|plan|section|elevation|diagram|sketch|rendering|other",
-  "visible_facts": ["图片中明确可见、可直接描述的事实（几何/图形为主；提到尺寸时用'检测到标注'措辞，不要自行断定它就是总长/总宽）"],
+  "visible_facts": ["图片中明确可见、可直接描述的事实；图纸记几何和标注，文字资料记可读原文及其所属条款；提到图纸尺寸时用'检测到标注'措辞，不要自行断定它就是总长/总宽"],
   "building_elements": {{
     "windows": [{{"location":"窗户所在墙体位置描述，如'主卧南侧外墙'","count":数量,"confidence":"low|medium|high"}}],
     "doors": [{{"id":"门编号如M2421，无编号给'未编号'","location":"门所在位置"}}],
@@ -82,7 +82,9 @@ def _build_prompt(question: str) -> str:
 一，building_elements 的 windows/doors/stairs/openings 四个子项必须全部输出，不得省略；某类要素图中未检测到时，必须写空数组 []（如 "windows": []），不得用文字省略或用"无"字含糊带过。
 二，检测到窗户符号（墙体双线/断开/平行细线）时必须在 windows 中列出位置；不要把窗混入 doors 或只写进 visible_facts 而漏掉 windows。
 三，spatial_model 的 rooms/adjacency/links/circulation 四个子项必须全部输出，不得省略；每项只写图中实际可见的关系，不确定就写空数组，不得编造。
-四，必须把观察和推测分开。architecture_questions最多3条。dimension_annotations只列数字不做语义判断。"""
+四，必须把观察和推测分开。architecture_questions最多3条。dimension_annotations只列数字不做语义判断。
+五，阅读场地、导览或总平面图时，标注文字的位置不等于标注所指对象的位置；先检查引线终点或明确边界，再说明名称指向哪个区域。只有名称和目标都可识别、且方位依据清楚，才能描述邻接。若引线、边界或方向不清，不能据此确定方位或邻接，应列入 unknowns；不要为被否定的邻接关系猜一个替代对象。
+六，若图片主要是任务书、课程作业说明、设计竞赛要求或其他文字资料，先逐条读取可辨认的原文，不要套用图纸几何模板。把明确写出的设计目标、场地与尺度条件、限制、成果与交付形式、评价标准分别记入 visible_facts；每条标明原文所属栏目或附近标题，保留数字、单位和“必须／建议”等语气差别。不要只摘一项成果就称已读全，也不要把常见做法补成资料原文。看不清、被遮挡或未识别的条款写进 unknowns；资料没有写的要求不要猜。用户的问题决定回答重点，但不得因此遗漏同页清晰可见的硬性要求。"""
 
 
 def _save_raw(content: str, label: str = "") -> None:
@@ -225,16 +227,25 @@ def _call_qwen_vl(data: bytes, mime_type: str, user_question: str) -> dict:
     qwen_model = _load_qwen_model()
     print(f"[Vision Debug] Step1 图片已编码: bytes={len(data)}, mime={mime_type}")
     print(f"[Vision Debug] Step2 请求 Qwen-VL: model={qwen_model}, prompt_len={len(prompt)}")
+    payload = {
+        "model": qwen_model,
+        "input": {"messages": [{"role": "user", "content": [{"image": data_url}, {"text": prompt}]}]},
+        "parameters": {"temperature": 0.1, "max_tokens": 3000},
+    }
     try:
-        response = requests.post(
-            DASHSCOPE_URL,
-            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
-            json={
-                "model": qwen_model,
-                "input": {"messages": [{"role": "user", "content": [{"image": data_url}, {"text": prompt}]}]},
-                "parameters": {"temperature": 0.1, "max_tokens": 3000},
-            }, timeout=120,
-        )
+        for attempt in range(2):
+            try:
+                response = requests.post(
+                    DASHSCOPE_URL,
+                    headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+                    json=payload, timeout=120,
+                )
+                break
+            except requests.ConnectionError:
+                if attempt:
+                    raise
+                # 只给偶发断连一次恢复机会；两次都失败仍由上层如实显示失败。
+                time.sleep(1)
         response.raise_for_status()
     except Exception as exc:
         print(f"[Vision Debug] Step2 请求失败: {type(exc).__name__}: {exc}")
@@ -408,18 +419,9 @@ def _validated_spatial_model(raw: dict) -> dict:
 
 def analyze_architecture_image(filename: str, data: bytes, question: str = "") -> dict:
     metadata = inspect_image(filename, data)
-    # 视觉调用：中转站（OpenAI 兼容）优先 → 失败回退 Qwen-VL
-    def _call_vision():
-        relay_raw = _call_relay_vl(data, metadata["mime_type"], question)
-        if relay_raw is not None:
-            return _validated_analysis(_extract_json_robust(relay_raw))
-        raise RuntimeError("中转站未配置")
+    # 上传图片只发送至官方 DashScope；历史中转配置不改变此入口的目的地。
     try:
-        try:
-            analysis = _call_vision()
-        except Exception as relay_exc:
-            print(f"[Vision Debug] 中转站视觉失败({type(relay_exc).__name__}: {str(relay_exc)[:120]})，回退 Qwen-VL")
-            analysis = _validated_analysis(_call_qwen_vl(data, metadata["mime_type"], question))
+        analysis = _validated_analysis(_call_qwen_vl(data, metadata["mime_type"], question))
     except Exception as exc:
         return {
             **metadata, "status": "failed", "error": str(exc), "image_type": "unknown",
